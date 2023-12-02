@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Add Tailwind CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <title>Member Card</title>
 </head>
-<body>
-    
+<body class="bg-gray-200">
+  <div class="container mx-auto mt-8">
+    <!-- Member Card -->
+    <div class="bg-white p-4 rounded-md shadow-md flex items-center max-w-xs mx-auto flex-wrap">
+      <!-- Member Image -->
+      <img src="https://placekitten.com/100/100" alt="Member Image" class="w-12 h-12 rounded-full">
 
-<div class="w-full max-w-sm bg-gray-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 al ali items-center ">
-    <div class="flex justify-end px-4 pt-4">
-                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-            </svg>
-        </button>
-      
-    </div>
-    <div class="flex items-center ">
-        <img class="w-15 h-15 mb-3 rounded-full shadow-lg" src="../Images/user.png" alt="Bonnie image"/> 
-        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Roberto baggio</h5>
-    </div>
-        <span class="text-sm text-gray-500 dark:text-gray-400 ">Visual Designer</span>
-        <span class="text-sm text-gray-500 dark:text-gray-400">useremail@gmail.com</span>
-    
-</div>
+      <!-- Member Details -->
+      <div class="flex flex-col ml-2">
+        <!-- Username and Badge -->
+        <div class="flex items-center space-x-2">
+          <!-- Username -->
+          <p class="text-sm font-semibold">Username</p>
 
+          <!-- Badge (Green Circle) -->
+          <div class="bg-green-500 w-2 h-2 rounded-full flex-shrink-0"></div>
+        </div>
+
+        <!-- Email -->
+        <p class="text-gray-500 text-xs mt-1">user@example.com</p>
+
+        <!-- Role -->
+        <p class="text-gray-500 text-xs">Role: Member</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
