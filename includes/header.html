@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Header</title>
-    <!-- Inclure la bibliothèque Tailwind CSS -->
+    <script src="../Javascript/script.js" defer>
+
+    </script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
@@ -34,28 +36,26 @@
                 <a href="#" class="text-white">Team </a>
                 <a href="#" class="text-white">Members</a>
                 <a href="#" class="text-white px-7 py-2 rounded-full border border-white ">Log out</a>
-    
-    
+
+
             </nav>
         </div>
     </header>
     <div id="burgerOverlay"
-    class="fixed py-5 top-18 right-0 w-1/2 h-screen bg-blue-800 bg-opacity-50 z-50 hidden items-center justify-center sm:hidden">
-    <nav class="flex flex-col items-center space-y-5">
-        <a href="#" class="text-white">Dashboard</a>
-        <a href="#" class="text-white">Community</a>
-        <a href="#" class="text-white">Project</a>
-        <a href="#" class="text-white">Team</a>
-        <a href="#" class="text-white">Members</a>
-        <a href="#" class="text-white">Log out</a>
-    </nav>
-</div>
+        class="fixed py-5 top-18 right-0 w-1/2 h-screen bg-blue-800 bg-opacity-50 z-50 hidden items-center justify-center sm:hidden">
+        <nav class="flex flex-col items-center space-y-5">
+            <a href="#" class="text-white">Dashboard</a>
+            <a href="#" class="text-white">Community</a>
+            <a href="#" class="text-white">Project</a>
+            <a href="#" class="text-white">Team</a>
+            <a href="#" class="text-white">Members</a>
+            <a href="#" class="text-white">Log out</a>
+        </nav>
+    </div>
 
-<script>
-        document.getElementById('burgerBtn').addEventListener('click', function () {
-        document.getElementById('burgerOverlay').classList.toggle('hidden');
-    });
-</script>
+    <script>
+
+    </script>
 </body>
 
 </html>
