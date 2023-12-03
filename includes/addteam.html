@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Team Popup</title>
+    <!-- Add Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+
+<body class="bg-gray-200">
+    <!-- Trigger button/link -->
+    <button id="openPopup" class="bg-blue-500 text-white py-2 px-4 rounded">Add Team</button>
+
+    <!-- Popup container -->
+    <div id="popup" class="fixed inset-0 flex items-center justify-center hidden">
+        <!-- Popup content -->
+        <div class="bg-white w-96 p-6 rounded shadow-md">
+            <h2 class=" text-center text-2xl font-semibold mb-4">Add New Team</h2>
+
+            <!-- Add your form elements here -->
+            <form action="" method="post" class="rounded">
+                <!-- Team name -->
+                <div class="mb-4">
+                    <label for="teamName" class="block text-sm font-medium text-gray-600">Team Name</label>
+                    <input type="text" id="teamName" name="team_name" placeholder="Enter team name" class="mt-1 p-2 w-full border rounded-md">
+                </div>
+
+                <!-- Project dropdown -->
+                <div class="mb-4">
+                    <label for="projectDropdown" class="block text-sm font-medium text-gray-600">Select Project</label>
+                    <select id="projectDropdown" name="project_id" class="mt-1 p-2 w-full border rounded-md">
+                        <!-- Replace the option values with actual project IDs and names -->
+                        <option value="1">Project 1</option>
+                        <option value="2">Project 2</option>
+                    </select>
+                </div>
+
+                <!-- Members checkboxes -->
+                <div class="mb-4 max-h-40 overflow-y-auto">
+                    <label class="block text-sm font-medium text-gray-600">Select Team Members</label>
+                    <div class="mt-1 grid grid-cols-1 gap-4">
+                        <!-- Replace the input values with actual member IDs and names -->
+                        <label><input type="checkbox" name="members[]" value="1"> Member 1</label>
+                        <label><input type="checkbox" name="members[]" value="2"> Member 2</label>
+                        <label><input type="checkbox" name="members[]" value="1"> Member 1</label>
+                        <label><input type="checkbox" name="members[]" value="2"> Member 2</label>
+                        <!-- Add more checkboxes as needed -->
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button id="closePopup" type="button" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-700 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 ">Cancel</button>
+                    <div class="mx-2"></div> <!-- Add margin between buttons -->
+                    <button type="button" class="text-white bg-blue-700  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 hover:bg-white  hover:text-blue-700 border hover:border-blue-700">Add Team</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('openPopup').addEventListener('click', function () {
+            document.getElementById('popup').classList.remove('hidden');
+        });
+
+        document.getElementById('closePopup').addEventListener('click', function () {
+            document.getElementById('popup').classList.add('hidden');
+        });
+
+    </script>
+</body>
+
+</html>
