@@ -6,33 +6,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Add Tailwind CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <title>Member Card</title>
+  <title>Member Cards</title>
 </head>
 <body class="bg-gray-200">
-  <div class="container mx-auto mt-8">
-    <!-- Member Card -->
-    <div class="bg-white p-4 rounded-md shadow-md flex items-center max-w-xs mx-auto flex-wrap">
-      <!-- Member Image -->
-      <img src="https://placekitten.com/100/100" alt="Member Image" class="w-12 h-12 rounded-full">
+  <div class="container mx-auto mt-8 flex flex-wrap -mx-4">
+    <!-- Member Cards -->
+    <!-- Member Card 1 -->
+    <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 px-4 mb-8">
+      <div class="bg-white p-4 rounded-md shadow-md flex items-center max-w-xs mx-auto flex-wrap">
+        <!-- Member Image -->
+        <img src="https://placekitten.com/100/100" alt="Member Image" class="w-12 h-12 rounded-full">
 
-      <!-- Member Details -->
-      <div class="flex flex-col ml-2">
-        <!-- Username and Badge -->
-        <div class="flex items-center space-x-2">
-          <!-- Username -->
-          <p class="text-sm font-semibold">Username</p>
+        <!-- Member Details -->
+        <div class="flex flex-col ml-2">
+          <!-- Username and Badge -->
+          <div class="flex items-center space-x-2">
+            <!-- Username -->
+            <p class="text-sm font-semibold">Username</p>
 
-          <!-- Badge (Green Circle) -->
-          <div class="bg-green-500 w-2 h-2 rounded-full flex-shrink-0"></div>
+            <!-- Badge (Green Circle) -->
+            <div class="bg-green-500 w-2 h-2 rounded-full flex-shrink-0"></div>
+          </div>
+
+          <!-- Email -->
+          <p class="text-gray-500 text-xs mt-1">user@example.com</p>
+
+          <!-- Role -->
+          <p class="text-gray-500 text-xs">Role: Member</p>
         </div>
-
-        <!-- Email -->
-        <p class="text-gray-500 text-xs mt-1">user@example.com</p>
-
-        <!-- Role -->
-        <p class="text-gray-500 text-xs">Role: Member</p>
       </div>
     </div>
+
+    <!-- Repeat the above member card structure for the remaining members (Member Card 2, Member Card 3, ..., Member Card 6) -->
+
+    <!-- Member Card 2 -->
+    <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 px-4 mb-8">
+        <div class="bg-white p-4 rounded-md shadow-md flex items-center max-w-xs mx-auto flex-wrap">
+          <!-- Member Image -->
+          <img src="https://placekitten.com/100/100" alt="Member Image" class="w-12 h-12 rounded-full">
+  
+          <!-- Member Details -->
+          <div class="flex flex-col ml-2">
+            <!-- Username and Badge -->
+            <div class="flex items-center space-x-2">
+              <!-- Username -->
+              <p class="text-sm font-semibold">Username</p>
+  
+              <!-- Badge (Green Circle) -->
+              <div class="bg-green-500 w-2 h-2 rounded-full flex-shrink-0"></div>
+            </div>
+  
+            <!-- Email -->
+            <p class="text-gray-500 text-xs mt-1">user@example.com</p>
+  
+            <!-- Role -->
+            <p class="text-gray-500 text-xs">Role: Member</p>
+          </div>
+        </div>
+      </div>
+
+    <!-- Member Card 3 -->
+    <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 px-4 mb-8">
+        <div class="bg-white p-4 rounded-md shadow-md flex items-center max-w-xs mx-auto flex-wrap">
+          <!-- Member Image -->
+          <img src="https://placekitten.com/100/100" alt="Member Image" class="w-12 h-12 rounded-full">
+  
+          <!-- Member Details -->
+          <div class="flex flex-col ml-2">
+            <!-- Username and Badge -->
+            <div class="flex items-center space-x-2">
+              <!-- Username -->
+              <p class="text-sm font-semibold">Username</p>
+  
+              <!-- Badge (Green Circle) -->
+              <div class="bg-green-500 w-2 h-2 rounded-full flex-shrink-0"></div>
+            </div>
+  
+            <!-- Email -->
+            <p class="text-gray-500 text-xs mt-1">user@example.com</p>
+  
+            <!-- Role -->
+            <p class="text-gray-500 text-xs">Role: Member</p>
+          </div>
+        </div>
+      </div>
+
   </div>
 </body>
 </html>
