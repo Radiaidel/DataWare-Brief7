@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 02 déc. 2023 à 16:19
+-- Généré le : lun. 04 déc. 2023 à 10:55
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.0.28
 
@@ -189,17 +189,18 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL,
   `pass_word` varchar(50) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
-  `status` varchar(50) DEFAULT NULL
+  `status` varchar(50) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id_user`, `username`, `email`, `pass_word`, `role`, `status`) VALUES
-(1, 'po', 'po@gmail.com', 'po', 'po', 'active'),
-(2, 'sm', 'sm@gmail.com', 'sm', 'sm', 'active'),
-(3, 'mm', 'mm@gmail.com', 'pass456', 'user', 'inactive');
+INSERT INTO `users` (`id_user`, `username`, `email`, `pass_word`, `role`, `status`, `image`) VALUES
+(1, 'po', 'po@gmail.com', 'po', 'po', 'active', NULL),
+(2, 'sm', 'sm@gmail.com', 'sm', 'sm', 'active', NULL),
+(3, 'mm', 'mm@gmail.com', 'pass456', 'user', 'inactive', NULL);
 
 -- --------------------------------------------------------
 
