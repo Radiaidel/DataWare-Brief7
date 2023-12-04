@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Équipes</title>
+    <!-- Inclure la bibliothèque Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Ajouter le script JavaScript pour gérer le menu déroulant -->
+    <script src="../Javascript/script.js" defer>
+  
+    </script>
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-12 ">
+        <!-- Exemple de carte pour une équipe -->
+        <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between w-full ">
+            <div>
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold">Équipe A</h2>
+                    <!-- Bouton d'options (Edit et Delete) -->
+                    <div class="relative z-50">
+                        <button class="focus:outline-none" onclick="toggleDropdown(1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                              </svg>
+                              
+                        </button>
+                        <!-- Dropdown content -->
+                        <div id="dropdown-1"
+                            class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg hidden">
+                            <button class="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left ">
+                                Edit
+                            </button>
+                            <button class="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-2"><span class="font-semibold">Projet Associé:</span> Projet XYZ</p>
+                <p class="text-gray-600 mb-2"><span class="font-semibold">Date de Création:</span> 10 janvier 2023</p>
+            </div>
+            <div class="flex flex-wrap -mx-2">
+                <!-- Exemple de membre avec photo de profil -->
+                <div class="flex items-center">
+                    <div class="w-2/12 mb-4">
+                        <div class="flex-shrink-0 relative">
+                            <img src="../Images/user.png" alt="Membre" class="w-full h-auto rounded-full">
+                        </div>
+                    </div>
+                    <div class="w-2/12 mb-4">
+                        <div class="flex-shrink-0 relative">
+                            <img src="../Images/user.png" alt="Membre" class="w-full h-auto rounded-full">
+                        </div>
+                    </div>
+                    <div class="w-2/12 mb-4">
+                        <div class="flex-shrink-0 relative">
+                            <img src="../Images/user.png" alt="Membre" class="w-full h-auto rounded-full">
+                        </div>
+                    </div>
+                    <!-- Ajouter d'autres membres ici -->
+                </div>
+            </div>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between w-full ">
+            <div>
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold">Équipe A</h2>
+                    <!-- Bouton d'options (Edit et Delete) -->
+                    <div class="relative z-50">
+                        <button class="focus:outline-none" onclick="toggleDropdown(2)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                              </svg>
+                              
+                        </button>
+                        <!-- Dropdown content -->
+                        <div id="dropdown-2"
+                            class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg hidden">
+                            <button class="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left ">
+                                Edit
+                            </button>
+                            <button class="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-2"><span class="font-semibold">Projet Associé:</span> Projet XYZ</p>
+                <p class="text-gray-600 mb-2"><span class="font-semibold">Date de Création:</span> 10 janvier 2023</p>
+            </div>
+            <div class="flex flex-wrap -mx-2">
+                <!-- Exemple de membre avec photo de profil -->
+                <div class="flex items-center">
+                    <div class="w-2/12 mb-4">
+                        <div class="flex-shrink-0 relative">
+                            <img src="../Images/user.png" alt="Membre" class="w-full h-auto rounded-full">
+                        </div>
+                    </div>
+                    <div class="w-2/12 mb-4">
+                        <div class="flex-shrink-0 relative">
+                            <img src="../Images/user.png" alt="Membre" class="w-full h-auto rounded-full">
+                        </div>
+                    </div>
+                    <div class="w-2/12 mb-4">
+                        <div class="flex-shrink-0 relative">
+                            <img src="../Images/user.png" alt="Membre" class="w-full h-auto rounded-full">
+                        </div>
+                    </div>
+                    <!-- Ajouter d'autres membres ici -->
+                </div>
+            </div>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between w-full ">
+            <div>
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold">Équipe A</h2>
+                    <!-- Bouton d'options (Edit et Delete) -->
+                    <div class="relative z-50">
+                        <button class="focus:outline-none" onclick="toggleDropdown(3)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                              </svg>
+                              
+                        </button>
+                        <!-- Dropdown content -->
+                        <div id="dropdown-3"
+                            class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg hidden">
+                            <button class="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left ">
+                                Edit
+                            </button>
+                            <button class="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-2"><span class="font-semibold">Projet Associé:</span> Projet XYZ</p>
+                <p class="text-gray-600 mb-2"><span class="font-semibold">Date de Création:</span> 10 janvier 2023</p>
+            </div>
+            <div class="flex flex-wrap -mx-2">
+                <!-- Exemple de membre avec photo de profil -->
+                <div class="flex items-center">
+                    <div class="w-2/12 mb-4">
+                        <div class="flex-shrink-0 relative">
+                            <img src="../Images/user.png" alt="Membre" class="w-full h-auto rounded-full">
+                        </div>
+                    </div>
+                    <div class="w-2/12 mb-4">
+                        <div class="flex-shrink-0 relative">
+                            <img src="../Images/user.png" alt="Membre" class="w-full h-auto rounded-full">
+                        </div>
+                    </div>
+                    <div class="w-2/12 mb-4">
+                        <div class="flex-shrink-0 relative">
+                            <img src="../Images/user.png" alt="Membre" class="w-full h-auto rounded-full">
+                        </div>
+                    </div>
+                    <!-- Ajouter d'autres membres ici -->
+                </div>
+            </div>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between w-full ">
+            <div>
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold">Équipe A</h2>
+                    <!-- Bouton d'options (Edit et Delete) -->
+                    <div class="relative z-50">
+                        <button class="focus:outline-none" onclick="toggleDropdown(4)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                              </svg>
+                              
+                        </button>
+                        <!-- Dropdown content -->
+                        <div id="dropdown-4"
+                            class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg hidden">
+                            <button class="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left ">
+                                Edit
+                            </button>
+                            <button class="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 mb-2"><span class="font-semibold">Projet Associé:</span> Projet XYZ</p>
+                <p class="text-gray-600 mb-2"><span class="font-semibold">Date de Création:</span> 10 janvier 2023</p>
+            </div>
+            <div class="flex flex-wrap -mx-2">
+               
+                <!-- Exemple de membre avec photo de profil -->
+                <div class="flex items-center">
+                    <div class="w-2/12 mb-4">
+                        <div class="flex-shrink-0 relative">
+                            <img src="../Images/user.png" alt="Membre" class="w-full h-auto rounded-full">
+                        </div>
+                    </div>
+                    <div class="w-2/12 mb-4">
+                        <div class="flex-shrink-0 relative">
+                            <img src="../Images/user.png" alt="Membre" class="w-full h-auto rounded-full">
+                        </div>
+                    </div>
+                    <div class="w-2/12 mb-4">
+                        <div class="flex-shrink-0 relative">
+                            <img src="../Images/user.png" alt="Membre" class="w-full h-auto rounded-full">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
