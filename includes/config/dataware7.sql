@@ -279,7 +279,7 @@ ALTER TABLE `team`
   ADD KEY `id_user` (`id_user`),
   ADD KEY `Id_Project` (`Id_Project`);
 
---
+--" team"
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
