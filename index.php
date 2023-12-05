@@ -58,7 +58,7 @@
                 }
             } else {
                 // Handle database connection error
-                echo "<p class='text-red-500 text-center'>Error: " . $con->error . "</p>";
+                echo "<p class='text-red-500 text-center'>Error: " . $conn->error . "</p>";
             }
         }
         ?>

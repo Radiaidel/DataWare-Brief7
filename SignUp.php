@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Sorry, there was a problem uploading your file.";
         }
     }
+  
 
     // Insert user data into the database
     $query = "INSERT INTO users (username, pass_word, email, image_url, role) VALUES (?, ?, ?, ?, 'user')";
