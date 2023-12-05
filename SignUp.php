@@ -1,5 +1,5 @@
 <?php
-require_once "./includes/config.php"; // Adjust the path as needed
+require_once "./includes/config/connection.php"; // Adjust the path as needed
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -33,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insert user data into the database
-    $query = "INSERT INTO users (username, password, email, image_url, role) VALUES (?, ?, ?, ?, 'user')";
-    $stmt = $con->prepare($query);
+    $query = "INSERT INTO users (username, pass_word, email, image_url, role) VALUES (?, ?, ?, ?, 'user')";
+    $stmt = $conn->prepare($query);
 
     if ($stmt) {
         $stmt->bind_param("ssss", $username, $password, $email, $img);
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $mysqli->error;
     }
 
-    // Close the database connection
+    // Close the database nnection
     $mysqli->close();
 }
 ?>

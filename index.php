@@ -14,7 +14,7 @@
         <h2 class="text-2xl text-center mb-6">Sign In</h2>
         <?php
         // Include configuration and connect to the database
-        require_once "./includes/config.php";
+        require_once "./includes/config/connection.php";
         // Check if the form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Get form data
@@ -22,8 +22,8 @@
             $password = $_POST["password"];
 
             // Query to check user credentials
-            $query = "SELECT password, role FROM users WHERE email = ?";
-            $stmt = $con->prepare($query);
+            $query = "SELECT pass_word, role FROM users WHERE email = ?";
+            $stmt = $conn->prepare($query);
 
             if ($stmt) {
                 $stmt->bind_param("s", $email);
@@ -43,7 +43,7 @@
                         header("Location: ./product_owner/src/index.php");
                         exit();
                     } elseif ($role === 'user') {
-                        header("Location: ./membre/src/index.php");
+                        header("Location: ./Membre/src/index.php");
                         exit();
                     } else {
                         // Handle unknown role or other cases
