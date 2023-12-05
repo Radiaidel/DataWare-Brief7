@@ -30,12 +30,11 @@
                 </svg>
             </button>
             <nav class="hidden md:flex items-center space-x-4">
-                <a href="index.php" class="text-white">Dashboard</a>
-                <a href="#" class="text-white">Community</a>
-                <a href="#" class="text-white">Project</a>
-                <a href="#" class="text-white">Team </a>
-                <a href="#" class="text-white">Members</a>
-                <a href="#" class="text-white px-7 py-2 rounded-full border border-white ">Log out</a>
+            <a href="../index.php" class="text-white">Dashboard</a>
+            <a href="../action/community.php" class="text-white">Community</a>
+            <a href="../action/project.php" class="text-white">Project</a>
+            <a href="../action/team.php" class="text-white">Team</a>
+            <a href="../../../logout.php" class="text-white px-7 py-2 rounded-full border border-white">Log out</a>
 
 
             </nav>
@@ -44,12 +43,11 @@
     <div id="burgerOverlay"
         class="fixed py-5 top-18 right-0 w-1/2 h-screen bg-blue-800 bg-opacity-50 z-50 hidden items-center justify-center sm:hidden">
         <nav class="flex flex-col items-center space-y-5">
-            <a href="#" class="text-white">Dashboard</a>
-            <a href="#" class="text-white">Community</a>
-            <a href="#" class="text-white">Project</a>
-            <a href="#" class="text-white">Team</a>
-            <a href="#" class="text-white">Members</a>
-            <a href="#" class="text-white">Log out</a>
+            <a href="../index.php" class="text-white">Dashboard</a>
+            <a href="../src/action/Community.php" class="text-white">Community</a>
+            <a href="../src/action/project.php" class="text-white">Project</a>
+            <a href="../src/action/team.php" class="text-white">Team</a>
+            <a href="../../logout.php" class="text-white">Log out</a>
         </nav>
     </div>
 
