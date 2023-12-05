@@ -35,9 +35,7 @@
 
                 if (password_verify($motDePasse, $utilisateur['pass_word'])) {
                     session_start();
-                    $_SESSION['utilisateur'] = [
-                        'id' => $utilisateur['id'],
-                    ];
+                    $_SESSION['id'] =$utilisateur['id_user'];
                     if ($utilisateur['role'] == 'user') {
                         header("Location: ./Membre/src/index.php");
                         exit();
