@@ -32,8 +32,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+       // Insert user data into the database
+       $query = "INSERT INTO users (username, pass_word, status, email, image_url, role) VALUES (?, ?, 'active', ?, ?, 'user')";
+       $stmt = $conn->prepare($query);
+   
+       if ($stmt) {
+           $stmt->bind_param("ssss", $username, $password, $email, $img);
+           $stmt->execute();
+           $stmt->close();
+   
+           header("Location: index.php");
+           exit();
+       } else {
+           echo "Error: " . $conn->error;
+       }
+
+
+
     // Insert user data into the database
-    $query = "INSERT INTO users (username, pass_word, email, image_url, role) VALUES (?, ?, ?, ?, 'user')";
+    $query = "INSERT INTO users (username, pass_word , status, email, image_url, role) VALUES (?, ?, 'active',?, ?, 'user')";
     $stmt = $conn->prepare($query);
 
     if ($stmt) {
@@ -41,16 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
         $stmt->close();
         
-        // Registration successful, you can redirect the user to another page if needed
         header("Location: index.php");
         exit();
     } else {
-        // Registration failed, handle the error
-        echo "Error: " . $mysqli->error;
+        echo "Error: " . $conn->error;
     }
 
     // Close the database nnection
-    $mysqli->close();
+    $conn->close();
 }
 ?>
 <!DOCTYPE html>

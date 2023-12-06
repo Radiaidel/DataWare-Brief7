@@ -15,7 +15,6 @@
     include("../../../includes/config/connection.php");
     include '../../template/header.php';
     session_start();
-    // Assumez que $_SESSION['id'] contient l'ID de l'utilisateur
     $userId = $_SESSION['id'];
     $sql = "
     SELECT DISTINCT p.*,DATEDIFF(p.deadline, CURDATE()) AS days_remaining ,u.username as scrum_master
@@ -26,30 +25,23 @@
     WHERE it.id_user = ?
 ";
 
-    // Préparation de la requête
     $stmt = $conn->prepare($sql);
 
-    // Vérification de la préparation de la requête
     if ($stmt === false) {
         die("Erreur de préparation de la requête : " . $conn->error);
     }
 
-    // Liaison du paramètre
     $stmt->bind_param("i", $userId);
 
-    // Exécution de la requête
     $stmt->execute();
 
-    // Récupération des résultats
     $result = $stmt->get_result();
 
     echo " <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-12 mt-10 \">";
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            // Affichez ici les informations du projet dans votre format HTML
             ?>
-                                <!-- <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between w-full"> -->
 
             <form action="question_project.php" method="post">
                 <input hidden type="text" name="id_project" value="<?php echo $row['Id_Project']; ?>">
@@ -73,7 +65,6 @@
                 </button>
 
             </form>
-            <!-- </div> -->
             <?php
         }
     } else {
@@ -81,7 +72,6 @@
     }
 
     echo "</div>";
-    // Fermeture du statement
     $stmt->close();
     ?>
 </body>
