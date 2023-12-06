@@ -88,6 +88,57 @@ if ($resultTeam->num_rows > 0) {
     }
 }
 
+if (isset($_POST['askQuestion'])) {
+
+$userID=$_SESSION['id'];
+
+
+    $projectID = $_POST['idprojet'];
+$questionTitle = $_POST['question_title'];
+$questionContent = $_POST['question_content'];
+$tags = $_POST['tags'];
+
+// ... (validation des données, etc.)
+
+// Insérer la question dans la table 'question'
+$sqlInsertQuestion = "INSERT INTO question (user_id, Id_Project, question_text, title_question) VALUES (?, ?, ?, ?)";
+$stmtInsertQuestion = $conn->prepare($sqlInsertQuestion);
+
+if ($stmtInsertQuestion === false) {
+    die("Erreur de préparation de la requête : " . $conn->error);
+}
+
+
+
+$stmtInsertQuestion->bind_param("iiss", $userID, $projectID, $questionContent, $questionTitle);
+$stmtInsertQuestion->execute();
+
+// Récupérer l'ID de la question nouvellement créée
+$newQuestionID = $stmtInsertQuestion->insert_id;
+
+$stmtInsertQuestion->close();
+
+// Insérer les relations entre la question et les tags dans la table 'question_tag'
+$tagIDs = explode(" ", $tags);
+
+$sqlInsertQuestionTag = "INSERT INTO question_tag (id_question, id_tag) VALUES (?, ?)";
+$stmtInsertQuestionTag = $conn->prepare($sqlInsertQuestionTag);
+
+if ($stmtInsertQuestionTag === false) {
+    die("Erreur de préparation de la requête : " . $conn->error);
+}
+
+foreach ($tagIDs as $tagID) {
+    $tagID = intval($tagID);
+
+    $stmtInsertQuestionTag->bind_param("ii", $newQuestionID, $tagID);
+    $stmtInsertQuestionTag->execute();
+}
+
+$stmtInsertQuestionTag->close();
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -130,7 +181,8 @@ if ($resultTeam->num_rows > 0) {
             <div class=" w-full bg-white p-8 rounded-lg shadow-md">
                 <h2 class="text-2xl text-center font-semibold mb-4">Poser une Question</h2>
 
-                <form action="traitement_question.php" method="post">
+                <form action="" method="post">
+                    <input type="text" name="idprojet" value=" <?php echo $projectId; ?>">
                     <div class="mb-4">
 
                         <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question"
@@ -144,14 +196,15 @@ if ($resultTeam->num_rows > 0) {
 
                     <div class="mb-4">
                         <input type="text" id="tags" name="tags" placeholder="#Tag"
-                            class="mt-1 p-2 w-full border rounded-md" />
+                            class="mt-1 p-2 w-full border rounded-md" list="tagSuggestionsList" />
                         <div id="tagSuggestions">
-
+                            <datalist id="tagSuggestionsList" class="hidden">
+                            </datalist>
                         </div>
 
                     </div>
 
-                    <button type="submit" class="bg-blue-500 text-white p-2 rounded-md ">Poser la Question</button>
+                    <button name="askQuestion" type="submit" class="bg-blue-500 text-white p-2 rounded-md ">Poser la Question</button>
                 </form>
             </div>
 
@@ -299,29 +352,44 @@ if ($resultTeam->num_rows > 0) {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $("#tags").on("input", function () {
-                var input = $(this).val();
+       $(document).ready(function () {
+    $("#tags").on("input", function () {
+        var input = $(this).val();
 
-                if (input.startsWith("#")) {
-                    getTagSuggestions(input.substring(1));
-                } else {
-                    $("#tagSuggestions").empty();
-                }
-            });
-        });
-
-        function getTagSuggestions(prefix) {
-            $.ajax({
-                type: "POST",
-                url: "tag_suggestions.php",
-                data: { prefix: prefix },
-                success: function (response) {
-                    $("#tagSuggestions").html(response);
-                }
-            });
+        if (input.includes("#")) {
+            var prefix = input.split("#").pop();
+            getTagSuggestions(prefix);
+        } else {
+            $("#tagSuggestions").empty();
         }
+    });
 
+    // Ajouter un gestionnaire de clic pour les suggestions
+    $("#tagSuggestions").on("click", "option", function () {
+        var selectedTag = $(this).text();
+        var currentTags = $("#tags").val();
+
+        // Ajouter le tag sélectionné à la liste des tags actuels
+        var updatedTags = currentTags + " " + selectedTag;
+
+        // Mettre à jour l'input avec les tags sélectionnés
+        $("#tags").val(updatedTags.trim());
+
+        // Vider les suggestions après sélection
+        $("#tagSuggestions").empty();
+    });
+});
+
+function getTagSuggestions(prefix) {
+    $.ajax({
+        type: "POST",
+        url: "tag_suggestions.php",
+        data: { prefix: prefix },
+        success: function (response) {
+            $("#tagSuggestions").html(response);
+        }
+    });
+}
 
 
 

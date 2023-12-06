@@ -1,10 +1,9 @@
 <?php
 include("../../../includes/config/connection.php");
-include '../../template/header.php';
 
 
 $prefix = $_POST['prefix'];
-$prefixModified = $prefix . "%";
+$prefixModified ="%" . $prefix . "%";
 
 $sql = "SELECT id_tag,tag_name FROM tags WHERE tag_name LIKE ? LIMIT 5";
 $stmt = $conn->prepare($sql);
