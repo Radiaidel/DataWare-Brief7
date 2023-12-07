@@ -6,3 +6,4 @@ function toggleDropdown(index) {
     var dropdown = document.getElementById('dropdown-' + index);
     dropdown.classList.toggle('hidden');
 }
+

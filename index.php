@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CDN du Tailwind -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+     <!--CDN du JS -->
     <script src="./js/main.js" defer></script>
     <title>Sign In</title>
 </head>
@@ -32,12 +34,11 @@
                 $stmt->fetch();
                 $stmt->close();
                 // Verify password
+                // die("password :".$password . " hashed password". $hashedPassword);
                 if (password_verify($password, $hashedPassword)) {
-                    // Password is correct, you can redirect the user to another page if needed
-                    // For now, let's just echo a success message
                     // Assuming $role is the role retrieved from the database
                     if ($role === 'scrum_master') {
-                        header("Location: ./scrum_master/src/index.php");
+                        header("Location: ./Scrum_Master/src/index.php");
                         exit();
                     } elseif ($role === 'product_owner') {
                         header("Location: ./product_owner/src/index.php");
@@ -46,8 +47,7 @@
                         header("Location: ./Membre/src/index.php");
                         exit();
                     } else {
-                        // Handle unknown role or other cases
-                        // You can redirect to a generic dashboard or display an error message
+                        //unknown role dispalay a page error 
                         header("Location: generic_dashboard.php");
                         exit();
                     }
