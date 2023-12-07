@@ -8,7 +8,6 @@ include '../../template/header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../../../Javascript/script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Community Page</title>
 </head>
@@ -16,62 +15,32 @@ include '../../template/header.php';
 <body class="bg-gray-200 p-4">
 
     <div class="flex flex-col lg:flex-row">
-        <div class="w-full lg:w-2/4 pr-4 mb-4 lg:mb-0  ">
+        <!-- Left Side - List of Questions -->
+        <div class="w-full lg:w-2/4 pr-4 mb-4 lg:mb-0">
             <div class="flex items-center space-x-3 mb-4 my-5">
-                <!-- ******************************************raaaaaaaaaaaaaaaaaaaadiiiiaaaaaa partie filter *********************************************************** -->
-                <div class="max-w-md mx-auto">
-                    <div class="relative inline-block text-left">
-                        <div>
-                            <button type="button" id="filterBotton"
-                                class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-                                Filter
-                                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                    fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        <div id="MenuFilter"
-                            class="hidden  origin-top-right absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="#"
-                                    class="filter-option block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                    data-filter-type="new">Date (New)</a>
-                                <a href="#"
-                                    class="filter-option block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                    data-filter-type="old">Date (Old)</a>
-                                <a href="#"
-                                    class="filter-option block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                    data-filter-type="all">All Questions</a>
-                                <a href="#"
-                                    class="filter-option block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                    data-filter-type="my">My Questions</a>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Filter Buttons -->
+                <div>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-full">All questions</button>
                 </div>
-
-                <!-- ******************************************************************************************************************* -->
-
+                <div>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-full">My questions</button>
+                </div>
 
                 <!-- Search Bar -->
                 <div class="flex-1">
-                    <form action="">
-                        <input type="text" placeholder="Search questions..."
-                            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                    <form id="searchForm" class="flex">
+                        <input type="text" id="searchInput" placeholder="Search questions..." class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                        <button type="submit" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md">Search</button>
                     </form>
                 </div>
             </div>
-<!-- raaaaaaaaaaaaaaaaaaaadiiiiaaaaaa afficher les questions -->
-            <div id="questionsContainer">
 
+            <div id="questions-container" class="max-w-xl">
+                <!-- Questions will be dynamically loaded here using AJAX -->
             </div>
-<!-- ****************************************************** -->
         </div>
 
+        <!-- Right Side - Display Question and Answers -->
         <div class="w-full lg:w-3/4">
             <div class="bg-white p-4 mb-4 my-5">
                 <h2 class="text-xl font-bold mb-2">Question 1</h2>
@@ -86,38 +55,95 @@ include '../../template/header.php';
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
+        $(document).ready(function() {
+            // Function to handle form submission
+            $("#searchForm").submit(function(event) {
+                event.preventDefault(); // Prevents the default form behavior
 
-        
-document.getElementById('filterBotton').addEventListener("click", function () {
-    document.getElementById("MenuFilter").classList.toggle("hidden");
-});
+                // Get the search input value
+                var searchQuery = $("#searchInput").val();
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Add event listeners to filter options
-    var filterOptions = document.getElementsByClassName('filter-option');
-    for (var i = 0; i < filterOptions.length; i++) {
-        filterOptions[i].addEventListener('click', function (event) {
-            var filterType = event.target.getAttribute('data-filter-type');
-            loadQuestions(filterType);
-        });
-    }
+                // Call the function to load questions using AJAX
+                loadQuestions(searchQuery);
+            });
 
-    function loadQuestions(filterType) {
-        // Perform AJAX request and update the question container
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                document.getElementById('questionsContainer').innerHTML = xhr.responseText;
+            // Function to load questions using AJAX
+            function loadQuestions(searchQuery) {
+                $.ajax({
+                    type: "GET",
+                    url: "recherche.php",
+                    data: {
+                        searchTerm: searchQuery
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        // Clear the previous content
+                        $("#questions-container").empty();
+
+                        // Check if there are any questions
+                        if (data.length > 0) {
+                            // Show the container when there are matching questions
+                            $("#questions-container").show();
+
+                            // Loop through the questions and append only the matching one
+                            $.each(data, function(index, question) {
+                                $("#questions-container").append(
+                                    "<div class='max-w-xl bg-white p-8 rounded-md shadow-md my-5 cursor-pointer hover:shadow-xl'>" +
+                                    "<div class='flex items-center text-gray-600 mb-4'>" +
+                                    "<div class='flex-shrink-0'>" +
+                                    "<svg width='30px' height='30px' viewBox='0 0 20 20' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' fill='#17d924' stroke='#17d924'>" +
+                                    "</svg>" +
+                                    "</div>" +
+                                    "<div class='ml-2'>" +
+                                    "<p class='text-sm'>Posted by " + question.user_id + "</p>" +
+                                    "<p class='text-xs'>Posted on " + question.created_at + "</p>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "<div class='mb-6'>" +
+                                    "<p class='text-gray-700'>" + question.question_text + "</p>" +
+                                    "</div>" +
+                                    "<div class='mb-4'>" +
+                                    "<span class='inline-block bg-blue-200 text-blue-800 py-1 px-2 rounded mr-2'>" + question.tag_names + "</span>" +
+                                    "</div>" +
+                                    "<div class='flex items-center space-x-4'>" +
+                                    "<button class='flex items-center text-gray-600 hover:text-blue-500'>" +
+                                    "<svg fill='#0473c8' width='20px' height='20px' viewBox='0 0 24 24' stroke='#0473c8'>" +
+                                    "</svg>" +
+                                    "<span class='ml-1'>" + question.likes + "</span>" +
+                                    "</button>" +
+                                    "<button class='flex items-center text-gray-600 hover:text-red-500'>" +
+                                    "<svg fill='#0473c8' height='20px' width='20px' version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 512 512' xml:space='preserve' stroke='#0473c8'>" +
+                                    "</svg>" +
+                                    "<span class='ml-1'>" + question.dislikes + "</span>" +
+                                    "</button>" +
+                                    "<form action='testttt.php' method='POST'>" +
+                                    "<input type='text' hidden name='input_id' value='" + question.question_id + "'>" +
+                                    "<button type='submit' class='flex items-center text-gray-600 hover:text-green-500'>" +
+                                    "<svg width='20px' height='20px' viewBox='0 0 32 32' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:sketch='http://www.bohemiancoding.com/sketch/ns'>" +
+                                    "</svg>" +
+                                    "<span class='ml-1'>Respond</span>" +
+                                    "</button>" +
+                                    "</form>" +
+                                    "</div>" +
+                                    "</div>"
+                                );
+                            });
+                        } else {
+                            // If no questions found, hide the container and display a message
+                            $("#questions-container").hide();
+                            $("#questions-container").append("<p>No questions found.</p>");
+                        }
+                    },
+                    error: function(error) {
+                        console.log("AJAX Error: " + JSON.stringify(error));
+                    }
+                });
             }
-        };
-        xhr.open('GET', 'load_questions.php?filter=' + filterType, true);
-        xhr.send();
-    }
-    loadQuestions('all');
-
-});
+        });
     </script>
+
 </body>
 
 </html>
