@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 07 déc. 2023 à 10:09
+-- Généré le : jeu. 07 déc. 2023 à 10:56
 -- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.0.28
+-- Version de PHP : 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `answer` (
   `likes` int(11) DEFAULT 0,
   `dislikes` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `archived` tinyint(1) DEFAULT 0
+  `archived` varchar(20) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -43,11 +43,11 @@ CREATE TABLE `answer` (
 --
 
 INSERT INTO `answer` (`answer_id`, `question_id`, `user_id`, `answer_text`, `likes`, `dislikes`, `created_at`, `archived`) VALUES
-(122, 68, 75, 'Closures in JavaScript provide a way to encapsulate variables and create private scopes. Here is an example: ...', 10, 2, '2023-12-07 09:01:34', 0),
-(123, 66, 76, 'When redesigning a database for a large-scale application, consider normalization, indexing, and partitioning for performance. Avoid common pitfalls such as ...', 15, 5, '2023-12-07 09:01:34', 0),
-(124, 67, 77, 'For responsive web design, use media queries, flexible grid layouts, and frameworks like Bootstrap. Here are some tips and tricks: ...', 8, 3, '2023-12-07 09:01:34', 0),
-(125, 65, 76, 'Security best practices include using strong password hashing, implementing two-factor authentication, and role-based access control. Here is a guide on implementing these practices: ...', 20, 1, '2023-12-07 09:01:34', 0),
-(126, 65, 77, 'In the upcoming year, trends in web development include the adoption of serverless architecture, the rise of progressive web apps (PWAs), and the continued popularity of JavaScript frameworks like React and Vue.', 12, 4, '2023-12-07 09:01:34', 0);
+(122, 68, 75, 'Closures in JavaScript provide a way to encapsulate variables and create private scopes. Here is an example: ...', 10, 2, '2023-12-07 09:01:34', '0'),
+(123, 66, 76, 'When redesigning a database for a large-scale application, consider normalization, indexing, and partitioning for performance. Avoid common pitfalls such as ...', 15, 5, '2023-12-07 09:01:34', '0'),
+(124, 67, 77, 'For responsive web design, use media queries, flexible grid layouts, and frameworks like Bootstrap. Here are some tips and tricks: ...', 8, 3, '2023-12-07 09:01:34', '0'),
+(125, 65, 76, 'Security best practices include using strong password hashing, implementing two-factor authentication, and role-based access control. Here is a guide on implementing these practices: ...', 20, 1, '2023-12-07 09:01:34', '0'),
+(126, 65, 77, 'In the upcoming year, trends in web development include the adoption of serverless architecture, the rise of progressive web apps (PWAs), and the continued popularity of JavaScript frameworks like React and Vue.', 12, 4, '2023-12-07 09:01:34', '0');
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,7 @@ CREATE TABLE `question` (
   `likes` int(11) DEFAULT 0,
   `dislikes` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `archived` tinyint(1) DEFAULT 0,
+  `archived` varchar(20) DEFAULT '0',
   `title_question` varchar(55) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -120,11 +120,11 @@ CREATE TABLE `question` (
 --
 
 INSERT INTO `question` (`question_id`, `user_id`, `Id_Project`, `question_text`, `likes`, `dislikes`, `created_at`, `archived`, `title_question`) VALUES
-(65, 75, 24, 'I am working on a web development project using JavaScript, and I am struggling with understanding the concept of closures. Can someone provide a detailed explanation with examples?', 0, 0, '2023-12-07 08:50:43', 0, 'Understanding JavaScript Closures'),
-(66, 76, 25, 'In our team, we are planning to redesign our database for a large-scale application. What are the best practices for designing a scalable and efficient database schema? Are there any common pitfalls we should avoid?', 0, 0, '2023-12-07 08:50:43', 0, 'Best Practices for Database Schema Design'),
-(67, 77, 24, 'I have been learning front-end development, and I find responsive web design challenging. Can someone share tips and tricks for creating responsive layouts? Are there any recommended frameworks or libraries for responsive design?', 0, 0, '2023-12-07 08:50:43', 0, 'Tips for Responsive Web Design'),
-(68, 75, 25, 'As a backend developer, I often deal with handling user authentication and authorization. What are the security best practices for user authentication, and how can I implement role-based access control in my applications?', 0, 0, '2023-12-07 08:50:43', 0, 'Security Best Practices for User Authentication and Aut'),
-(69, 76, 24, 'I am curious about the latest trends in web development for the upcoming year. What technologies, frameworks, or methodologies are gaining popularity, and how can developers stay up-to-date with industry trends?', 0, 0, '2023-12-07 08:50:43', 0, 'Exploring Web Development Trends for the Future');
+(65, 75, 24, 'I am working on a web development project using JavaScript, and I am struggling with understanding the concept of closures. Can someone provide a detailed explanation with examples?', 0, 0, '2023-12-07 08:50:43', '0', 'Understanding JavaScript Closures'),
+(66, 76, 25, 'In our team, we are planning to redesign our database for a large-scale application. What are the best practices for designing a scalable and efficient database schema? Are there any common pitfalls we should avoid?', 0, 0, '2023-12-07 08:50:43', '0', 'Best Practices for Database Schema Design'),
+(67, 77, 24, 'I have been learning front-end development, and I find responsive web design challenging. Can someone share tips and tricks for creating responsive layouts? Are there any recommended frameworks or libraries for responsive design?', 0, 0, '2023-12-07 08:50:43', '0', 'Tips for Responsive Web Design'),
+(68, 75, 25, 'As a backend developer, I often deal with handling user authentication and authorization. What are the security best practices for user authentication, and how can I implement role-based access control in my applications?', 0, 0, '2023-12-07 08:50:43', '0', 'Security Best Practices for User Authentication and Aut'),
+(69, 76, 24, 'I am curious about the latest trends in web development for the upcoming year. What technologies, frameworks, or methodologies are gaining popularity, and how can developers stay up-to-date with industry trends?', 0, 0, '2023-12-07 08:50:43', '0', 'Exploring Web Development Trends for the Future');
 
 -- --------------------------------------------------------
 
