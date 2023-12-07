@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 06 déc. 2023 à 15:31
+-- Généré le : jeu. 07 déc. 2023 à 10:09
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.0.28
 
@@ -43,44 +43,11 @@ CREATE TABLE `answer` (
 --
 
 INSERT INTO `answer` (`answer_id`, `question_id`, `user_id`, `answer_text`, `likes`, `dislikes`, `created_at`, `archived`) VALUES
-(107, 32, 73, 'La date limite pour soumettre les contributions est le 15 décembre 2023.', 8, 1, '2023-12-04 12:45:00', 0),
-(108, 32, 57, 'Je recommande les livres \"X\" et \"Y\" ainsi que le site web \"Z\" pour des ressources utiles.', 15, 2, '2023-12-04 14:00:00', 0),
-(109, 33, 73, 'Les compétences nécessaires incluent la programmation en Java, la gestion de projet et la communication.', 20, 3, '2023-12-04 15:30:00', 0),
-(110, 34, 59, 'Oui, il y a une réunion prévue demain à 14h. Soyez prêt!', 12, 1, '2023-12-04 16:00:00', 0),
-(111, 35, 73, 'Pour signaler un problème technique, veuillez contacter notre équipe de support à support@example.com.', 18, 4, '2023-12-05 07:00:00', 0),
-(117, 36, 73, 'La prochaine étape du développement est la phase de test. Nous avons besoin de vos retours!', 25, 2, '2023-12-05 08:30:00', 0),
-(118, 37, 60, 'Nous encourageons la collaboration! pas à proposer des idées et à participer à nos réunions.', 14, 3, '2023-12-05 09:45:00', 0),
-(119, 38, 73, 'La spécification du projet sera clarifiée lors de la réunion de demain à 11h. Soyez là!', 20, 5, '2023-12-05 10:15:00', 0),
-(120, 39, 55, 'Pour rejoindre léquipe de développement, veuillez envoyer votre CV à careers@example.com.', 16, 2, '2023-12-05 11:30:00', 0),
-(121, 40, 55, 'Les exigences minimales pour participer incluent une connaissance de base de Python et une expérience dans le développement web.', 23, 1, '2023-12-05 12:00:00', 0);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `category_tag`
---
-
-CREATE TABLE `category_tag` (
-  `id` int(11) NOT NULL,
-  `name_category` varchar(255) DEFAULT NULL,
-  `tag_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `category_tag`
---
-
-INSERT INTO `category_tag` (`id`, `name_category`, `tag_id`) VALUES
-(1, 'Category1', 1),
-(2, 'Category2', 2),
-(3, 'Category3', 3),
-(4, 'Category4', 1),
-(5, 'Category5', 2),
-(6, 'Category6', 3),
-(7, 'Category7', 1),
-(8, 'Category8', 2),
-(9, 'Category9', 3),
-(10, 'Category10', 1);
+(122, 68, 75, 'Closures in JavaScript provide a way to encapsulate variables and create private scopes. Here is an example: ...', 10, 2, '2023-12-07 09:01:34', 0),
+(123, 66, 76, 'When redesigning a database for a large-scale application, consider normalization, indexing, and partitioning for performance. Avoid common pitfalls such as ...', 15, 5, '2023-12-07 09:01:34', 0),
+(124, 67, 77, 'For responsive web design, use media queries, flexible grid layouts, and frameworks like Bootstrap. Here are some tips and tricks: ...', 8, 3, '2023-12-07 09:01:34', 0),
+(125, 65, 76, 'Security best practices include using strong password hashing, implementing two-factor authentication, and role-based access control. Here is a guide on implementing these practices: ...', 20, 1, '2023-12-07 09:01:34', 0),
+(126, 65, 77, 'In the upcoming year, trends in web development include the adoption of serverless architecture, the rise of progressive web apps (PWAs), and the continued popularity of JavaScript frameworks like React and Vue.', 12, 4, '2023-12-07 09:01:34', 0);
 
 -- --------------------------------------------------------
 
@@ -99,17 +66,12 @@ CREATE TABLE `in_team` (
 --
 
 INSERT INTO `in_team` (`id_user_team`, `id_user`, `Id_Team`) VALUES
-(1, 55, 1),
-(9, 73, 1),
-(13, 55, 1),
-(14, 70, 1),
-(19, 55, 1),
-(22, 56, 2),
-(24, 73, 2),
-(28, 55, 1),
-(31, 56, 2),
-(32, 55, 2),
-(39, 73, 1);
+(43, 75, 5),
+(44, 75, 7),
+(45, 76, 6),
+(46, 76, 5),
+(47, 77, 7),
+(48, 77, 6);
 
 -- --------------------------------------------------------
 
@@ -132,27 +94,8 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`Id_Project`, `project_name`, `project_description`, `project_status`, `created_at`, `deadline`, `id_user`) VALUES
-(1, 'Projet A', 'Description du Projet A', 'En cours', '2023-12-05 08:30:00', '2023-12-20', 43),
-(2, 'Projet B', 'Description du Projet B', 'En attente', '2023-12-06 09:45:00', '2023-12-25', 44),
-(3, 'Projet C', 'Description du Projet C', 'Terminé', '2023-12-07 10:15:00', '2023-12-30', 73),
-(4, 'Projet D', 'Description du Projet D', 'En cours', '2023-12-08 11:30:00', '2024-01-05', 46),
-(5, 'Projet A', 'Description du Projet A', 'En cours', '2023-12-05 08:30:00', '2023-12-20', 73),
-(6, 'Projet B', 'Description du Projet B', 'En attente', '2023-12-06 09:45:00', '2023-12-25', 48),
-(7, 'Projet C', 'Description du Projet C', 'Terminé', '2023-12-07 10:15:00', '2023-12-30', 49),
-(8, 'Projet D', 'Description du Projet D', 'En cours', '2023-12-08 11:30:00', '2024-01-05', 50),
-(9, 'Projet A', 'Description du Projet A', 'En cours', '2023-12-05 08:30:00', '2023-12-20', 51),
-(10, 'Projet B', 'Description du Projet B', 'En attente', '2023-12-06 09:45:00', '2023-12-25', 52),
-(11, 'Projet C', 'Description du Projet C', 'Terminé', '2023-12-07 10:15:00', '2023-12-30', 73),
-(12, 'Projet D', 'Description du Projet D', 'En cours', '2023-12-08 11:30:00', '2024-01-05', 54),
-(13, 'Projet A', 'Description du Projet A', 'En cours', '2023-12-05 08:30:00', '2023-12-20', 55),
-(14, 'Projet B', 'Description du Projet B', 'En attente', '2023-12-06 09:45:00', '2023-12-25', 73),
-(15, 'Projet C', 'Description du Projet C', 'Terminé', '2023-12-07 10:15:00', '2023-12-30', 57),
-(16, 'Projet D', 'Description du Projet D', 'En cours', '2023-12-08 11:30:00', '2024-01-05', 58),
-(17, 'Projet 1', 'Description du projet 1', 'En cours', '2023-12-05 21:43:15', '2023-12-31', 55),
-(18, 'Projet 1', 'Description du projet 1', 'En cours', '2023-12-05 21:43:41', '2023-12-31', 55),
-(19, 'Projet 2', 'Description du projet 2', 'Terminé', '2023-12-05 21:43:41', '2023-11-15', 56),
-(20, 'Projet 3', 'Description du projet 3', 'En cours', '2023-12-05 21:43:41', '2023-12-20', 60),
-(21, 'Projet 4', 'Description du projet 4', 'En attente', '2023-12-05 21:43:41', '2023-10-01', 70);
+(24, 'Web Development', 'Building a new website', 'ongoing', '2023-12-07 08:22:51', '2023-12-31', 74),
+(25, 'Mobile App', 'Developing a mobile application', 'pending', '2023-12-07 08:22:51', '2024-01-15', 74);
 
 -- --------------------------------------------------------
 
@@ -177,21 +120,11 @@ CREATE TABLE `question` (
 --
 
 INSERT INTO `question` (`question_id`, `user_id`, `Id_Project`, `question_text`, `likes`, `dislikes`, `created_at`, `archived`, `title_question`) VALUES
-(31, 41, 1, 'Quand est la date limite pour soumettre les contributions?', 10, 2, '2023-12-04 13:30:00', 0, NULL),
-(32, 42, 2, 'Pouvez-vous recommander des ressources pour le projet?', 8, 1, '2023-12-04 14:45:00', 0, NULL),
-(33, 43, 3, 'Quelles sont les compétences nécessaires pour participer?', 15, 3, '2023-12-04 15:15:00', 0, NULL),
-(34, 44, 4, 'Y a-t-il des réunions prévues cette semaine?', 12, 2, '2023-12-04 16:20:00', 0, NULL),
-(35, 45, 5, 'Comment puis-je signaler un problème technique?', 18, 4, '2023-12-04 17:00:00', 0, NULL),
-(36, 46, 6, 'Quelle est la prochaine étape du développement?', 22, 1, '2023-12-05 07:30:00', 0, NULL),
-(37, 47, 7, 'Y a-t-il des opportunités de collaboration?', 14, 3, '2023-12-05 08:45:00', 0, NULL),
-(38, 48, 8, 'Pouvez-vous clarifier la spécification du projet?', 20, 5, '2023-12-05 09:15:00', 0, NULL),
-(39, 49, 9, 'Comment puis-je rejoindre léquipe de développement?', 16, 2, '2023-12-05 10:20:00', 0, NULL),
-(40, 50, 10, 'Quelles sont les exigences minimales pour participer?', 25, 1, '2023-12-05 11:00:00', 0, NULL),
-(41, 51, 11, 'Pouvez-vous donner des conseils aux nouveaux contributeurs?', 13, 3, '2023-12-05 13:30:00', 0, NULL),
-(42, 52, 12, 'Quels sont les objectifs à court terme du projet?', 19, 2, '2023-12-05 14:45:00', 0, NULL),
-(43, 53, 13, 'Comment fonctionne la fonctionnalité Y?', 11, 4, '2023-12-05 15:15:00', 0, NULL),
-(44, 54, 14, 'Y a-t-il des événements communautaires prévus?', 17, 1, '2023-12-05 16:20:00', 0, NULL),
-(45, 55, 15, 'Quelle est la politique de gestion des problèmes?', 23, 5, '2023-12-05 17:00:00', 0, NULL);
+(65, 75, 24, 'I am working on a web development project using JavaScript, and I am struggling with understanding the concept of closures. Can someone provide a detailed explanation with examples?', 0, 0, '2023-12-07 08:50:43', 0, 'Understanding JavaScript Closures'),
+(66, 76, 25, 'In our team, we are planning to redesign our database for a large-scale application. What are the best practices for designing a scalable and efficient database schema? Are there any common pitfalls we should avoid?', 0, 0, '2023-12-07 08:50:43', 0, 'Best Practices for Database Schema Design'),
+(67, 77, 24, 'I have been learning front-end development, and I find responsive web design challenging. Can someone share tips and tricks for creating responsive layouts? Are there any recommended frameworks or libraries for responsive design?', 0, 0, '2023-12-07 08:50:43', 0, 'Tips for Responsive Web Design'),
+(68, 75, 25, 'As a backend developer, I often deal with handling user authentication and authorization. What are the security best practices for user authentication, and how can I implement role-based access control in my applications?', 0, 0, '2023-12-07 08:50:43', 0, 'Security Best Practices for User Authentication and Aut'),
+(69, 76, 24, 'I am curious about the latest trends in web development for the upcoming year. What technologies, frameworks, or methodologies are gaining popularity, and how can developers stay up-to-date with industry trends?', 0, 0, '2023-12-07 08:50:43', 0, 'Exploring Web Development Trends for the Future');
 
 -- --------------------------------------------------------
 
@@ -205,18 +138,6 @@ CREATE TABLE `question_tag` (
   `id_tag` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `question_tag`
---
-
-INSERT INTO `question_tag` (`id_question_tag`, `id_question`, `id_tag`) VALUES
-(1, 41, 3),
-(2, 33, 4),
-(3, 38, 1),
-(4, 37, 2),
-(5, 41, NULL),
-(6, 41, 6);
-
 -- --------------------------------------------------------
 
 --
@@ -225,20 +146,21 @@ INSERT INTO `question_tag` (`id_question_tag`, `id_question`, `id_tag`) VALUES
 
 CREATE TABLE `tags` (
   `id_tag` int(11) NOT NULL,
-  `tag_name` varchar(50) DEFAULT NULL
+  `tag_name` varchar(50) DEFAULT NULL,
+  `category` varchar(55) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `tags`
 --
 
-INSERT INTO `tags` (`id_tag`, `tag_name`) VALUES
-(1, 'html'),
-(2, 'php'),
-(3, 'CSS'),
-(4, 'WEB'),
-(5, 'AJAX'),
-(6, 'JSON');
+INSERT INTO `tags` (`id_tag`, `tag_name`, `category`) VALUES
+(7, 'JavaScript', 'Programming'),
+(8, 'PHP', 'Programming'),
+(9, 'HTML', 'Web Development'),
+(10, 'CSS', 'Web Development'),
+(11, 'MySQL', 'Database'),
+(12, 'Programming', 'Programming');
 
 -- --------------------------------------------------------
 
@@ -259,10 +181,12 @@ CREATE TABLE `team` (
 --
 
 INSERT INTO `team` (`Id_Team`, `team_name`, `created_at`, `id_user`, `Id_Project`) VALUES
-(1, 'Équipe 1', '2023-12-05 21:45:12', 73, 1),
-(2, 'Équipe 2', '2023-12-05 21:45:12', 56, 2),
-(3, 'Équipe 3', '2023-12-05 21:45:12', 55, 3),
-(4, 'Équipe 4', '2023-12-05 21:45:12', 55, 4);
+(5, 'Development Team 1', '2023-12-07 09:06:19', 78, 24),
+(6, 'Design Team', '2023-12-07 09:06:19', 78, 24),
+(7, 'QA Team', '2023-12-07 09:06:19', 78, 24),
+(8, 'Development Team 1', '2023-12-07 09:06:32', 78, 25),
+(9, 'Design Team', '2023-12-07 09:06:32', 78, 25),
+(10, 'QA Team', '2023-12-07 09:06:32', 78, 25);
 
 -- --------------------------------------------------------
 
@@ -285,58 +209,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `email`, `pass_word`, `role`, `status`, `image_url`) VALUES
-(41, 'fahed', 'fahed5656@gmail.com', '12345', 'po', 'active', NULL),
-(42, 'hiba', 'hiba0000@gmail.com', '1255345', 'sm', 'active', NULL),
-(43, 'simo', 'simo00@gmail.com', '665345', 'user', 'active', NULL),
-(44, 'kamal', 'kamal@gmail.com', '665345', 'user', 'inactive', NULL),
-(45, 'fahed', 'fahedj@gmail.com', '12345', 'po', 'active', NULL),
-(46, 'hiba', 'hiba5@gmail.com', '1255345', 'sm', 'active', NULL),
-(47, 'simo', 'simo5@gmail.com', '665345', 'user', 'active', NULL),
-(48, 'kamal', 'kamal6@gmail.com', '665345', 'user', 'inactive', NULL),
-(49, 'fahed', 'fahed22@gmail.com', '12345', 'po', 'active', NULL),
-(50, 'hiba', 'hiba22@gmail.com', '1255345', 'sm', 'active', NULL),
-(51, 'simo', 'simo44@gmail.com', '665345', 'user', 'active', NULL),
-(52, 'kamal', 'kamal45@gmail.com', '665345', 'user', 'inactive', NULL),
-(53, 'fahed', 'fahed222@gmail.com', '12345', 'po', 'active', NULL),
-(54, 'hiba', 'hiba21@gmail.com', '1255345', 'sm', 'active', NULL),
-(55, 'simo', 'simo534@gmail.com', '665345', 'user', 'active', NULL),
-(56, 'kamal', 'kama546l@gmail.com', '665345', 'user', 'inactive', NULL),
-(57, 'fahed', 'fahed@gmail.com', '12345', 'po', 'active', NULL),
-(58, 'hiba', 'hiba5444@gmail.com', '1255345', 'sm', 'active', NULL),
-(59, 'simo', 'simo788@gmail.com', '665345', 'user', 'active', NULL),
-(60, 'kamal', 'kamal58786@gmail.com', '665345', 'user', 'inactive', NULL),
-(63, 'oumaima', 'erradaoumaima@gmail.com', '$2y$10$m0skQN2rIueUKu2aaZGRduXWTHlPfbeYWX/z/.dtagc', 'user', NULL, 'upload/jhon.jpg'),
-(65, '', '', '$2y$10$sJe6/6lIzmDOLkFvs32nxuo.XR3g.X6vBoXvLqKrZnH', 'user', NULL, 'default.jpg'),
-(66, 'rawole', 'karo@mailinator.com', '$2y$10$kVWyEWBRTYodS37em7uZse/U5RPU.DBACOSH2tXWRFk', 'user', NULL, 'upload/jane.jpg'),
-(69, 'fahedd', 'fah@gmail.com', '$2y$10$OwMAHFZv5l6IHS.Gb5izDufPsrwtWxJO2KL3D9WKEqR', 'user', NULL, 'upload/maxresdefault-removebg-preview.png'),
-(70, 'radia', 'radia@gmail.com', '$2y$10$BqyB.IHVevOeQTHLdoaCFelrOYfaHJb.qdh.d3vhhqU', 'po', NULL, 'default.jpg'),
-(71, 'aaa', 'a@gmail.com', '$2y$10$h5bQ4boiieBoOksW8FFaPeOnMfWVdXiLmdqYplKQ0wd', 'user', 'active', 'default.jpg'),
-(72, 'test', 'test@gmail.com', '$2y$10$VtI6qETRz3zcMW9bw0Faw.hEYJMzlA4jKP5tzluhSON/bhQqaGXmy', 'user', 'active', 'default.jpg'),
-(73, 'radia', 'rad@gmail.com', '$2y$10$nFeiHs.npVQy5QKMuo0edOTO3aefJM4jon3udVboXPF8pnNjqh9a.', 'user', 'active', 'default.jpg');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `user_questions`
---
-
-CREATE TABLE `user_questions` (
-  `id_user_question` int(11) NOT NULL,
-  `id_user` int(11) DEFAULT NULL,
-  `question_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `user_questions`
---
-
-INSERT INTO `user_questions` (`id_user_question`, `id_user`, `question_id`) VALUES
-(1, 73, 41),
-(2, 71, 34),
-(3, 63, 31),
-(4, 53, 42),
-(5, 72, 31),
-(6, 42, 39);
+(74, 'oumaima', 'oumaima@gmail.com', '$2y$10$ljxMUm1Yb7rZWY2aGx3F9OTXXMdsmVcBhJPIjC/ItxOgso/foi77W', 'po', 'active', 'default.jpg'),
+(75, 'yassir', 'yassir@gmail.com', '$2y$10$O2xTEWnowOml2ZTbfD53QOfa4ZCqrgeMqvG/vNvywo0kUsWHGOIUW', 'user', 'active', 'default.jpg'),
+(76, 'ahmed', 'ahmed@gmail.com', '$2y$10$nT5sh/h51aEv5K.V6K.kqO0k.aY6SDr8IJECsrwR5kJem6i88UHuq', 'user', 'active', 'default.jpg'),
+(77, 'abderahman', 'abderahman@gmail.com', '$2y$10$iBVbVUdpW3OELQ8DO5pGZ./6P/7FcFQcod6pGY4zvrtYZO5fHNi6u', 'user', 'active', 'default.jpg'),
+(78, 'sm', 'sm@gmail.com', '$2y$10$tYoCRXKQ.GGbIsIoDYzVf.IO.gH/05LwKUzCDt95rsiap59AbtGeS', 'sm', 'active', 'default.jpg');
 
 --
 -- Index pour les tables déchargées
@@ -349,13 +226,6 @@ ALTER TABLE `answer`
   ADD PRIMARY KEY (`answer_id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `question_id` (`question_id`);
-
---
--- Index pour la table `category_tag`
---
-ALTER TABLE `category_tag`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `tag_id` (`tag_id`);
 
 --
 -- Index pour la table `in_team`
@@ -410,14 +280,6 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Index pour la table `user_questions`
---
-ALTER TABLE `user_questions`
-  ADD PRIMARY KEY (`id_user_question`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `question_id` (`question_id`);
-
---
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -425,61 +287,49 @@ ALTER TABLE `user_questions`
 -- AUTO_INCREMENT pour la table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
-
---
--- AUTO_INCREMENT pour la table `category_tag`
---
-ALTER TABLE `category_tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT pour la table `in_team`
 --
 ALTER TABLE `in_team`
-  MODIFY `id_user_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_user_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT pour la table `project`
 --
 ALTER TABLE `project`
-  MODIFY `Id_Project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `Id_Project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT pour la table `question_tag`
 --
 ALTER TABLE `question_tag`
-  MODIFY `id_question_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_question_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT pour la table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `team`
 --
 ALTER TABLE `team`
-  MODIFY `Id_Team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id_Team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
-
---
--- AUTO_INCREMENT pour la table `user_questions`
---
-ALTER TABLE `user_questions`
-  MODIFY `id_user_question` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- Contraintes pour les tables déchargées
@@ -491,12 +341,6 @@ ALTER TABLE `user_questions`
 ALTER TABLE `answer`
   ADD CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`),
   ADD CONSTRAINT `answer_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
-
---
--- Contraintes pour la table `category_tag`
---
-ALTER TABLE `category_tag`
-  ADD CONSTRAINT `category_tag_ibfk_1` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id_tag`);
 
 --
 -- Contraintes pour la table `in_team`
@@ -531,13 +375,6 @@ ALTER TABLE `question_tag`
 ALTER TABLE `team`
   ADD CONSTRAINT `team_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
   ADD CONSTRAINT `team_ibfk_2` FOREIGN KEY (`Id_Project`) REFERENCES `project` (`Id_Project`);
-
---
--- Contraintes pour la table `user_questions`
---
-ALTER TABLE `user_questions`
-  ADD CONSTRAINT `user_questions_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
-  ADD CONSTRAINT `user_questions_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
