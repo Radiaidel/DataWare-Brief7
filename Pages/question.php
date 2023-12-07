@@ -21,6 +21,7 @@ include("../includes/config/connection.php");
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            $imagePath = htmlspecialchars("/DataWare-Brief7/" . $row['image_url']);
             $imagePath = $row['image_url'];
             $insertionDate = $row['created_at'];
             $username = $row['username'];
@@ -36,6 +37,10 @@ include("../includes/config/connection.php");
 
                 <div class="flex items-center text-gray-600 mb-4">
                     <div class="flex-shrink-0">
+                        <?php
+                         // Debugging line to print the image path
+                        var_dump($imagePath);
+                        ?>
                         <img src="<?php echo $imagePath; ?>" alt="User Image" class="w-10 h-10 rounded-full">
                     </div>
                     <div class="ml-2">
