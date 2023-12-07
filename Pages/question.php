@@ -78,12 +78,18 @@ include("../includes/config/connection.php");
                 </div>
 
             </div>
-    <?php
+
+
+            <?php
         }
     } else {
-        echo "No questions found.";
+        echo "Aucune question trouvée.";
     }
+
+    // Fermer la connexion à la base de données
+    $conn->close();
     ?>
+
 </body>
 
 </html>
