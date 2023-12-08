@@ -23,7 +23,6 @@ include("../../../includes/config/connection.php");
     <div class="flex flex-col lg:flex-row">
         <div class="w-full lg:w-2/4 pr-4 mb-4 lg:mb-0  ">
             <div class="flex items-center space-x-3 mb-4 my-5">
-                <!-- ******************************************raaaaaaaaaaaaaaaaaaaadiiiiaaaaaa partie filter *********************************************************** -->
                 <div class="max-w-md mx-auto">
                     <div class="relative inline-block text-left">
                         <div>
@@ -59,33 +58,17 @@ include("../../../includes/config/connection.php");
                     </div>
                 </div>
 
-                <!-- ******************************************************************************************************************* -->
-
-
-                <!-- Search Bar -->
-                <!-- Search Bar -->
                 <div class="flex-1">
-                    <form id="searchForm" onsubmit="searchQuestions(); return false;" methode="get">
+                    <form id="searchForm" onsubmit="searchQuestions(); return false;" method="get">
                         <input type="text" id="searchInput" placeholder="Search questions..."
                             class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-                        <button type="submit" name="submitSearch">search</button>
                     </form>
                 </div>
 
             </div>
-            <!-- raaaaaaaaaaaaaaaaaaaadiiiiaaaaaa afficher les questions -->
             <div id="questionsContainer">
 
             </div>
-            <!-- ****************************************************** -->
-
-
-
-            <!-- Container for paginated content -->
-            <div id="pagination-container">
-                <!-- Questions will be dynamically loaded here -->
-            </div>
-
 
         </div>
 
@@ -104,9 +87,10 @@ include("../../../includes/config/connection.php");
         });
 
         document.getElementById('searchForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Empêche la soumission par défaut du formulaire
-    searchQuestions();
-})
+            event.preventDefault(); // Empêche la soumission par défaut du formulaire
+            searchQuestions();
+        });
+
 
         function searchQuestions() {
             var searchQuery = document.getElementById('searchInput').value;
@@ -116,7 +100,7 @@ include("../../../includes/config/connection.php");
 
         document.addEventListener('DOMContentLoaded', function () {
             var searchQuery = '';
-                        document.getElementById('searchInput').addEventListener('input', function () {
+            document.getElementById('searchInput').addEventListener('input', function () {
                 searchQuery = this.value;
                 DisplayQuestions('search', 1, searchQuery);
             });

@@ -41,13 +41,24 @@ if (isset($_GET['filter'])) {
                 echo "Search query is missing.";
                 exit;
             }
+
             $searchQuery = $_GET['search'];
-            if (empty($searchQuery)) {
-                echo "Search query is empty.";
-                exit;
+          
+            $keywords = explode(" ", $searchQuery);
+            $whereClause = "";
+
+            foreach ($keywords as $keyword) {
+                $whereClause .= "(question_text LIKE '%$keyword%' OR tags.tag_name LIKE '%$keyword%') AND ";
             }
-            $sql = "SELECT * FROM question WHERE question_text LIKE '%$searchQuery%'";
+
+            $whereClause = rtrim($whereClause, " AND ");
+
+            $sql = "SELECT * FROM question LEFT JOIN question_tag ON question.question_id = question_tag.id_question
+                        LEFT JOIN tags ON question_tag.id_tag = tags.id_tag
+                        WHERE $whereClause";
+
             break;
+
 
 
 
@@ -125,6 +136,12 @@ if (isset($_GET['filter'])) {
     if ($filter == 'my') {
         $totalQuestionsSql .= " WHERE user_id = $userId";
     }
+    if ($filter == 'search') {
+        $totalQuestionsSql = "SELECT COUNT(*) as total FROM question LEFT JOIN question_tag ON question.question_id = question_tag.id_question
+        LEFT JOIN tags ON question_tag.id_tag = tags.id_tag
+        WHERE $whereClause";
+    }
+
 
     $totalQuestionsResult = $conn->query($totalQuestionsSql);
     $totalQuestionsRow = $totalQuestionsResult->fetch_assoc();
