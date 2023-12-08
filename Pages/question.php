@@ -1,5 +1,7 @@
 
-
+<?php
+include("../includes/config/connection.php");
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,13 +16,6 @@
 <body class="bg-gray-100 min-h-screen flex-col items-center justify-center">
 
     <?php
-    // Your PHP code here
-    
-    $conn = new mysqli("localhost", "root", "", "dataware_db");
-    if ($conn->connect_error) {
-        die("connection failed : " . $connection->connect_error);
-    }
-
     // Requête SQL pour récupérer les données de la table "question"
     $sql = "SELECT * FROM question";
     $result = $conn->query($sql);
