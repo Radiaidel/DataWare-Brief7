@@ -32,38 +32,36 @@
         </div>
 
         <script>
-    // Function to update the chart based on user selection
-    function updateChart() {
-        var selectedChart = document.getElementById('chartType').value;
+            // Function to update the chart based on user selection
+            function updateChart() {
+                var selectedChart = document.getElementById('chartType').value;
 
-        // Show loading indicator
-        document.getElementById('chartContainer').innerHTML = '<p>Loading...</p>';
+                // Fetch data from PHP script based on user selection
+                fetch('getData.php?chartType=' + selectedChart)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Destroy the existing chart if it exists
+                        if (window.myChart) {
+                            window.myChart.destroy();
+                        }
 
-        // Fetch data from PHP script based on user selection
-        fetch('getData.php?chartType=' + selectedChart)
-            .then(response => response.json())
-            .then(data => {
-                // Destroy the existing chart if it exists
-                if (window.myChart) {
-                    window.myChart.destroy();
-                }
-
-                // Create a new chart
-                var ctx = document.getElementById('dynamicChart').getContext('2d');
-                window.myChart = new Chart(ctx, {
-                    type: 'bar', // You can adjust the chart type as needed
-                    data: data,
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-
-                // Display error message
-                document.getElementById('chartContainer').innerHTML = '<p>Error loading chart data. Please try again later.</p>';
-            });
-    }
-</script>
-
+                        // Create a new chart
+                        var ctx = document.getElementById('dynamicChart').getContext('2d');
+                        window.myChart = new Chart(ctx, {
+                            type: 'bar', // You can adjust the chart type as needed
+                            data: data,
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                    });
+            }
+        </script>
     </div>
 
 </body>
