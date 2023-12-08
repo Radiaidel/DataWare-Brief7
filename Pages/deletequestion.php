@@ -15,7 +15,6 @@ if (isset($_GET['DeleteID'])) {
         $questionText = $row['question_text'];
         // Add other fields as needed
 
-        // Display a confirmation message and form for deleting the question
 ?>
 
         <!DOCTYPE html>
@@ -33,7 +32,6 @@ if (isset($_GET['DeleteID'])) {
             <div class="max-w-xl bg-white p-8 rounded-md shadow-lg">
                 <p class="mb-4">Are you sure you want to delete the following question?</p>
                 <p class="mb-4">Question Text: <?php echo $questionText; ?></p>
-                <!-- Add other fields as needed -->
 
                 <form action="process_deletion.php" method="post">
                     <input type="hidden" name="questionID" value="<?php echo $deleteID; ?>">
@@ -53,6 +51,5 @@ if (isset($_GET['DeleteID'])) {
     echo "Invalid request. Please provide a question ID.";
 }
 
-// Close the database connection
 $conn->close();
 ?>
