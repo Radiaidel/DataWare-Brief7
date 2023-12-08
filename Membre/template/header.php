@@ -1,5 +1,5 @@
 <!-- In your header.php or any appropriate template file -->
-<header class="sticky top-0 w-full bg-blue-800 p-4 flex justify-between items-center">
+<header class="sticky top-0 w-full bg-gray-800 p-4 flex justify-between items-center">
     <div class="text-xl font-bold w-32 mt-1">
         <img src="../../../logo.png" class="w-full h-auto" alt="Logo">
     </div>
@@ -26,7 +26,7 @@
 
 <!-- Navbar Responsive -->
 <div id="burgerOverlay"
-    class="fixed py-5 top-18 right-0 w-1/2 h-screen bg-blue-800 bg-opacity-50 z-50 hidden items-center justify-center sm:hidden">
+    class="fixed py-5 top-18 right-0 w-1/2 h-screen bg-gray-800 bg-opacity-50 z-50 hidden items-center justify-center sm:hidden">
     <nav class="flex flex-col items-center space-y-5">
         <a href="./project.php" class="text-white hover:text-gray-300 transition duration-300">Dashboard</a>
         <a href="./community.php" class="text-white hover:text-gray-300 transition duration-300">Community</a>
