@@ -28,7 +28,6 @@ $loggedInUserId = $_SESSION['id'];
 <body class="bg-gray-100 min-h-screen flex-col items-center justify-center">
 
     <?php
-    // Your existing PHP code for database connection and fetching questions
     $sql = "SELECT q.*, u.image_url, u.username FROM question q 
             INNER JOIN users u ON q.user_id = u.id_user";
     $result = $conn->query($sql);
@@ -38,6 +37,7 @@ $loggedInUserId = $_SESSION['id'];
             $imagePath = htmlspecialchars("/DataWare-Brief7/" . $row['image_url']);
             $insertionDate = $row['created_at'];
             $username = $row['username'];
+            $questionTitre = $row['title_question'];
             $questionText = $row['question_text'];
             $id_question = $row['question_id'];
 
@@ -46,7 +46,7 @@ $loggedInUserId = $_SESSION['id'];
 
     ?>
 
-            <div class="max-w-xl bg-white p-8 rounded-md shadow-lg">
+            <div class="max-w-xl bg-white gap-8 p-8 rounded-md shadow-lg">
 
                 <div class="flex items-center text-gray-600 mb-4">
                     <div class="flex-shrink-0">
@@ -59,6 +59,8 @@ $loggedInUserId = $_SESSION['id'];
                 </div>
 
                 <div class="mb-6">
+                    <h1 class="text-black text-xl"><?php echo $questionTitre; ?></h1>
+                    <br>
                     <p class="text-gray-700"><?php echo $questionText; ?></p>
                 </div>
 
