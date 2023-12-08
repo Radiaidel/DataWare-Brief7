@@ -16,24 +16,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Check if the update was successful
         if ($result) {
-            // Fetch and return the updated like or dislike count
-            $selectSql = "SELECT $updateField FROM question WHERE question_id = $questionId";
+            // Fetch the updated like or dislike count
+            $selectSql = "SELECT likes, dislikes FROM question WHERE question_id = $questionId";
             $selectResult = $conn->query($selectSql);
 
             if ($selectResult->num_rows > 0) {
                 $row = $selectResult->fetch_assoc();
-                echo $row[$updateField];
+
+                // Create an associative array for the JSON response
+                $response = array('likes' => $row['likes'], 'dislikes' => $row['dislikes']);
+                // Encode the array to JSON and echo the response
+                echo json_encode($response);
             } else {
-                echo "0";
+                // If no record is found, return an empty JSON object
+                echo json_encode(array('likes' => 0, 'dislikes' => 0));
             }
         } else {
-            echo "Error updating $updateField count in the database";
+            // If the update failed, return an error message in JSON format
+            echo json_encode(array('error' => "Error updating $updateField count in the database"));
         }
     } else {
-        echo "Invalid action";
+        // If the action is invalid, return an error message in JSON format
+        echo json_encode(array('error' => "Invalid action"));
     }
 } else {
-    echo "Invalid request method";
+    // If the request method is not POST, return an error message in JSON format
+    echo json_encode(array('error' => "Invalid request method"));
 }
 
 // Close the database connection
