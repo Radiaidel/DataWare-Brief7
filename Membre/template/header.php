@@ -12,22 +12,6 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
         </button>
-<<<<<<< HEAD
-        <!-- Navigation Links -->
-        <nav class="space-x-4 hidden sm:flex">
-            <a href="#" class="hover:text-gray-300">Dashboard</a>
-            <a href="#" class="hover:text-gray-300">Community</a>
-            <a href="#" class="hover:text-gray-300">Team</a>
-            <!-- Add more links as needed -->
-        </nav>
-       <!-- User Information with Image -->
-    <div id="membreInfo" class="flex items-center hidden sm:flex">
-        <!-- Assuming you have a user object with an 'image' property -->
-        <img src="../../../upload/bob.jpg" alt="User Image" class="w-8 h-8 rounded-full mr-2">
-        <button id="logoutBtn" class="text-white px-7 py-2 rounded-full border border-white">           
-            Log Out
-        </button>
-=======
 
         <nav class="space-x-4 hidden sm:flex items-center">
             <a href="./project.php" class="text-white hover:text-gray-300 transition duration-300">Dashboard</a>
@@ -36,7 +20,6 @@
                 <a href="../../../logout.php" class="text-white">Log Out</a>
             </button>
         </nav>
->>>>>>> 8c1879ef8a6916bf9695d85be2f800d393e575de
     </div>
 </header>
 
