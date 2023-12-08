@@ -30,6 +30,7 @@
         // Parcourir les résultats et afficher les données dans la structure HTML
         while ($row = $result->fetch_assoc()) {
             ?>
+
             <div class="  max-w-xl bg-white p-8 rounded-md shadow-lg">
 
                 <div class="flex items-center text-gray-600 mb-4">
@@ -38,6 +39,7 @@
                             xmlns:xlink="http://www.w3.org/1999/xlink" fill="#17d924" stroke="#17d924">
                             <!-- Your SVG content here -->
                         </svg>
+
                     </div>
                     <div class="ml-2">
                         <p class="text-sm">Posted by
@@ -47,6 +49,8 @@
                             <?php echo $row['created_at']; ?>
                         </p>
                     </div>
+                    <button type="button" class="text-white bg-blue-700 ml-24 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Archiver</button>
+
                 </div>
 
                 <div class="mb-6">
@@ -80,7 +84,6 @@
                         </svg>
                         <span class="ml-1"><?php echo $row['likes']; ?></span>
                     </button>
-
 
                     <button class="flex items-center text-gray-600 hover:text-red-500">
                         <svg fill="#0473c8" height="20px" width="20px" version="1.1" id="Layer_1"
