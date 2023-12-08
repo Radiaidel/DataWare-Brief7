@@ -3,4 +3,6 @@
   if ($conn->connect_error) {
       die("connection failed : " . $connection->connect_error);
   }
+  //  UTF-8
+mysqli_set_charset($conn, "utf8");
 ?>
