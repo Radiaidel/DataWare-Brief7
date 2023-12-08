@@ -9,7 +9,7 @@
     <title>Projects Page</title>
 </head>
 
-<body class="bg-gray-200 p-4">
+<body class="bg-gray-200 ">
 
     <?php
     include("../../../includes/config/connection.php");

@@ -1,6 +1,5 @@
 <?php
 include("../../../includes/config/connection.php");
-include '../../template/header.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,13 +7,19 @@ include '../../template/header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../../../Javascript/script.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Community Page</title>
+    <script src="../Javascript/script.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!--icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha384-GLhlTQ8iN17SJLlFfZVfP5z01K4JPTNqDQ5a6jgl5Up3H+9TP5IotK2+Obr4u" crossorigin="anonymous" />
 </head>
 
-<body class="bg-gray-200 p-4">
-
+<body class="bg-gray-200 ">
+    <!--header-->
+    <?php
+    include '../../template/header.php';
+    ?>
     <div class="flex flex-col lg:flex-row">
         <div class="w-full lg:w-2/4 pr-4 mb-4 lg:mb-0  ">
             <div class="flex items-center space-x-3 mb-4 my-5">
@@ -65,59 +70,72 @@ include '../../template/header.php';
                     </form>
                 </div>
             </div>
-<!-- raaaaaaaaaaaaaaaaaaaadiiiiaaaaaa afficher les questions -->
+            <!-- raaaaaaaaaaaaaaaaaaaadiiiiaaaaaa afficher les questions -->
             <div id="questionsContainer">
 
             </div>
-<!-- ****************************************************** -->
-        </div>
+            <!-- ****************************************************** -->
 
-        <div class="w-full lg:w-3/4">
-            <div class="bg-white p-4 mb-4 my-5">
-                <h2 class="text-xl font-bold mb-2">Question 1</h2>
-                <p>Content of Question 1...</p>
 
-                <h3 class="text-lg font-bold mt-4 mb-2">Answers</h3>
-                <ul>
-                    <li>Answer 1</li>
-                    <li>Answer 2</li>
-                </ul>
+
+            <!-- Container for paginated content -->
+            <div id="pagination-container">
+                <!-- Questions will be dynamically loaded here -->
             </div>
+
+
         </div>
+
+    </div>
+
+    <div class="w-full lg:w-3/4">
+        <!-- Content for the right side (question and answers) goes here -->
+    </div>
     </div>
 
     <script>
 
-        
-document.getElementById('filterBotton').addEventListener("click", function () {
-    document.getElementById("MenuFilter").classList.toggle("hidden");
-});
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Add event listeners to filter options
-    var filterOptions = document.getElementsByClassName('filter-option');
-    for (var i = 0; i < filterOptions.length; i++) {
-        filterOptions[i].addEventListener('click', function (event) {
-            var filterType = event.target.getAttribute('data-filter-type');
-            loadQuestions(filterType);
+        document.getElementById('filterBotton').addEventListener("click", function () {
+            document.getElementById("MenuFilter").classList.toggle("hidden");
         });
-    }
 
-    function loadQuestions(filterType) {
-        // Perform AJAX request and update the question container
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                document.getElementById('questionsContainer').innerHTML = xhr.responseText;
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add event listeners to filter options
+            var filterOptions = document.getElementsByClassName('filter-option');
+            for (var i = 0; i < filterOptions.length; i++) {
+                filterOptions[i].addEventListener('click', function (event) {
+                    var filterType = event.target.getAttribute('data-filter-type');
+                    DisplayQuestions(filterType);
+                });
             }
-        };
-        xhr.open('GET', 'load_questions.php?filter=' + filterType, true);
-        xhr.send();
-    }
-    loadQuestions('all');
 
-});
+            function DisplayQuestions(filterType, page) {
+                // Perform AJAX request and update the question container
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        document.getElementById('questionsContainer').innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.open('GET', 'load_questions.php?filter=' + filterType + '&page=' + page, true);
+                xhr.send();
+            }
+
+
+
+
+            DisplayQuestions('new', 1);
+
+        });
     </script>
+
+    <!-- Place jQuery script before your custom script -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../../../Javascript/pagination.js" defer></script>
+
+
+
 </body>
 
 </html>

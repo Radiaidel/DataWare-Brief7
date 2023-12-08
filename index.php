@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CDN du Tailwind -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+     <!--CDN du JS -->
     <script src="./js/main.js" defer></script>
     <title>Sign In</title>
 </head>
@@ -42,7 +44,7 @@
                     } elseif ($utilisateur['role'] == 'po') {
                         header("Location:  ./ProductOwner/src/index.php");
                         exit();
-                    } else {
+                    } elseif($utilisateur['role'] == 'sm') {
                         header("Location:  ./ScrumMaster/src/index.php");
                         exit();
                     }
