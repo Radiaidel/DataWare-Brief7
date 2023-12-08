@@ -2,12 +2,11 @@
 include("../../../includes/config/connection.php");
 session_start();
 
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 $limit = 3;
 $offset = max(0, ($page - 1) * $limit);  // Ensure that offset is non-negative
 $sql = "";
 
-echo $_SESSION['id'];
 
 
 if (isset($_GET['filter'])) {
@@ -35,6 +34,22 @@ if (isset($_GET['filter'])) {
                 exit;
             }
             break;
+        case 'search':
+            $searchTerm = isset($_GET['searchTerm']) ? $_GET['searchTerm'] : '';
+
+            if (!isset($_GET['search'])) {
+                echo "Search query is missing.";
+                exit;
+            }
+            $searchQuery = $_GET['search'];
+            if (empty($searchQuery)) {
+                echo "Search query is empty.";
+                exit;
+            }
+            $sql = "SELECT * FROM question WHERE question_text LIKE '%$searchQuery%'";
+            break;
+
+
 
         default:
             echo "Invalid filter type.";
@@ -46,8 +61,7 @@ if (isset($_GET['filter'])) {
     $sqlFilt = $sql . " LIMIT $limit OFFSET $offset";
 
     $result = $conn->query($sqlFilt);
-    
-    echo $result->num_rows;
+
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             echo '<div class="max-w-xl bg-white p-8 rounded-md shadow-md my-5 cursor-pointer hover:shadow-xl">';

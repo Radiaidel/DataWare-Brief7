@@ -63,12 +63,15 @@ include("../../../includes/config/connection.php");
 
 
                 <!-- Search Bar -->
+                <!-- Search Bar -->
                 <div class="flex-1">
-                    <form action="">
-                        <input type="text" placeholder="Search questions..."
+                    <form id="searchForm" onsubmit="searchQuestions(); return false;" methode="get">
+                        <input type="text" id="searchInput" placeholder="Search questions..."
                             class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                        <button type="submit" name="submitSearch">search</button>
                     </form>
                 </div>
+
             </div>
             <!-- raaaaaaaaaaaaaaaaaaaadiiiiaaaaaa afficher les questions -->
             <div id="questionsContainer">
@@ -100,17 +103,40 @@ include("../../../includes/config/connection.php");
             document.getElementById("MenuFilter").classList.toggle("hidden");
         });
 
+        document.getElementById('searchForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Empêche la soumission par défaut du formulaire
+    searchQuestions();
+})
+
+        function searchQuestions() {
+            var searchQuery = document.getElementById('searchInput').value;
+            DisplayQuestions('search', 1, searchQuery);
+        }
+
+
         document.addEventListener('DOMContentLoaded', function () {
+            var searchQuery = '';
+                        document.getElementById('searchInput').addEventListener('input', function () {
+                searchQuery = this.value;
+                DisplayQuestions('search', 1, searchQuery);
+            });
+
             // Add event listeners to filter options
             var filterOptions = document.getElementsByClassName('filter-option');
             for (var i = 0; i < filterOptions.length; i++) {
                 filterOptions[i].addEventListener('click', function (event) {
                     var filterType = event.target.getAttribute('data-filter-type');
-                    DisplayQuestions(filterType);
+                    DisplayQuestions(filterType, 1, searchQuery);
                 });
             }
 
-            function DisplayQuestions(filterType, page) {
+            function DisplayQuestions(filterType, page, searchQuery) {
+
+                console.log('Filter Type:', filterType);
+                console.log('Page:', page);
+                console.log('Search Query:', searchQuery);
+
+
                 // Perform AJAX request and update the question container
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function () {
@@ -118,16 +144,19 @@ include("../../../includes/config/connection.php");
                         document.getElementById('questionsContainer').innerHTML = xhr.responseText;
                     }
                 };
-                xhr.open('GET', 'load_questions.php?filter=' + filterType + '&page=' + page, true);
+                var url = 'load_questions.php?filter=' + filterType + '&page=' + page;
+                if (filterType === 'search') {
+                    url += '&search=' + encodeURIComponent(searchQuery);
+                }
+
+                console.log('AJAX URL:', url);
+                xhr.open('GET', url, true);
                 xhr.send();
             }
 
-
-
-
-            DisplayQuestions('new', 1);
-
+            DisplayQuestions('new', 1, searchQuery);
         });
+
     </script>
 
     <!-- Place jQuery script before your custom script -->
