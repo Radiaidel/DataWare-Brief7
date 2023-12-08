@@ -13,7 +13,6 @@
                     d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
         </button>
-
         <!-- Navigation Links -->
         <nav class="space-x-4 hidden sm:flex">
             <a href="#" class="hover:text-gray-300">Dashboard</a>
@@ -21,7 +20,6 @@
             <a href="#" class="hover:text-gray-300">Team</a>
             <!-- Add more links as needed -->
         </nav>
-
        <!-- User Information with Image -->
     <div id="membreInfo" class="flex items-center hidden sm:flex">
         <!-- Assuming you have a user object with an 'image' property -->
@@ -30,7 +28,6 @@
             Log Out
         </button>
     </div>
-
 </header>
 
 <!-- Navbar Responsive -->
