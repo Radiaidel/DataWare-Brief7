@@ -58,7 +58,7 @@ Le client DataWare a exprimé le besoin d'intégrer une section communautaire à
    - Décrivant la séquence des interactions entre les objets pour des scénarios spécifiques.
    - ![SEQUENCE](./imgrm/sqc.PNG)
 
-### 💻 Technologies Utilisées
+## 💻 Technologies Utilisées
 
 ## Programming Languages
 
@@ -71,7 +71,7 @@ Le client DataWare a exprimé le besoin d'intégrer une section communautaire à
 
 - ![CSS](https://img.shields.io/badge/CSS-Tailwind%20CSS-38B2AC?style=flat-square&logo=tailwindcss)
 
-### 🔗 Hosting
+## 🔗 Hosting
 
 The project is hosted on 000webhost for accessibility. No specific hosting configuration is required, and the deployment process is straightforward.
 If you encounter any issues related to URL rewriting, consider adding a .htaccess file to your project with appropriate rules.
