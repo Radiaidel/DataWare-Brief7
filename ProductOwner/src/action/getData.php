@@ -1,13 +1,20 @@
 <?php
 // Include your database connection configuration here
-include '../DataWare-Brief7/includes/config/connection.php';
 
-// Get the selected chart type from the URL parameter
+  $conn = new mysqli("localhost", "root", "", "dataware_db");
+  if ($conn->connect_error) {
+      die("connection failed : " . $connection->connect_error);
+  }
+  //  UTF-8
+mysqli_set_charset($conn, "utf8");
+
+
+// Rest of your code
 $chartType = $_GET['chartType'];
 
 // Fetch data based on the selected chart type
 switch ($chartType) {
-    // ... (existing cases remain unchanged)
+  
 
     default:
         // Default to questionsPerProject

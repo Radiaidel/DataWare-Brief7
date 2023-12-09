@@ -37,7 +37,7 @@
                 var selectedChart = document.getElementById('chartType').value;
 
                 // Fetch data from PHP script based on user selection
-                fetch('getData.php?chartType=' + selectedChart)
+                fetch('./getData.php?chartType=' + selectedChart)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
