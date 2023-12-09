@@ -60,6 +60,13 @@ Le client DataWare a exprimé le besoin d'intégrer une section communautaire à
 ## Framework
 - ![CSS](https://img.shields.io/badge/CSS-Tailwind%20CSS-38B2AC?style=flat-square&logo=tailwindcss)
 
+## Project Links
+
+- **Jira:** [Project Planning](https://oumaimaerrada.atlassian.net/jira/software/projects/RT/boards/6)
+- **GitHub Repository:** [Project Repository](https://github.com/Radiaidel/DataWare-Brief7)
+- **Hosting Platform:** [Project Hosting](https://your-hosting-url)
+- **Presentation:** [Project Presentation](https://link-to-presentation)
+
 ## 📁 Structure du Projet
 
 La structure des dossiers est organisée de manière à garantir une gestion efficace du code source. Pour plus de détails, veuillez vous référer à la documentation de la structure des dossiers.
@@ -72,9 +79,3 @@ Un schéma visuel de la base de données est fourni dans le dossier 'Database'.
 
 Ce projet est distribué sous la licence [nom de la licence]. Consultez le fichier 'LICENSE.md' pour plus de détails.
 
-## Project Links
-
-- **Jira:** [Project Planning](https://your-jira-url)
-- **GitHub Repository:** [Project Repository](https://github.com/your-username/your-repo)
-- **Hosting Platform:** [Project Hosting](https://your-hosting-url)
-- **Presentation:** [Project Presentation](https://link-to-presentation)
