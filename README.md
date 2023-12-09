@@ -72,3 +72,9 @@ Un schéma visuel de la base de données est fourni dans le dossier 'Database'.
 
 Ce projet est distribué sous la licence [nom de la licence]. Consultez le fichier 'LICENSE.md' pour plus de détails.
 
+## Project Links
+
+- **Jira:** [Project Planning](https://your-jira-url)
+- **GitHub Repository:** [Project Repository](https://github.com/your-username/your-repo)
+- **Hosting Platform:** [Project Hosting](https://your-hosting-url)
+- **Presentation:** [Project Presentation](https://link-to-presentation)
