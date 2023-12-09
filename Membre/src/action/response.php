@@ -11,19 +11,15 @@ $userId = $_SESSION["id"];
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 
 </head>
-<!-- ... (votre code HTML) ... -->
 
 <body class="bg-gray-200">
 
-    <!-- ... (votre code HTML) ... -->
 
-    <!-- Right Side - Display Question and Answers -->
     <div class="w-full lg:w-3/4">
         <div class="bg-white p-4 mb-4 my-5">
 
             <?php
             $id_question = '';
-            // Vérifier si question_id est défini dans l'URL
             if (isset($_POST['input_id'])) {
                 $id_question = $_POST['input_id'];
 
@@ -230,11 +226,10 @@ $userId = $_SESSION["id"];
 
 
                                     <?php
-                                    // Check if the logged-in user is the creator of the question
                                     if ($userId == $row['user_id']) {
                                         ?>
 
-                                        <form method="post" action="delete_answer.php">
+                                        <form method="POST" action="delete_answer.php">
                                             <input type="hidden" name="answer_id" value="<?php echo $row['answer_id']; ?>">
                                             <button type="submit" class="flex items-end text-gray-600 hover:text-red-500">
                                                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
@@ -251,9 +246,11 @@ $userId = $_SESSION["id"];
                                             </button>
                                         </form>
 
-                                        <form method="post" action="update_answer.php">
-                                            <input type="hidden" name="answer_id" value="<?php echo $row['user_id']; ?>">
-                                            <button type="submit" class="flex items-end text-gray-600 hover:text-red-500">
+                                        <form method="POST" action="answer_update.php">
+                                            <input type="hidden" name="answer_id" value="<?php echo $row['answer_id']; ?>">
+                                            <input type="hidden" name="question_id" value="<?php echo $id_question; ?>">
+
+                                            <button type="submit" name="toupdate" class="flex items-end text-gray-600 hover:text-red-500">
                                                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
