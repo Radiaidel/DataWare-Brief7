@@ -65,6 +65,8 @@ Le client DataWare a exprimé le besoin d'intégrer une section communautaire à
 The project is hosted on 000webhost for accessibility. No specific hosting configuration is required, and the deployment process is straightforward.
 If you encounter any issues related to URL rewriting, consider adding a .htaccess file to your project with appropriate rules.
 
+<hr>
+
 ## Project Links
 
 - **Jira:** [Project Planning](https://oumaimaerrada.atlassian.net/jira/software/projects/RT/boards/6)
