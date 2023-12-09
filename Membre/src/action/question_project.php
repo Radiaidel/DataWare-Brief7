@@ -263,28 +263,49 @@ if (isset($_POST['askQuestion'])) {
                             ?>
                         </div>
 
-                        <div class="flex items-center space-x-4 mb-4"> <!-- Ajout de la classe mb-4 ici -->
-                            <button class="flex items-center text-gray-300 hover:text-blue-500">
-                                <svg fill="#0473c8" width="20px" height="20px" viewBox="0 0 24 24"
-                                    id="a11298b2-e15e-46f5-bfd2-69e168954b14" data-name="Livello 1"
-                                    xmlns="http://www.w3.org/2000/svg" stroke="#0473c8">
-                                    <!-- Your SVG content here -->
-                                </svg>
-                                <span class="ml-1">
-                                    <?php echo $row['likes']; ?>
-                                </span>
-                            </button>
+                        <div class="flex space-x-5">
 
-                            <button class="flex items-center text-gray-300 hover:text-red-500">
-                                <svg fill="#0473c8" height="20px" width="20px" version="1.1" id="Layer_1"
-                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    viewBox="0 0 512 512" xml:space="preserve" stroke="#0473c8">
-                                    <!-- Your SVG content here -->
-                                </svg>
-                                <span class="ml-1">
-                                    <?php echo $row['dislikes']; ?>
-                                </span>
-                            </button>
+                            <div class="flex items-center space-x-4 mb-4"> <!-- Ajout de la classe mb-4 ici -->
+                                <button class="flex items-center text-gray-300 hover:text-blue-500">
+                                    <span class="ml-1">
+                                        <?php echo $row['likes']; ?>
+                                    </span>
+                                </button>
+
+                                <button class="flex items-center text-gray-300 hover:text-red-500">
+                                    <span class="ml-1">
+                                        <?php echo $row['dislikes']; ?>
+                                    </span>
+                                </button>
+                            </div>
+
+                            <form action="response.php" method="POST">
+                                <input type="text" hidden name="input_id" value=" <?php echo $id_question; ?> ">
+                                <button type="submit" class="flex items-center text-gray-600 hover:text-green-500">
+                                    <svg width="20px" height="20px" viewBox="0 0 32 32" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+
+                                        <title>comment-1</title>
+                                        <desc>Created with Sketch Beta.</desc>
+                                        <defs>
+
+                                        </defs>
+                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                            sketch:type="MSPage">
+                                            <g id="Icon-Set" sketch:type="MSLayerGroup"
+                                                transform="translate(-100.000000, -255.000000)" fill="#000000">
+                                                <path
+                                                    d="M116,281 C114.832,281 113.704,280.864 112.62,280.633 L107.912,283.463 L107.975,278.824 C104.366,276.654 102,273.066 102,269 C102,262.373 108.268,257 116,257 C123.732,257 130,262.373 130,269 C130,275.628 123.732,281 116,281 L116,281 Z M116,255 C107.164,255 100,261.269 100,269 C100,273.419 102.345,277.354 106,279.919 L106,287 L113.009,282.747 C113.979,282.907 114.977,283 116,283 C124.836,283 132,276.732 132,269 C132,261.269 124.836,255 116,255 L116,255 Z"
+                                                    id="comment-1" sketch:type="MSShapeGroup">
+
+                                                </path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span class="ml-1">Respond</span>
+                                </button>
+                            </form>
                         </div>
 
                         <ul role="list" class="flex justify-center space-x-5">
@@ -365,23 +386,23 @@ if (isset($_POST['askQuestion'])) {
 
 
             tagSuggestions.addEventListener("click", function (event) {
-    if (event.target.tagName === "OPTION") {
-        var selectedTagId = event.target.getAttribute("data-tag-id");
-        var currentTags = tagsInput.value;
+                if (event.target.tagName === "OPTION") {
+                    var selectedTagId = event.target.getAttribute("data-tag-id");
+                    var currentTags = tagsInput.value;
 
-        // Ajouter le tag sélectionné à la liste des tags actuels
-        var updatedTags = currentTags + "" + event.target.value;
+                    // Ajouter le tag sélectionné à la liste des tags actuels
+                    var updatedTags = currentTags + "" + event.target.value;
 
-        // Mettre à jour l'input avec les tags sélectionnés
-        tagsInput.value = updatedTags.trim();
+                    // Mettre à jour l'input avec les tags sélectionnés
+                    tagsInput.value = updatedTags.trim();
 
-        // Mettre à jour le champ caché avec l'ID du tag sélectionné
-        document.getElementById("selectedTagId").value = selectedTagId;
+                    // Mettre à jour le champ caché avec l'ID du tag sélectionné
+                    document.getElementById("selectedTagId").value = selectedTagId;
 
-        // Vider les suggestions après sélection
-        tagSuggestions.innerHTML = "";
-    }
-});
+                    // Vider les suggestions après sélection
+                    tagSuggestions.innerHTML = "";
+                }
+            });
 
 
         });
