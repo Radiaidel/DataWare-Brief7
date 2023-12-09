@@ -51,12 +51,14 @@ Le client DataWare a exprimé le besoin d'intégrer une section communautaire à
 
 ## 💻 Technologies Utilisées
 
-- Langages :
-  - PHP 🐘
-  - SQL 🗃️
-  - JS 🌐
-  - HTML 📄
-- Frameworks : CSS (Tailwind) 🎨
+## Programming Languages
+- ![PHP](https://img.shields.io/badge/PHP-7.x-blue?style=flat-square&logo=php)
+- ![SQL](https://img.shields.io/badge/SQL-MySQL-blue?style=flat-square&logo=mysql)
+- ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=flat-square&logo=javascript)
+- ![HTML](https://img.shields.io/badge/HTML-5-orange?style=flat-square&logo=html5)
+
+## Framework
+- ![CSS](https://img.shields.io/badge/CSS-3-blue?style=flat-square&logo=css3)
 
 ## 📁 Structure du Projet
 
