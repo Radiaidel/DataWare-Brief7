@@ -52,7 +52,7 @@ Le client DataWare a exprimé le besoin d'intégrer une section communautaire à
 ## 💻 Technologies Utilisées
 
 ## Programming Languages
-- ![PHP](https://img.shields.io/badge/PHP-7.x-blue?style=flat-square&logo=php)
+- ![PHP](https://img.shields.io/badge/PHP-5.2.1.x-blue?style=flat-square&logo=php)
 - ![SQL](https://img.shields.io/badge/SQL-MySQL-blue?style=flat-square&logo=mysql)
 - ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=flat-square&logo=javascript)
 - ![HTML](https://img.shields.io/badge/HTML-5-orange?style=flat-square&logo=html5)
