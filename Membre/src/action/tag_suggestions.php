@@ -17,8 +17,9 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 while ($row = $result->fetch_assoc()) {
-    echo  "<option value=\"{$row['id_tag']} \">{$row['tag_name']}</option>";
+    echo "<option value=\"{$row['tag_name']}\" data-tag-id=\"{$row['id_tag']}\">{$row['tag_name']}</option>";
 }
+
 
 $stmt->close();
 $conn->close();
