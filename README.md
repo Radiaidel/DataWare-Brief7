@@ -33,7 +33,7 @@ Le client DataWare a exprimé le besoin d'intégrer une section communautaire à
 - Consultation du nombre de j'aimes ou je n'aime pas pour chaque réponse.
 - Les Product Owners peuvent consulter le nombre de questions par projet, les projets avec le plus de questions, le projet avec le moins de réponses, et l'utilisateur avec le plus de réponses.
 
-##  Conception du Projet
+## 🗂️ Conception du Projet
 
 ### Diagrammes UML
 
@@ -61,7 +61,7 @@ Le client DataWare a exprimé le besoin d'intégrer une section communautaire à
 - ![CSS](https://img.shields.io/badge/CSS-Tailwind%20CSS-38B2AC?style=flat-square&logo=tailwindcss)
 
 
-### Hosting
+### 🔗 Hosting
 The project is hosted on 000webhost for accessibility. No specific hosting configuration is required, and the deployment process is straightforward.
 If you encounter any issues related to URL rewriting, consider adding a .htaccess file to your project with appropriate rules.
 
@@ -69,10 +69,10 @@ If you encounter any issues related to URL rewriting, consider adding a .htacces
 
 ## Project Links
 
-- **Jira:** [Project Planning](https://oumaimaerrada.atlassian.net/jira/software/projects/RT/boards/6)
-- **GitHub Repository:** [Project Repository](https://github.com/Radiaidel/DataWare-Brief7)
+- 🌐 **Jira:** [Project Planning](https://oumaimaerrada.atlassian.net/jira/software/projects/RT/boards/6)
+- 📂 **GitHub Repository:** [Project Repository](https://github.com/Radiaidel/DataWare-Brief7)
 - **Hosting Platform:** [Project Hosting](https://your-hosting-url)
-- **Presentation:** [Project Presentation](https://link-to-presentation)
+- 🔗 **Presentation:** [Project Presentation](https://link-to-presentation)
 
 ## 📁 Structure du Projet
 
