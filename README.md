@@ -46,7 +46,7 @@ Le client DataWare a exprimé le besoin d'intégrer une section communautaire à
    - ![CLASS](./imgrm/class.PNG)
 
 3. **Diagramme de Séquence:**
-   - Décrivant la séquence des interactions entre les objets pour des scénarios spécifiques. 🖼️ (path/to/image3.png)
+   - Décrivant la séquence des interactions entre les objets pour des scénarios spécifiques.
    - ![SEQUENCE](./imgrm/sqc.PNG)
 
 ## 💻 Technologies Utilisées
