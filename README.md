@@ -39,15 +39,15 @@ Le client DataWare a exprimé le besoin d'intégrer une section communautaire à
 
 1. **Diagramme de Cas d'Utilisation:**
    - Illustrant les interactions entre les acteurs et le système, détaillant les fonctionnalités offertes.
-   - ![USE CASE](./imgrm/uc.png)
+   - ![USE CASE](./imgrm/uc.PNG)
 
 2. **Diagramme de Classes:**
    - Présentant les classes du système, leurs attributs et relations pour une vision structurée du code.
-   - ![CLASS](./imgrm/class.png)
+   - ![CLASS](./imgrm/class.PNG)
 
 3. **Diagramme de Séquence:**
    - Décrivant la séquence des interactions entre les objets pour des scénarios spécifiques. 🖼️ (path/to/image3.png)
-   - ![SEQUENCE](./imgrm/sqc.png)
+   - ![SEQUENCE](./imgrm/sqc.PNG)
 
 ## 💻 Technologies Utilisées
 
