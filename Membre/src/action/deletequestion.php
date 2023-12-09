@@ -1,21 +1,15 @@
 <?php
-include("../includes/config/connection.php");
+include("../../../includes/config/connection.php");
 
-// Check if the question ID is present in the URL
 if (isset($_GET['DeleteID'])) {
     $deleteID = $_GET['DeleteID'];
 
-    // Retrieve the question details based on the provided ID
     $sql = "SELECT * FROM question WHERE question_id = $deleteID";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Fetch the question details
         $row = $result->fetch_assoc();
         $questionText = $row['question_text'];
-        // Add other fields as needed
-
-        // Display a confirmation message and form for deleting the question
 ?>
 
         <!DOCTYPE html>

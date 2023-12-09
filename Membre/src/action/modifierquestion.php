@@ -1,5 +1,5 @@
 <?php
-include("../includes/config/connection.php");
+include("../../../includes/config/connection.php");
 
 if (isset($_GET['modifierID'])) {
     $modifierID = $_GET['modifierID'];

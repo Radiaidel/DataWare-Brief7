@@ -1,5 +1,5 @@
 <?php
-include("../includes/config/connection.php");
+include("../../../includes/config/connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Process the modification
@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->query($updateQuery);
 
     // Redirect back to the questions page
-    header("Location: question.php");
+    header("Location: community.php");
     exit();
 } else {
     echo "Invalid request.";

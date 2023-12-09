@@ -1,5 +1,5 @@
 <?php
-include("../includes/config/connection.php");
+include("../../../includes/config/connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Process the deletion
@@ -10,6 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->query($deleteQuery);
 
     // Redirect back to the questions page
-    header("Location: question.php");
+    header("Location: community.php");
     exit();
 }

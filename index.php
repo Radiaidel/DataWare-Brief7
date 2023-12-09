@@ -39,13 +39,13 @@
                     session_start();
                     $_SESSION['id'] =$utilisateur['id_user'];
                     if ($utilisateur['role'] == 'user') {
-                        header("Location: ./Membre/src/index.php");
+                        header("Location: ./Membre/src/action/community.php");
                         exit();
                     } elseif ($utilisateur['role'] == 'po') {
-                        header("Location:  ./ProductOwner/src/index.php");
+                        header("Location:  ./ProductOwner/src/action/community.php");
                         exit();
                     } elseif($utilisateur['role'] == 'sm') {
-                        header("Location:  ./ScrumMaster/src/index.php");
+                        header("Location:  ./ScrumMaster/src/action/community.php");
                         exit();
                     }
                 } else {
