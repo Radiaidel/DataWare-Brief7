@@ -58,7 +58,7 @@ Le client DataWare a exprimé le besoin d'intégrer une section communautaire à
 - ![HTML](https://img.shields.io/badge/HTML-5-orange?style=flat-square&logo=html5)
 
 ## Framework
-- ![CSS](https://img.shields.io/badge/CSS-3-blue?style=flat-square&logo=css3)
+- ![CSS](https://img.shields.io/badge/CSS-Tailwind%20CSS-38B2AC?style=flat-square&logo=tailwindcss)
 
 ## 📁 Structure du Projet
 
