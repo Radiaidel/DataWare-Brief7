@@ -1,8 +1,8 @@
-# 🚀 Présentation du Projet
+# 🌟 Présentation du Projet
 
 Le client DataWare a exprimé le besoin d'intégrer une section communautaire à leur plateforme, similaire à 'Stack Overflow', dans le but de favoriser l'échange et l'entraide entre les membres de l'équipe. Notre mission consiste à développer cette extension en utilisant les langages PHP, SQL, JS, HTML, ainsi que des frameworks CSS tailwind.
 
-## 🌟 Fonctionnalités Principales
+## 🚀 Fonctionnalités Principales
 
 ### Authentification et Accès
 - Les utilisateurs peuvent accéder à la section communautaire après une authentification.
@@ -33,7 +33,7 @@ Le client DataWare a exprimé le besoin d'intégrer une section communautaire à
 - Consultation du nombre de j'aimes ou je n'aime pas pour chaque réponse.
 - Les Product Owners peuvent consulter le nombre de questions par projet, les projets avec le plus de questions, le projet avec le moins de réponses, et l'utilisateur avec le plus de réponses.
 
-## 🎨 Conception du Projet
+##  Conception du Projet
 
 ### Diagrammes UML
 
