@@ -78,8 +78,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Add Tailwind CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <title> Registration Form</title>
+  <style >
+
+  .bg-image{
+    background:url(./Images/bg.png);
+  }      
+
+  </style>
 </head>
-<body class="bg-gray-100 h-screen flex items-center justify-center">
+<body class="bg-image h-screen flex items-center justify-center ">
+  
 
     <div class="bg-white p-8 rounded w-96 shadow-md max-w-md rounded-2xl">
 
@@ -87,21 +95,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form action="SignUp.php" method="POST" enctype="multipart/form-data">
           <div class="mt-4">
-            <label for="username" class="block text-sm font-medium text-gray-600">Username</label>
+            
             <input type="text" id="username" name="username" placeholder="Enter your username" class="mt-1 p-2 w-full border rounded-md">
           </div>
           <div class="mt-4">
-            <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+            
             <input type="email" id="email" name="email" placeholder="Enter your email" class="mt-1 p-2 w-full border rounded-md">
           </div>
           <div class="mt-4">
-            <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
+            
             <input type="password" id="password" name="password" placeholder="Enter your password" class="mt-1 p-2 w-full border rounded-md">
           </div>
+
           <div class="mt-4">
-            <label for="profilePicture" class="block text-sm font-medium text-gray-600">Choose Profile Picture</label>
+            
             <input type="file" id="profilePicture" name="profilePicture" accept="image/*" class="mt-1 p-2 w-full border rounded-md">
           </div>
+
+          
           <div class="mt-6">
             <input type="checkbox" id="acceptTerms" name="acceptTerms" class="border border-gray-400">
             <label for="acceptTerms" class="ml-2 text-sm text-gray-600">I accept the <a href="#" class="text-purple-500 font-semibold">Terms of Use</a> & <a href="#" class="text-purple-500 font-semibold">Privacy Policy</a></label>
