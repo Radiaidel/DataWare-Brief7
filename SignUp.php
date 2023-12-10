@@ -114,11 +114,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           
           <div class="mt-6">
-            <input type="checkbox" id="acceptTerms" name="acceptTerms" class="border border-gray-400">
-            <label for="acceptTerms" class="ml-2 text-sm text-gray-600">I accept the <a href="#" class="text-purple-500 font-semibold">Terms of Use</a> & <a href="#" class="text-purple-500 font-semibold">Privacy Policy</a></label>
+           
+            <!-- <label for="acceptTerms" class="ml-2 text-sm text-gray-600">I accept the <a href="#" class="text-purple-500 font-semibold">Terms of Use</a> & <a href="#" class="text-purple-500 font-semibold">Privacy Policy</a> -->
+            <p class="mt-4 text-gray-600 text-xs text-center">Already have an account ?<a href="index.php"
+                    class="text-blue-500 hover:underline"> Sign in here </a>.</p>
           </div>
           <div class="mt-6">
-            <button type="submit" class="w-full bg-red-500 text-white py-2 rounded-2xl hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Register Now</button>
+            <button type="submit" class="w-full bg-red-500 text-white py-2 rounded-2xl hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300   ease-linear ">Register Now</button>
           </div>
         </form>
       </div>
