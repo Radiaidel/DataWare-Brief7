@@ -42,7 +42,7 @@
                         header("Location: ./Membre/src/action/community.php");
                         exit();
                     } elseif ($utilisateur['role'] == 'po') {
-                        header("Location:  ./ProductOwner/src/action/community.php");
+                        header("Location:  ./ProductOwner/src/action/static.php");
                         exit();
                     } elseif($utilisateur['role'] == 'sm') {
                         header("Location:  ./ScrumMaster/src/action/community.php");
