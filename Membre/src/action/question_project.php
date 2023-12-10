@@ -181,18 +181,15 @@ if (isset($_POST['askQuestion'])) {
                     <input type="text" hidden name="idprojet" value=" <?php echo $projectId; ?>">
                     <div class="mb-4">
 
-                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question"
-                            class="mt-1 p-2 w-full border rounded-md">
+                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question" class="mt-1 p-2 w-full border rounded-md">
                     </div>
 
                     <div class="mb-4">
-                        <textarea name="question_content" id="question_content" rows="2"
-                            placeholder="Contenu de la Question" class="mt-1 p-2 w-full border rounded-md"></textarea>
+                        <textarea name="question_content" id="question_content" rows="2" placeholder="Contenu de la Question" class="mt-1 p-2 w-full border rounded-md"></textarea>
                     </div>
 
                     <div class="mb-4">
-                        <input type="text" id="tags" name="tags" placeholder="#Tag"
-                            class="mt-1 p-2 w-full border rounded-md" list="tagSuggestionsList" />
+                        <input type="text" id="tags" name="tags" placeholder="#Tag" class="mt-1 p-2 w-full border rounded-md" list="tagSuggestionsList" />
                         <div id="tagSuggestions">
                             <datalist id="tagSuggestionsList" class="hidden">
                             </datalist>
@@ -333,7 +330,7 @@ if (isset($_POST['askQuestion'])) {
                             ?>
                         </ul>
                     </div>
-                    <?php
+                <?php
                 }
                 ?>
             </div>
