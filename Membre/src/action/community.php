@@ -13,11 +13,11 @@ include("../../../includes/config/connection.php");
     <!--icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha384-GLhlTQ8iN17SJLlFfZVfP5z01K4JPTNqDQ5a6jgl5Up3H+9TP5IotK2+Obr4u" crossorigin="anonymous" />
-        <style>
-    .bg-ce0033 {
-        background-color: #CE0033;
-    }
-</style>
+    <style>
+        .bg-ce0033 {
+            background-color: #CE0033;
+        }
+    </style>
 </head>
 
 <body> <!--header-->
@@ -26,8 +26,8 @@ include("../../../includes/config/connection.php");
     ?>
     <div class="w-full p-4 mb-4 lg:mb-0 bg-gray-200 rounded-md shadow-lg text-white">
 
-    <div class="mx-auto w-3/5 flex items-center space-x-3 mb-4 my-5 z-10   p-4">
-                    <div class="relative inline-block text-left">
+        <div class="mx-auto w-3/5 flex items-center space-x-3 mb-4 my-5 z-10   p-4">
+            <div class="relative inline-block text-left">
                 <div>
                     <button type="button" id="filterBotton"
                         class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-600 text-sm font-medium text-gray-300 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
@@ -137,11 +137,15 @@ include("../../../includes/config/connection.php");
             DisplayQuestions('new', 1, searchQuery);
         });
 
+        
+
     </script>
 
     <!-- Place jQuery script before your custom script -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="../../../Javascript/pagination.js" defer></script>
+    <script src="../../../Javascript/like_dislike.js" defer></script>
+
 </body>
 
 </html>
