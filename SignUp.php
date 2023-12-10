@@ -1,16 +1,14 @@
 <?php
-require_once "./includes/config/connection.php"; // Adjust the path as needed
-
+require_once "./includes/config/connection.php"; 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
+// Get form data
     $username = $_POST["username"];
     $email = $_POST["email"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Hash the password
-
+    // Hash the password
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
     // Default image path
     $img = "default.jpg";
-
     // Check if the image was uploaded
     if ($_FILES['profilePicture']['name']) {
         $targetDirectory = "upload/";
@@ -31,25 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Sorry, there was a problem uploading your file.";
         }
     }
-  
-
-       // Insert user data into the database
-       $query = "INSERT INTO users (username, pass_word, status, email, image_url, role) VALUES (?, ?, 'active', ?, ?, 'user')";
-       $stmt = $conn->prepare($query);
-   
-       if ($stmt) {
-           $stmt->bind_param("ssss", $username, $password, $email, $img);
-           $stmt->execute();
-           $stmt->close();
-   
-           header("Location: index.php");
-           exit();
-       } else {
-           echo "Error: " . $conn->error;
-       }
-
-
-
     // Insert user data into the database
     $query = "INSERT INTO users (username, pass_word , status, email, image_url, role) VALUES (?, ?, 'active',?, ?, 'user')";
     $stmt = $conn->prepare($query);
