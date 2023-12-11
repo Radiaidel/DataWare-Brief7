@@ -131,6 +131,7 @@ if (isset($_POST['askQuestion'])) {
     }
 
     $stmtInsertQuestionTag->close();
+    header("Location: question_project.php");
 }
 
 ?>
@@ -142,7 +143,11 @@ if (isset($_POST['askQuestion'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-
+    <style>
+        .bg-ce0033 {
+            background-color: #CE0033;
+        }
+    </style>
     <title>Projet</title>
 </head>
 
@@ -177,19 +182,23 @@ if (isset($_POST['askQuestion'])) {
             <div class=" w-full bg-white p-8 rounded-lg shadow-md">
                 <h2 class="text-2xl text-center font-semibold mb-4">Poser une Question</h2>
 
-                <form action="" method="post">
+                <form action="question_project.php" method="POST">
                     <input type="text" hidden name="idprojet" value=" <?php echo $projectId; ?>">
                     <div class="mb-4">
 
-                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question" class="mt-1 p-2 w-full border rounded-md">
+                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question"
+                            class="mt-1 p-2 w-full border rounded-md" required>
                     </div>
 
                     <div class="mb-4">
-                        <textarea name="question_content" id="question_content" rows="2" placeholder="Contenu de la Question" class="mt-1 p-2 w-full border rounded-md"></textarea>
+                        <textarea name="question_content" id="question_content" rows="2"
+                            placeholder="Contenu de la Question" class="mt-1 p-2 w-full border rounded-md"
+                            required></textarea>
                     </div>
 
                     <div class="mb-4">
-                        <input type="text" id="tags" name="tags" placeholder="#Tag" class="mt-1 p-2 w-full border rounded-md" list="tagSuggestionsList" />
+                        <input type="text" id="tags" name="tags" placeholder="#Tag"
+                            class="mt-1 p-2 w-full border rounded-md" list="tagSuggestionsList" />
                         <div id="tagSuggestions">
                             <datalist id="tagSuggestionsList" class="hidden">
                             </datalist>
@@ -330,7 +339,7 @@ if (isset($_POST['askQuestion'])) {
                             ?>
                         </ul>
                     </div>
-                <?php
+                    <?php
                 }
                 ?>
             </div>
@@ -361,41 +370,41 @@ if (isset($_POST['askQuestion'])) {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    var tagsInput = document.getElementById("tags");
-    var tagSuggestions = document.getElementById("tagSuggestions");
-    var selectedTagIdInput = document.getElementById("selectedTagId");
+        document.addEventListener("DOMContentLoaded", function () {
+            var tagsInput = document.getElementById("tags");
+            var tagSuggestions = document.getElementById("tagSuggestions");
+            var selectedTagIdInput = document.getElementById("selectedTagId");
 
-    var selectedTagIds = []; 
+            var selectedTagIds = [];
 
-    tagsInput.addEventListener("input", function () {
-        var input = tagsInput.value;
+            tagsInput.addEventListener("input", function () {
+                var input = tagsInput.value;
 
-        if (input.includes("#")) {
-            var prefix = input.split("#").pop();
-            getTagSuggestions(prefix);
-        } else {
-            tagSuggestions.innerHTML = "";
-        }
-    });
+                if (input.includes("#")) {
+                    var prefix = input.split("#").pop();
+                    getTagSuggestions(prefix);
+                } else {
+                    tagSuggestions.innerHTML = "";
+                }
+            });
 
-    tagSuggestions.addEventListener("click", function (event) {
-        if (event.target.tagName === "OPTION") {
-            var selectedTagId = event.target.getAttribute("data-tag-id");
-            var currentTags = tagsInput.value;
+            tagSuggestions.addEventListener("click", function (event) {
+                if (event.target.tagName === "OPTION") {
+                    var selectedTagId = event.target.getAttribute("data-tag-id");
+                    var currentTags = tagsInput.value;
 
-            selectedTagIds.push(selectedTagId);
+                    selectedTagIds.push(selectedTagId);
 
-            var updatedTags = currentTags + "" + event.target.value;
+                    var updatedTags = currentTags + "" + event.target.value;
 
-            tagsInput.value = updatedTags.trim();
+                    tagsInput.value = updatedTags.trim();
 
-            selectedTagIdInput.value = selectedTagIds.join(" ");
+                    selectedTagIdInput.value = selectedTagIds.join(" ");
 
-            tagSuggestions.innerHTML = "";
-        }
-    });
-});
+                    tagSuggestions.innerHTML = "";
+                }
+            });
+        });
 
 
         function getTagSuggestions(prefix) {

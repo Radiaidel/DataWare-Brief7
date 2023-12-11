@@ -3,13 +3,24 @@ session_start();
 include("../../../includes/config/connection.php");
 include '../../template/header.php';
 $userId = $_SESSION["id"];
+
+$id_question = null;
+//ajouter une reponse
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-
+    <style>
+        .bg-ce0033 {
+            background-color: #CE0033;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-200">
@@ -19,7 +30,6 @@ $userId = $_SESSION["id"];
         <div class="bg-white p-4 mb-4 my-5">
 
             <?php
-            $id_question = '';
             if (isset($_POST['input_id'])) {
                 $id_question = $_POST['input_id'];
 
@@ -156,11 +166,7 @@ $userId = $_SESSION["id"];
 
 
                     <?php
-                } else {
-                    echo "Question non trouvée.";
                 }
-            } else {
-                echo "Identifiant de question non spécifié dans l'URL.";
             }
             ?>
 
@@ -169,15 +175,15 @@ $userId = $_SESSION["id"];
 
         <div class="bg-white p-4 mb-4">
             <h2 class="text-lg font-semibold mb-2">Répondre à la question</h2>
-            <form action="" method="post" class="space-y-4">
-
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="space-y-4">
+                <input type="hidden" name="input_id" value="<?php echo $id_question; ?>">
 
                 <div>
                     <label for="response_text" class="block text-sm font-medium text-gray-700">Votre réponse :</label>
                     <textarea id="response_text" name="response_text" rows="4"
                         class="mt-1 p-2 w-full border rounded-md"></textarea>
                 </div>
-                <input type="text" hidden name="id_question" value="<?php echo $id_question; ?>">
+                <!-- <input type="text" hidden name="id_question" value="<?php echo $id_question; ?>"> -->
 
 
                 <div class="flex items-center">
@@ -198,7 +204,7 @@ $userId = $_SESSION["id"];
         affichaaage des reponses
 
         <?php
-        $sql = "SELECT answer_id, answer.user_id, created_at, answer_text, username, image_url FROM answer INNER JOIN users ON answer.user_id = id_user";
+        $sql = "SELECT answer_id, answer.user_id, created_at, answer_text, username, image_url FROM answer INNER JOIN users ON answer.user_id = id_user WHERE answer.question_id = $id_question";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -250,7 +256,8 @@ $userId = $_SESSION["id"];
                                             <input type="hidden" name="answer_id" value="<?php echo $row['answer_id']; ?>">
                                             <input type="hidden" name="question_id" value="<?php echo $id_question; ?>">
 
-                                            <button type="submit" name="toupdate" class="flex items-end text-gray-600 hover:text-red-500">
+                                            <button type="submit" name="toupdate"
+                                                class="flex items-end text-gray-600 hover:text-red-500">
                                                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -296,38 +303,35 @@ $userId = $_SESSION["id"];
     </div>
 
 
-    <?php
-
-    if (isset($_POST['Envoyer_reponse'])) {
-        $user_id = $_SESSION['id'];
-        $response_text = $_POST["response_text"];
-        $id_question = $_POST["id_question"];
-
-
-
-        // Préparer la requête SQL
-        $stmt = $conn->prepare("INSERT INTO `answer`(`question_id`, `user_id`, `answer_text`) VALUES (?, ?, ?)");
-
-        // Lier les paramètres
-        $stmt->bind_param("iis", $id_question, $user_id, $response_text);
-
-        // Exécuter la requête
-        if ($stmt->execute()) {
-            echo "Réponse ajoutée avec succès à la base de données.";
-        } else {
-            echo "Erreur lors de l'ajout de la réponse : " . $stmt->error;
-        }
-
-        // Fermer la déclaration
-        $stmt->close();
-    }
-    ?>
-
-
 </body>
 
 </html>
 
 <?php
+
+if (isset($_POST['Envoyer_reponse'])) {
+    $user_id = $_SESSION['id'];
+    $response_text = $_POST["response_text"];
+    $id_question = $_POST['input_id'];
+
+
+    $stmt = $conn->prepare("INSERT INTO `answer`(`question_id`, `user_id`, `answer_text`) VALUES (?, ?, ?)");
+
+    $stmt->bind_param("iis", $id_question, $user_id, $response_text);
+
+    if ($stmt->execute()) {
+        echo "Réponse ajoutée avec succès à la base de données.";
+    } else {
+        echo "Erreur lors de l'ajout de la réponse : " . $stmt->error;
+    }
+
+    $stmt->close();
+    // header("Location: " . $_SERVER['PHP_SELF']); 
+    // exit();
+}
+
+
+
+
 $conn->close();
 ?>
