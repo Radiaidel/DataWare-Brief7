@@ -5,9 +5,7 @@ include("../../../includes/config/connection.php");
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+       
         $stmt = mysqli_prepare($conn, 'UPDATE answer SET archived=1 WHERE answer_id = ?');
         if (!$stmt) {
             die("Prepare failed: " . mysqli_error($conn));

@@ -15,7 +15,7 @@
     session_start();
 
     $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-    $limit = 3;
+    $limit = 10;
     $offset = max(0, ($page - 1) * $limit);  // Ensure that offset is non-negative
     $sql = "";
     $userId = $_SESSION['id'];
@@ -26,21 +26,21 @@
 
         switch ($filter) {
             case 'new':
-                $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user ORDER BY created_at DESC ";
+                $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user where q.archived=0 ORDER BY created_at DESC ";
                 break;
 
             case 'old':
-                $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user  ORDER BY created_at ASC";
+                $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user  where q.archived=0 ORDER BY created_at ASC";
                 break;
 
             case 'all':
-                $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user ";
+                $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user where q.archived=0 ";
                 break;
 
             case 'my':
                 if (isset($_SESSION['id'])) {
                     $userId = $_SESSION['id'];
-                    $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user  WHERE q.user_id = $userId";
+                    $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user  WHERE q.user_id = $userId and  q.archived=0";
                 } else {
                     echo "User not logged in.";
                     exit;

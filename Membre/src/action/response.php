@@ -5,10 +5,8 @@ include '../../template/header.php';
 $userId = $_SESSION["id"];
 
 $id_question = null;
+
 //ajouter une reponse
-
-
-
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +23,7 @@ $id_question = null;
 
 <body class="bg-gray-200">
 
-    <div class="w-full lg:w-3/4">
+    <div class="w-full lg:w-3/4 mx-auto">
         <div class="bg-white p-4 mb-4 my-5">
 
             <?php
@@ -51,7 +49,7 @@ $id_question = null;
                         $questionTitre = $row['title_question'];
                         $questionText = $row['question_text'];
                         $id_question = $row['question_id'];
-
+                        $questionowner =$row['user_id'];
                         // Fetching tags
                         $tagsSql = "SELECT t.tag_name FROM tags t JOIN question_tag qt ON qt.id_tag = t.id_tag WHERE qt.id_question = ?";
                         $tagsStmt = $conn->prepare($tagsSql);
@@ -62,7 +60,7 @@ $id_question = null;
                         if (!$tagsResult) {
                             echo "Error fetching tags: " . $tagsStmt->error;
                         } else {
-                            echo "<div class='mx-auto w-full  bg-gray-800 p-8 rounded-xl shadow-xl text-white mb-4'>";
+                            echo "<div class='mx-auto w-full  p-8 rounded-xl shadow-xl text-white mb-4'>";
                             echo "<div class='flex items-center text-gray-300 mb-4'>";
                             echo "<div class='flex-shrink-0'>";
                             echo "<img src='$imagePath' alt='User Image' class='w-10 h-10 rounded-full'>";
@@ -134,21 +132,26 @@ $id_question = null;
 
                 <div>
                     <label for="response_text" class="block text-sm font-medium text-gray-700">Votre réponse :</label>
-                    <textarea id="response_text" name="response_text" rows="4" class="mt-1 p-2 w-full border rounded-md"></textarea>
+                    <textarea id="response_text" name="response_text" rows="4"
+                        class="mt-1 p-2 w-full border rounded-md"></textarea>
                 </div>
                 <!-- <input type="text" hidden name="id_question" value="<?php echo $id_question; ?>"> -->
 
 
                 <div class="flex items-center">
-                    <button type="submit" name="Envoyer_reponse" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Envoyer la réponse</button>
+                    <button type="submit" name="Envoyer_reponse"
+                        class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Envoyer la
+                        réponse</button>
                 </div>
             </form>
         </div>
 
         <div>
+            
             <!-- Displaying the responses -->
             <?php
-            $sql = "SELECT answer_id, answer.user_id, created_at, answer_text, username, image_url, likes, dislikes FROM answer INNER JOIN users ON answer.user_id = id_user WHERE question_id = ?";
+
+            $sql = "SELECT answer_id, answer.user_id, created_at, answer_text, username, image_url, likes, dislikes FROM answer INNER JOIN users ON answer.user_id = id_user WHERE answer.question_id = ? and archived=0";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("i", $id_question);
             $stmt->execute();
@@ -188,6 +191,18 @@ $id_question = null;
                             echo "<svg width='20px' height='20px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>";
                             // ... (your existing code for the edit icon)
                             echo "</svg>";
+                            echo "</button>";
+                            echo "</form>";
+
+                        }
+                        if ($userId == $questionowner) {
+
+                            echo "<form method='POST' action=''>";
+                            echo " <input type='text' hidden name='input_id' value='$id_question'>";
+
+                            echo "<input type='hidden' name='answer_id' value='" . $row['answer_id'] . "'>";
+                            echo "<button type='submit' class='flex items-center text-gray-600 hover:text-green-500'>";
+                            echo "<span class='ml-1'>Mark as Solution</span>";
                             echo "</button>";
                             echo "</form>";
                         }
@@ -235,6 +250,23 @@ $id_question = null;
 
 <?php
 
+
+//marquer reponse 
+// Marquer la réponse comme solution
+if (isset($_POST['answer_id'])) {
+    $answerId = $_POST['answer_id'];
+
+    // Utilisez le bon nom de table (answer au lieu de answers)
+    $updateSql = $conn->prepare("UPDATE answer SET is_solution = 1 WHERE answer_id = ?");
+    $updateSql->bind_param("s", $answerId);
+    $updateSql->execute();
+}
+
+
+
+
+
+//ajouter
 if (isset($_POST['Envoyer_reponse'])) {
     $user_id = $_SESSION['id'];
     $response_text = $_POST["response_text"];

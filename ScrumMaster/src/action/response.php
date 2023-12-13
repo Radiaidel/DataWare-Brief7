@@ -9,7 +9,11 @@ $userId = $_SESSION["id"];
 
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-
+    <style>
+        .bg-ce0033 {
+            background-color: #CE0033;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-200">
@@ -24,7 +28,7 @@ $userId = $_SESSION["id"];
                 $id_question = $_POST['input_id'];
 
                 // Utiliser question_id pour récupérer la question correspondante
-                $sql = "SELECT q.*, u.image_url, u.username, u.id_user FROM question q  INNER JOIN users u ON q.user_id = u.id_user WHERE question_id = $id_question";
+                $sql = "SELECT q.*, u.image_url, u.username, u.id_user FROM question q  INNER JOIN users u ON q.user_id = u.id_user WHERE question_id = $id_question  ";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -179,12 +183,21 @@ $userId = $_SESSION["id"];
 
 
         affichaaage des reponses
-        <a href="archived_responses.php" class="text-blue-500 hover:underline">View Archived Responses</a>
+        <a href="archived_responses.php?id_question=<?php echo $id_question; ?>" class="text-blue-500 hover:underline">View Archived Responses</a>
 
 
         <?php
-        $sql = "SELECT answer_id, answer.user_id, created_at, answer_text, username, image_url FROM answer INNER JOIN users ON answer.user_id = id_user";
-        $result = $conn->query($sql);
+         $sql = "SELECT answer_id, answer.user_id, created_at, answer_text, username, image_url, likes, dislikes FROM answer INNER JOIN users ON answer.user_id = id_user WHERE answer.question_id = ? and archived=0";
+         $stmt = $conn->prepare($sql);
+         
+         // Bind the parameter
+         $stmt->bind_param("i", $id_question);
+         
+         // Execute the statement
+         $stmt->execute();
+         
+         // Get the result
+         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -262,7 +275,7 @@ $userId = $_SESSION["id"];
         <?php
             }
         } else {
-            echo "Aucune question trouvée.";
+            echo "Aucune reponses trouvée.";
         }
         ?>
 

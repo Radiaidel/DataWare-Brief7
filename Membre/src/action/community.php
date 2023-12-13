@@ -12,7 +12,7 @@ include("../../../includes/config/connection.php");
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha384-GLhlTQ8iN17SJLlFfZVfP5z01K4JPTNqDQ5a6jgl5Up3H+9TP5IotK2+Obr4u" crossorigin="anonymous" />
-    <script src="../../../Javascript/pagination.js" defer></script>
+        <script src="../../../Javascript/pagination.js" defer></script>
     <script src="../../../Javascript/like_dislike.js" defer></script>
     <style>
         .bg-ce0033 {
@@ -102,7 +102,6 @@ include("../../../includes/config/connection.php");
                 DisplayQuestions('search', 1, searchQuery);
             });
 
-            // Add event listeners to filter options
             var filterOptions = document.getElementsByClassName('filter-option');
             for (var i = 0; i < filterOptions.length; i++) {
                 filterOptions[i].addEventListener('click', function (event) {
@@ -112,7 +111,6 @@ include("../../../includes/config/connection.php");
             }
 
             function DisplayQuestions(filterType, page, searchQuery) {
-                // Perform AJAX request and update the question container
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -131,106 +129,106 @@ include("../../../includes/config/connection.php");
             DisplayQuestions('new', 1, searchQuery);
         });
 
+        
+// Define an object to store the current state of questions (liked, disliked, or neither)
+var questionStates = {};
 
-        // Define an object to store the current state of questions (liked, disliked, or neither)
-        var questionStates = {};
+// Function to create and configure the XMLHttpRequest object
+function createXHR() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Update the like or dislike count on the page
+            var response = JSON.parse(xhr.responseText);
 
-        // Function to create and configure the XMLHttpRequest object
-        function createXHR() {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    // Update the like or dislike count on the page
-                    var response = JSON.parse(xhr.responseText);
-
-                    // Get the question ID, current state, and elements within the xhr.onreadystatechange function
-                    var questionId = xhr._questionId;
-                    var currentState = questionStates[questionId] || 'neither';
-                    var likesCountElement = xhr._likesCountElement;
-                    var dislikesCountElement = xhr._dislikesCountElement;
-
-                    if (xhr._isLikeButton && likesCountElement) {
-                        likesCountElement.innerText = response.likes !== undefined ? response.likes : '';
-                    } else if (!xhr._isLikeButton && dislikesCountElement) {
-                        dislikesCountElement.innerText = response.dislikes !== undefined ? response.dislikes : '';
-                    }
-
-                    // Toggle the state for the question
-                    if (currentState === 'neither') {
-                        questionStates[questionId] = xhr._isLikeButton ? 'liked' : 'disliked';
-                    } else if (currentState === 'liked' && xhr._isLikeButton) {
-                        // If previously liked, remove like
-                        questionStates[questionId] = 'neither';
-                    } else if (currentState === 'disliked' && !xhr._isLikeButton) {
-                        // If previously disliked, remove dislike
-                        questionStates[questionId] = 'neither';
-                    } else {
-                        // Update the state based on the current action
-                        questionStates[questionId] = xhr._isLikeButton ? 'liked' : 'disliked';
-                    }
-                }
-            };
-            return xhr;
-        }
-
-        // Add event listeners to all like and dislike buttons
-        var likeButtons = document.querySelectorAll('.like-button');
-        likeButtons.forEach(function (likeButton) {
-            likeButton.addEventListener('click', function () {
-                handleLikeDislikeClick(likeButton, true);
-            });
-        });
-
-        var dislikeButtons = document.querySelectorAll('.dislike-button');
-        dislikeButtons.forEach(function (dislikeButton) {
-            dislikeButton.addEventListener('click', function () {
-                handleLikeDislikeClick(dislikeButton, false);
-            });
-        });
-
-        // Function to handle like or dislike button click
-        function handleLikeDislikeClick(button, isLikeButton) {
-            // Check if the button has already been clicked
-            if (button.classList.contains('disabled')) {
-                return; // Ignore the click if the button is disabled
-            }
-
-            // Get the question ID and current like/dislike count from the button's data attributes
-            var questionId = button.getAttribute('data-question-id');
+            // Get the question ID, current state, and elements within the xhr.onreadystatechange function
+            var questionId = xhr._questionId;
             var currentState = questionStates[questionId] || 'neither';
-            var likesCountElement = button.querySelector('.like-count');
-            var dislikesCountElement = button.querySelector('.dislike-count');
+            var likesCountElement = xhr._likesCountElement;
+            var dislikesCountElement = xhr._dislikesCountElement;
 
-            // If the button is a like button and the question is already disliked, remove the dislike
-            if (isLikeButton && currentState === 'disliked') {
-                removeDislike(questionId, dislikesCountElement);
+            if (xhr._isLikeButton && likesCountElement) {
+                likesCountElement.innerText = response.likes !== undefined ? response.likes : '';
+            } else if (!xhr._isLikeButton && dislikesCountElement) {
+                dislikesCountElement.innerText = response.dislikes !== undefined ? response.dislikes : '';
             }
 
-            // If the button is a dislike button and the question is already liked, remove the like
-            else if (!isLikeButton && currentState === 'liked') {
-                removeLike(questionId, likesCountElement);
+            // Toggle the state for the question
+            if (currentState === 'neither') {
+                questionStates[questionId] = xhr._isLikeButton ? 'liked' : 'disliked';
+            } else if (currentState === 'liked' && xhr._isLikeButton) {
+                // If previously liked, remove like
+                questionStates[questionId] = 'neither';
+            } else if (currentState === 'disliked' && !xhr._isLikeButton) {
+                // If previously disliked, remove dislike
+                questionStates[questionId] = 'neither';
+            } else {
+                // Update the state based on the current action
+                questionStates[questionId] = xhr._isLikeButton ? 'liked' : 'disliked';
             }
-
-            // Create and configure the XMLHttpRequest object
-            var xhr = createXHR();
-
-            // Open a POST request to the server endpoint
-            xhr.open('POST', 'update_likes_dislikes.php', true);
-            // Set the Content-Type header for POST requests
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-            // Set additional properties to be used in the xhr.onreadystatechange function
-            xhr._isLikeButton = isLikeButton;
-            xhr._questionId = questionId;
-            xhr._likesCountElement = likesCountElement;
-            xhr._dislikesCountElement = dislikesCountElement;
-
-            // Send the request with the action and question ID
-            xhr.send('action=' + (isLikeButton ? 'like' : 'dislike') + '&question_id=' + questionId);
-
-            // Disable the button to prevent further clicks
-            button.classList.add('disabled');
         }
+    };
+    return xhr;
+}
+
+// Add event listeners to all like and dislike buttons
+var likeButtons = document.querySelectorAll('.like-button');
+likeButtons.forEach(function (likeButton) {
+    likeButton.addEventListener('click', function () {
+        handleLikeDislikeClick(likeButton, true);
+    });
+});
+
+var dislikeButtons = document.querySelectorAll('.dislike-button');
+dislikeButtons.forEach(function (dislikeButton) {
+    dislikeButton.addEventListener('click', function () {
+        handleLikeDislikeClick(dislikeButton, false);
+    });
+});
+
+// Function to handle like or dislike button click
+function handleLikeDislikeClick(button, isLikeButton) {
+    // Check if the button has already been clicked
+    if (button.classList.contains('disabled')) {
+        return; // Ignore the click if the button is disabled
+    }
+
+    // Get the question ID and current like/dislike count from the button's data attributes
+    var questionId = button.getAttribute('data-question-id');
+    var currentState = questionStates[questionId] || 'neither';
+    var likesCountElement = button.querySelector('.like-count');
+    var dislikesCountElement = button.querySelector('.dislike-count');
+
+    // If the button is a like button and the question is already disliked, remove the dislike
+    if (isLikeButton && currentState === 'disliked') {
+        removeDislike(questionId, dislikesCountElement);
+    }
+
+    // If the button is a dislike button and the question is already liked, remove the like
+    else if (!isLikeButton && currentState === 'liked') {
+        removeLike(questionId, likesCountElement);
+    }
+
+    // Create and configure the XMLHttpRequest object
+    var xhr = createXHR();
+
+    // Open a POST request to the server endpoint
+    xhr.open('POST', 'update_likes_dislikes.php', true);
+    // Set the Content-Type header for POST requests
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Set additional properties to be used in the xhr.onreadystatechange function
+    xhr._isLikeButton = isLikeButton;
+    xhr._questionId = questionId;
+    xhr._likesCountElement = likesCountElement;
+    xhr._dislikesCountElement = dislikesCountElement;
+
+    // Send the request with the action and question ID
+    xhr.send('action=' + (isLikeButton ? 'like' : 'dislike') + '&question_id=' + questionId);
+
+    // Disable the button to prevent further clicks
+    button.classList.add('disabled');
+}
 
 
 
