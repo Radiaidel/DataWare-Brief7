@@ -8,11 +8,10 @@ include("../../../includes/config/connection.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community Page</title>
-    <script src="../Javascript/script.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!--icon-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha384-GLhlTQ8iN17SJLlFfZVfP5z01K4JPTNqDQ5a6jgl5Up3H+9TP5IotK2+Obr4u" crossorigin="anonymous" />
+    <script src="../../../Javascript/script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../../../Javascript/pagination.js" defer></script>
     <style>
         .bg-ce0033 {
             background-color: #CE0033;
@@ -141,11 +140,7 @@ include("../../../includes/config/connection.php");
 
     </script>
 
-    <!-- Place jQuery script before your custom script -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../../../Javascript/pagination.js" defer></script>
-    <script src="../../../Javascript/like_dislike.js" defer></script>
-
+  
 </body>
 
 </html>

@@ -71,17 +71,10 @@
             WHERE $whereClause";
 
                 break;
-
-
-
-
             default:
                 echo "Invalid filter type.";
                 exit;
         }
-
-
-
         $sqlFilt = $sql . " LIMIT $limit OFFSET $offset";
 
         $result = $conn->query($sqlFilt);
@@ -142,15 +135,12 @@
                         }
                         ?>
                     </div>
-
-
-
-
                     <div class="flex gap-20">
-                        <button class="flex items-center text-gray-600 hover:text-blue-500 like-button"
-                            data-question-id="<?php echo $id_question; ?>" data-likes-count="<?php echo $likes; ?>">
-
-                            <svg fill="#0473c8" width="20px" height="20px" viewBox="0 0 24 24"
+       
+                        <!-- Like button -->
+<button class="flex items-center text-gray-600 hover:text-blue-500 like-button"
+        data-question-id="<?php echo $id_question; ?>" data-likes-count="<?php echo $likes; ?>">
+        <svg fill="#0473c8" width="20px" height="20px" viewBox="0 0 24 24"
                                 id="a11298b2-e15e-46f5-bfd2-69e168954b14" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg"
                                 stroke="#0473c8">
 
@@ -159,9 +149,6 @@
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
 
                                 <g id="SVGRepo_iconCarrier">
-
-
-
                                     <path
                                         d="M8,11.47A18.74,18.74,0,0,0,10.69,8.9a18.74,18.74,0,0,0,1.76-2.42A6.42,6.42,0,0,0,13,5.41l1.74-4.57a4.45,4.45,0,0,1,2.83,2A4,4,0,0,1,18,4.77a2.67,2.67,0,0,1-.09.55L16.72,9.05h5.22a2,2,0,0,1,2,1.85,19.32,19.32,0,0,1-.32,5.44,33.83,33.83,0,0,1-1.23,4.34,3.78,3.78,0,0,1-3.58,2.49,25.54,25.54,0,0,1-6.28-.66A45.85,45.85,0,0,1,8,21.26V11.47Z" />
 
@@ -171,48 +158,42 @@
                                 </g>
 
                             </svg>
+    <span class="ml-1 like-count"><?php echo $likes; ?></span>
+</button>
 
-                            <span class="ml-1 like-count">
-                                <?php echo $likes; ?>
-                            </span>
-                        </button>
-
-                        <button class="flex items-center text-gray-600 hover:text-red-500 dislike-button"
-                            data-question-id="<?php echo $id_question; ?>" data-dislikes-count="<?php echo $dislikes; ?>">
-                            <svg fill="#0473c8" height="20px" width="20px" version="1.1" id="Layer_1"
-                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"
-                                xml:space="preserve" stroke="#0473c8">
+<!-- Dislike button -->
+<button class="flex items-center text-gray-600 hover:text-red-500 dislike-button"
+        data-question-id="<?php echo $id_question; ?>" data-dislikes-count="<?php echo $dislikes; ?>">
+        <svg fill="#0473c8" width="20px" height="20px" viewBox="0 0 24 24"
+                                id="a11298b2-e15e-46f5-bfd2-69e168954b14" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg"
+                                stroke="#0473c8">
 
                                 <g id="SVGRepo_bgCarrier" stroke-width="0" />
 
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
 
                                 <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <g>
-                                            <g>
-                                                <path
-                                                    d="M117.333,10.667h-64C23.936,10.667,0,34.603,0,64v170.667C0,264.064,23.936,288,53.333,288H160 c5.888,0,10.667-4.779,10.667-10.667V64C170.667,34.603,146.731,10.667,117.333,10.667z" />
-                                                <path
-                                                    d="M512,208c0-18.496-10.603-34.731-26.347-42.667c3.285-6.549,5.013-13.781,5.013-21.333 c0-18.496-10.603-34.752-26.368-42.688c4.864-9.728,6.293-20.928,3.84-32.043C463.36,47.68,443.051,32,419.819,32H224 c-7.232,0-16.405,1.173-25.771,3.285c-5.739,1.301-9.344,6.976-8.064,12.693C191.403,53.632,192,58.859,192,64v213.333 c0,5.739-1.6,11.264-4.736,16.448c-1.835,3.029-2.048,6.763-0.555,9.984l47.957,103.893v72.32c0,3.243,1.472,6.293,3.989,8.341 c0.683,0.555,16.512,13.013,38.677,13.013c24.683,0,64-39.061,64-85.333c0-29.184-10.453-65.515-16.96-85.333h131.755 c28.715,0,53.141-21.248,55.637-48.341c1.387-15.189-3.669-29.824-13.632-40.725C506.901,232.768,512,220.821,512,208z" />
-                                            </g>
-                                        </g>
-                                    </g>
+                                    <path
+                                        d="M8,11.47A18.74,18.74,0,0,0,10.69,8.9a18.74,18.74,0,0,0,1.76-2.42A6.42,6.42,0,0,0,13,5.41l1.74-4.57a4.45,4.45,0,0,1,2.83,2A4,4,0,0,1,18,4.77a2.67,2.67,0,0,1-.09.55L16.72,9.05h5.22a2,2,0,0,1,2,1.85,19.32,19.32,0,0,1-.32,5.44,33.83,33.83,0,0,1-1.23,4.34,3.78,3.78,0,0,1-3.58,2.49,25.54,25.54,0,0,1-6.28-.66A45.85,45.85,0,0,1,8,21.26V11.47Z" />
+
+                                    <path
+                                        d="M5,9H1a1,1,0,0,0-1,1V22a1,1,0,0,0,1,1H5a1,1,0,0,0,1-1V10A1,1,0,0,0,5,9ZM3,21a1,1,0,1,1,1-1A1,1,0,0,1,3,21Z" />
+
                                 </g>
 
                             </svg>
-                            <span class="ml-1 dislike-count">
-                                <?php echo $dislikes; ?>
-                            </span>
-                        </button>
+    <span class="ml-1 dislike-count"><?php echo $dislikes; ?></span>
+</button>
                     </div>
                     <ul role="list" class="flex justify-center space-x-5">
                         <?php
                         // Check if the logged-in user is the creator of the question
                         if ($userId == $row['user_id']) {
+                            var_dump($_POST['id_question']);
                             ?>
                             <li>
-                                <a href="modifierquestion.php?modifierID=<?php echo $id_question; ?>"
+                                <a href="./modifierquestion.php?modifierID=<?php echo $id_question; ?>"
+                                
                                     class="text-indigo-300 hover:text-indigo-500">
                                     <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -225,7 +206,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="deletequestion.php?DeleteID=<?php echo $id_question; ?>"
+                                <a href="./deletequestion.php?DeleteID=<?php echo $id_question; ?>"
                                     class="text-indigo-300 hover:text-indigo-500">
                                     <svg width="20px" height="20px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -292,209 +273,102 @@
 
         <?php
     }
-
-
-
-
-
-
-
     // Close your database connection
     $conn->close();
     ?>
-
-
-
+        <!-- Add this at the end of your HTML body or in the head section -->
 <script>
-    // Define an object to store the current state of questions (liked, disliked, or neither)
-    var questionStates = {};
+   document.addEventListener('DOMContentLoaded', function () {
+    const questionStates = {}; // To keep track of like and dislike states
 
-    // Function to create and configure the XMLHttpRequest object
-    function createXHR() {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // Update the like or dislike count on the page
-                var response = JSON.parse(xhr.responseText);
+    // Function to send asynchronous requests to the server
+    async function sendRequest(action, questionId) {
+        try {
+            const response = await fetch('like_dislike_handler.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: action,
+                    questionId: questionId,
+                }),
+            });
 
-                // Get the question ID, current state, and elements within the xhr.onreadystatechange function
-                var questionId = xhr._questionId;
-                var currentState = questionStates[questionId] || 'neither';
-                var likesCountElement = xhr._likesCountElement;
-                var dislikesCountElement = xhr._dislikesCountElement;
-
-                if (xhr._isLikeButton && likesCountElement) {
-                    likesCountElement.innerText = response.likes !== undefined ? response.likes : '';
-                } else if (!xhr._isLikeButton && dislikesCountElement) {
-                    dislikesCountElement.innerText = response.dislikes !== undefined ? response.dislikes : '';
-                }
-
-                // Toggle the state for the question
-                if (currentState === 'neither') {
-                    questionStates[questionId] = xhr._isLikeButton ? 'liked' : 'disliked';
-                } else if (currentState === 'liked' && xhr._isLikeButton) {
-                    // If previously liked, remove like
-                    questionStates[questionId] = 'neither';
-                } else if (currentState === 'disliked' && !xhr._isLikeButton) {
-                    // If previously disliked, remove dislike
-                    questionStates[questionId] = 'neither';
-                } else {
-                    // Update the state based on the current action
-                    questionStates[questionId] = xhr._isLikeButton ? 'liked' : 'disliked';
-                }
+            if (!response.ok) {
+                throw new Error(`Server responded with ${response.status}`);
             }
-        };
-        return xhr;
+
+            return await response.json();
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
 
-    // Add event listeners to all like and dislike buttons
-    var likeButtons = document.querySelectorAll('.like-button');
-    likeButtons.forEach(function (likeButton) {
-        likeButton.addEventListener('click', function () {
-            handleLikeDislikeClick(likeButton, true);
-        });
-    });
-
-    var dislikeButtons = document.querySelectorAll('.dislike-button');
-    dislikeButtons.forEach(function (dislikeButton) {
-        dislikeButton.addEventListener('click', function () {
-            handleLikeDislikeClick(dislikeButton, false);
-        });
-    });
-
-    // Function to handle like or dislike button click
-    function handleLikeDislikeClick(button, isLikeButton) {
-        // Check if the button has already been clicked
-        if (button.classList.contains('disabled')) {
-            return; // Ignore the click if the button is disabled
+    // Function to update like and dislike counts on the client side
+    function updateCounts(response, questionId, likesCountElement, dislikesCountElement) {
+        if (response) {
+            const { likes, dislikes } = response;
+            if (likesCountElement) {
+                likesCountElement.textContent = likes;
+            }
+            if (dislikesCountElement) {
+                dislikesCountElement.textContent = dislikes;
+            }
+            questionStates[questionId] = response.state; // Update the state
         }
-
-        // Get the question ID and current like/dislike count from the button's data attributes
-        var questionId = button.getAttribute('data-question-id');
-        var currentState = questionStates[questionId] || 'neither';
-        var likesCountElement = button.querySelector('.like-count');
-        var dislikesCountElement = button.querySelector('.dislike-count');
-
-        // If the button is a like button and the question is already disliked, remove the dislike
-        if (isLikeButton && currentState === 'disliked') {
-            removeDislike(questionId, dislikesCountElement);
-        }
-
-        // If the button is a dislike button and the question is already liked, remove the like
-        else if (!isLikeButton && currentState === 'liked') {
-            removeLike(questionId, likesCountElement);
-        }
-
-        // Create and configure the XMLHttpRequest object
-        var xhr = createXHR();
-
-        // Open a POST request to the server endpoint
-        xhr.open('POST', 'update_likes_dislikes.php', true);
-        // Set the Content-Type header for POST requests
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        // Set additional properties to be used in the xhr.onreadystatechange function
-        xhr._isLikeButton = isLikeButton;
-        xhr._questionId = questionId;
-        xhr._likesCountElement = likesCountElement;
-        xhr._dislikesCountElement = dislikesCountElement;
-
-        // Send the request with the action and question ID
-        xhr.send('action=' + (isLikeButton ? 'like' : 'dislike') + '&question_id=' + questionId);
-
-        // Disable the button to prevent further clicks
-        button.classList.add('disabled');
     }
 
+    // Function to handle like and dislike clicks
+    async function handleLikeDislikeClick(button, isLikeButton) {
+        const questionId = button.getAttribute('data-question-id');
+        const likesCountElement = button.querySelector('.like-count');
+        const dislikesCountElement = button.querySelector('.dislike-count');
 
+        const currentState = questionStates[questionId] || 'neither';
 
+        if ((isLikeButton && currentState === 'disliked') || (!isLikeButton && currentState === 'liked')) {
+            isLikeButton ? await removeDislike(questionId, dislikesCountElement) : await removeLike(questionId, likesCountElement);
+        } else {
+            isLikeButton ? await likeQuestion(questionId, likesCountElement) : await dislikeQuestion(questionId, dislikesCountElement);
+        }
+    }
+    
+    // Function to like a question
+    async function likeQuestion(questionId, likesCountElement) {
+        const response = await sendRequest('like', questionId);
+        updateCounts(response, questionId, likesCountElement, null);
+    }
 
+    // Function to dislike a question
+    async function dislikeQuestion(questionId, dislikesCountElement) {
+        const response = await sendRequest('dislike', questionId);
+        updateCounts(response, questionId, null, dislikesCountElement);
+    }
 
+    // Function to remove a like
+    async function removeLike(questionId, likesCountElement) {
+        const response = await sendRequest('remove_like', questionId);
+        updateCounts(response, questionId, likesCountElement, null);
+    }
 
+    // Function to remove a dislike
+    async function removeDislike(questionId, dislikesCountElement) {
+        const response = await sendRequest('remove_dislike', questionId);
+        updateCounts(response, questionId, null, dislikesCountElement);
+    }
 
+    // Event listeners for like and dislike buttons
+    document.querySelectorAll('.like-button').forEach(button => {
+        button.addEventListener('click', () => handleLikeDislikeClick(button, true));
+    });
 
-
-
-
-
-
-
-
-
-    // function removeDislike(questionId, dislikesCountElement) {
-    //     // Create and configure the XMLHttpRequest object
-    //     var xhr = createXHR();
-
-    //     // Open a POST request to the server endpoint
-    //     xhr.open('POST', 'update_likes_dislikes.php', true);
-    //     // Set the Content-Type header for POST requests
-    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    //     // Set additional properties to be used in the xhr.onreadystatechange function
-    //     xhr._isLikeButton = false;
-    //     xhr._questionId = questionId;
-    //     xhr._likesCountElement = null; // No need to update like count
-
-    //     // Send the request with the action to remove dislike
-    //     xhr.send('action=remove_dislike&question_id=' + questionId);
-
-    //     // Update the local state immediately
-    //     questionStates[questionId] = 'neither';
-    //     if (dislikesCountElement) {
-    //         dislikesCountElement.innerText = parseInt(dislikesCountElement.innerText) - 1;
-    //     }
-    // }
-
-    // Function to remove the like
-    // function removeLike(questionId, likesCountElement) {
-    //     // Create and configure the XMLHttpRequest object
-    //     var xhr = createXHR();
-
-    //     // Open a POST request to the server endpoint
-    //     xhr.open('POST', 'update_likes_dislikes.php', true);
-    //     // Set the Content-Type header for POST requests
-    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    //     // Set additional properties to be used in the xhr.onreadystatechange function
-    //     xhr._isLikeButton = true;
-    //     xhr._questionId = questionId;
-    //     xhr._dislikesCountElement = null; // No need to update dislike count
-
-    //     // Send the request with the action to remove like
-    //     xhr.send('action=remove_like&question_id=' + questionId);
-
-    //     // Update the local state immediately
-    //     questionStates[questionId] = 'neither';
-    //     if (likesCountElement) {
-    //         likesCountElement.innerText = parseInt(likesCountElement.innerText) - 1;
-    //     }
-    // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    document.querySelectorAll('.dislike-button').forEach(button => {
+        button.addEventListener('click', () => handleLikeDislikeClick(button, false));
+    });
+});
 
 </script>
-
-
-
-
-
-
-
-
-
-    <script src="../../../Javascript/like_dislike.js" defer></script>
 
 </body>
 
