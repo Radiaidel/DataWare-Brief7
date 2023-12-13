@@ -15,25 +15,28 @@ if (isset($_GET['filter'])) {
 
     switch ($filter) {
         case 'new':
-            $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user ORDER BY created_at DESC ";
+            $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user where q.archived=0 ORDER BY created_at DESC ";
             break;
 
         case 'old':
-            $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user  ORDER BY created_at ASC";
+            $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user where q.archived=0  ORDER BY created_at ASC";
             break;
 
         case 'all':
-            $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user ";
+            $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user where q.archived=0 ";
             break;
 
         case 'my':
             if (isset($_SESSION['id'])) {
                 $userId = $_SESSION['id'];
-                $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user  WHERE q.user_id = $userId";
+                $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user  WHERE q.user_id = $userId and  q.archived=0";
             } else {
                 echo "User not logged in.";
                 exit;
             }
+            break;
+        case 'archive':
+            $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user where q.archived=1 ";
             break;
         case 'search':
             $searchTerm = isset($_GET['searchTerm']) ? $_GET['searchTerm'] : '';
@@ -103,6 +106,7 @@ if (isset($_GET['filter'])) {
                             <?php echo $insertionDate; ?>
                         </p>
                     </div>
+                    <a href="archive.php?id=<?php echo $row['question_id'] ?>" class="text-white bg-blue-700 ml-24 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Archive</a>
                 </div>
 
                 <div class="mb-6">
@@ -196,24 +200,24 @@ if (isset($_GET['filter'])) {
                             <a href="deletequestion.php?DeleteID=<?php echo $id_question; ?>"
                                 class="text-indigo-300 hover:text-indigo-500">
                                 <svg width="20px" height="20px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
 
-                                <title>comment-1</title>
-                                <desc>Created with Sketch Beta.</desc>
-                                <defs>
+                                    <title>comment-1</title>
+                                    <desc>Created with Sketch Beta.</desc>
+                                    <defs>
 
-                                </defs>
-                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-                                    <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-100.000000, -255.000000)"
-                                        fill="#000000">
-                                        <path
-                                            d="M116,281 C114.832,281 113.704,280.864 112.62,280.633 L107.912,283.463 L107.975,278.824 C104.366,276.654 102,273.066 102,269 C102,262.373 108.268,257 116,257 C123.732,257 130,262.373 130,269 C130,275.628 123.732,281 116,281 L116,281 Z M116,255 C107.164,255 100,261.269 100,269 C100,273.419 102.345,277.354 106,279.919 L106,287 L113.009,282.747 C113.979,282.907 114.977,283 116,283 C124.836,283 132,276.732 132,269 C132,261.269 124.836,255 116,255 L116,255 Z"
-                                            id="comment-1" sketch:type="MSShapeGroup">
+                                    </defs>
+                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                                        <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-100.000000, -255.000000)"
+                                            fill="#000000">
+                                            <path
+                                                d="M116,281 C114.832,281 113.704,280.864 112.62,280.633 L107.912,283.463 L107.975,278.824 C104.366,276.654 102,273.066 102,269 C102,262.373 108.268,257 116,257 C123.732,257 130,262.373 130,269 C130,275.628 123.732,281 116,281 L116,281 Z M116,255 C107.164,255 100,261.269 100,269 C100,273.419 102.345,277.354 106,279.919 L106,287 L113.009,282.747 C113.979,282.907 114.977,283 116,283 C124.836,283 132,276.732 132,269 C132,261.269 124.836,255 116,255 L116,255 Z"
+                                                id="comment-1" sketch:type="MSShapeGroup">
 
-                                        </path>
+                                            </path>
+                                        </g>
                                     </g>
-                                </g>
-                            </svg>
+                                </svg>
                             </a>
                         </li>
                         <?php
@@ -238,6 +242,14 @@ if (isset($_GET['filter'])) {
         LEFT JOIN tags ON question_tag.id_tag = tags.id_tag
         WHERE $whereClause";
     }
+    if ($filter == 'archive') {
+        $totalQuestionsSql = "SELECT COUNT(*) as total FROM question q
+        LEFT JOIN question_tag ON q.question_id = question_tag.id_question
+        LEFT JOIN tags ON question_tag.id_tag = tags.id_tag
+        WHERE q.archived = 1";
+    
+    }
+
 
 
     $totalQuestionsResult = $conn->query($totalQuestionsSql);

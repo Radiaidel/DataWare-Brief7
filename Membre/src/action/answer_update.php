@@ -18,11 +18,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["toupdate"])) {
 
         <head>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-
+            <style>
+        .bg-ce0033 {
+            background-color: #CE0033;
+        }
+    </style>
         </head> 
+<body class="bg-gray-200">
+    
 
-        <div class="w-full lg:w-3/4">
-            <div class="bg-white p-4 mb-4 my-5">
+        <div class=" w-full m-auto flex justify-center flex-col lg:w-3/4 drop-shadow-lg">
+            <div class=" p-4 mb-4 my-5">
 
                 <?php
                 $id_question = '';
@@ -47,8 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["toupdate"])) {
 
                         ?>
 
-                        <div class="mx-auto w-full  bg-gray-800 p-8 rounded-xl shadow-xl text-white mb-4">
-                            <div class="flex items-center text-gray-300 mb-4">
+                        <div class="mx-auto w-full  bg-white p-8 rounded-xl shadow-lg text-white mb-4">
+                            <div class="flex items-center text-black mb-4">
                                 <div class="flex-shrink-0">
                                     <img src="<?php echo $imagePath; ?>" alt="User Image" class="w-10 h-10 rounded-full">
                                 </div>
@@ -170,20 +176,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["toupdate"])) {
 
             </div>
 
-            <div class="bg-white p-4 mb-4">
-                <h2 class="text-lg font-semibold mb-2">Répondre à la question</h2>
+            <div class="bg-gray-200 p-4 mb-4  rounded-lg">
+                <!-- <h2 class="text-lg font-semibold mb-2">Répondre à la question</h2> -->
                 <form method="POST" class="space-y-4">
                     <div>
-                        <label for="response_text" class="block text-sm font-medium text-gray-700">Votre réponse :</label>
+                        <label for="response_text" class="block text-sm text-lg font-medium text-gray-700">Votre réponse </label>
                         <textarea id="response_text" name="response_text" rows="4"
-                            class="mt-1 p-2 w-full border rounded-md"><?php echo $answerText; ?></textarea>
+                            class="mt-1 p-2 w-full border shadow-lg rounded-md"><?php echo $answerText; ?></textarea>
                     </div>
                     <input type="text" hidden name="answer_id" value="<?php echo $answerId; ?>">
 
 
                     <div class="flex items-center">
                         <button type="submit" name="update_response"
-                            class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+                            class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
                             Save Changes</button>
                     </div>
 
@@ -214,3 +220,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["update_response"])) {
 } 
 
 ?>
+
+</body>

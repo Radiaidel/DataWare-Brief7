@@ -131,6 +131,7 @@ if (isset($_POST['askQuestion'])) {
     }
 
     $stmtInsertQuestionTag->close();
+    header("Location: question_project.php");
 }
 
 ?>
@@ -142,7 +143,11 @@ if (isset($_POST['askQuestion'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-
+    <style>
+        .bg-ce0033 {
+            background-color: #CE0033;
+        }
+    </style>
     <title>Projet</title>
 </head>
 
@@ -164,10 +169,10 @@ if (isset($_POST['askQuestion'])) {
                     <?php echo $projectDescription; ?>
                 </p>
                 <div class="flex justify-between">
-                    <span class="bg-blue-100 border border-blue-500 text-blue-500 px-5 py-2 rounded-full">
+                    <span class="bg-blue-100 border border-blue-500 text-blue-500 px-5 py-2 rounded-md">
                         <?php echo $projectStatus; ?>
                     </span>
-                    <span class="bg-red-100 border border-red-500 text-red-500 px-3 py-2 rounded-full">
+                    <span class="bg-red-100 border border-red-500 text-red-500 px-3 py-2 rounded-md">
                         <?php echo $daysRemaining; ?> restants
                     </span>
                 </div>
@@ -177,19 +182,23 @@ if (isset($_POST['askQuestion'])) {
             <div class=" w-full bg-white p-8 rounded-lg shadow-md">
                 <h2 class="text-2xl text-center font-semibold mb-4">Poser une Question</h2>
 
-                <form action="" method="post">
+                <form action="question_project.php" method="POST">
                     <input type="text" hidden name="idprojet" value=" <?php echo $projectId; ?>">
                     <div class="mb-4">
 
-                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question" class="mt-1 p-2 w-full border rounded-md">
+                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question"
+                            class="mt-1 p-2 w-full border rounded-md" required>
                     </div>
 
                     <div class="mb-4">
-                        <textarea name="question_content" id="question_content" rows="2" placeholder="Contenu de la Question" class="mt-1 p-2 w-full border rounded-md"></textarea>
+                        <textarea name="question_content" id="question_content" rows="2"
+                            placeholder="Contenu de la Question" class="mt-1 p-2 w-full border rounded-md"
+                            required></textarea>
                     </div>
 
                     <div class="mb-4">
-                        <input type="text" id="tags" name="tags" placeholder="#Tag" class="mt-1 p-2 w-full border rounded-md" list="tagSuggestionsList" />
+                        <input type="text" id="tags" name="tags" placeholder="#Tag"
+                            class="mt-1 p-2 w-full border rounded-md" list="tagSuggestionsList" />
                         <div id="tagSuggestions">
                             <datalist id="tagSuggestionsList" class="hidden">
                             </datalist>
@@ -197,13 +206,13 @@ if (isset($_POST['askQuestion'])) {
                         <input type="hidden" id="selectedTagId" name="selectedTagId" value="">
                     </div>
 
-                    <button name="askQuestion" type="submit" class="bg-blue-500 text-white p-2 rounded-md ">Poser la
+                    <button name="askQuestion" type="submit" class="bg-red-500 text-white p-2 rounded-md ">Poser la
                         Question</button>
                 </form>
             </div>
 
-            <div class="bg-white p-4 rounded-lg shadow-md mt-4 ">
-                <h3>Questions liées au projet :</h3>
+            <div class="bg-gray-200 p-4 rounded-lg shadow-md mt-4 ">
+                <!-- <h3>Questions liées au projet :</h3> -->
                 <?php
                 // Affichez les questions liées au projet
                 foreach ($projectQuestions as $row) {
@@ -217,27 +226,28 @@ if (isset($_POST['askQuestion'])) {
                     $tagsSql = "SELECT t.tag_name FROM tags t JOIN question_tag qt ON qt.id_tag = t.id_tag WHERE qt.id_question = " . $id_question;
                     $tagsResult = $conn->query($tagsSql);
                     ?>
-                    <div class="mx-auto w-full bg-gray-800 p-8 rounded-xl shadow-xl text-white mb-4">
+                    <div class="mx-auto w-full bg-white  p-8 rounded-xl shadow-xl  
+drop-shadow-lg mb-4">
                         <div class="flex items-center text-gray-300 mb-4">
                             <div class="flex-shrink-0">
                                 <img src="<?php echo $imagePath; ?>" alt="User Image" class="w-10 h-10 rounded-full">
                             </div>
                             <div class="ml-2">
-                                <p class="text-sm">
+                                <p class="text-sm text-black">
                                     <?php echo $username; ?>
                                 </p>
-                                <p class="text-xs">
+                                <p class="text-xs text-black">
                                     <?php echo $insertionDate; ?>
                                 </p>
                             </div>
                         </div>
 
                         <div class="mb-6">
-                            <h1 class="text-white text-2xl font-bold">
+                            <h1 class="text-red-600 text-2xl font-bold ">
                                 <?php echo $questionTitre; ?>
                             </h1>
                             <br>
-                            <p class="text-gray-300">
+                            <p class="text-black">
                                 <?php echo $questionText; ?>
                             </p>
                         </div>
@@ -261,12 +271,43 @@ if (isset($_POST['askQuestion'])) {
 
                             <div class="flex items-center space-x-4 mb-4"> <!-- Ajout de la classe mb-4 ici -->
                                 <button class="flex items-center text-gray-300 hover:text-blue-500">
+                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" stroke="#000000">
+
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path
+                                                d="M8 10H4V20H8M8 10V20M8 10L13.1956 3.9385C13.6886 3.36333 14.4642 3.11607 15.1992 3.2998L15.2467 3.31169C16.5885 3.64714 17.1929 5.2106 16.4258 6.36138L14 10H18.5604C19.8225 10 20.7691 11.1547 20.5216 12.3922L19.3216 18.3922C19.1346 19.3271 18.3138 20 17.3604 20H8"
+                                                stroke="#646066" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </g>
+
+                                    </svg>
                                     <span class="ml-1">
                                         <?php echo $row['likes']; ?>
                                     </span>
                                 </button>
 
                                 <button class="flex items-center text-gray-300 hover:text-red-500">
+                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" transform="rotate(180)">
+
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path
+                                                d="M8 10H4V20H8M8 10V20M8 10L13.1956 3.9385C13.6886 3.36333 14.4642 3.11607 15.1992 3.2998L15.2467 3.31169C16.5885 3.64714 17.1929 5.2106 16.4258 6.36138L14 10H18.5604C19.8225 10 20.7691 11.1547 20.5216 12.3922L19.3216 18.3922C19.1346 19.3271 18.3138 20 17.3604 20H8"
+                                                stroke="#646066" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </g>
+
+                                    </svg>
+
                                     <span class="ml-1">
                                         <?php echo $row['dislikes']; ?>
                                     </span>
@@ -330,7 +371,7 @@ if (isset($_POST['askQuestion'])) {
                             ?>
                         </ul>
                     </div>
-                <?php
+                    <?php
                 }
                 ?>
             </div>
@@ -361,41 +402,41 @@ if (isset($_POST['askQuestion'])) {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    var tagsInput = document.getElementById("tags");
-    var tagSuggestions = document.getElementById("tagSuggestions");
-    var selectedTagIdInput = document.getElementById("selectedTagId");
+        document.addEventListener("DOMContentLoaded", function () {
+            var tagsInput = document.getElementById("tags");
+            var tagSuggestions = document.getElementById("tagSuggestions");
+            var selectedTagIdInput = document.getElementById("selectedTagId");
 
-    var selectedTagIds = []; 
+            var selectedTagIds = [];
 
-    tagsInput.addEventListener("input", function () {
-        var input = tagsInput.value;
+            tagsInput.addEventListener("input", function () {
+                var input = tagsInput.value;
 
-        if (input.includes("#")) {
-            var prefix = input.split("#").pop();
-            getTagSuggestions(prefix);
-        } else {
-            tagSuggestions.innerHTML = "";
-        }
-    });
+                if (input.includes("#")) {
+                    var prefix = input.split("#").pop();
+                    getTagSuggestions(prefix);
+                } else {
+                    tagSuggestions.innerHTML = "";
+                }
+            });
 
-    tagSuggestions.addEventListener("click", function (event) {
-        if (event.target.tagName === "OPTION") {
-            var selectedTagId = event.target.getAttribute("data-tag-id");
-            var currentTags = tagsInput.value;
+            tagSuggestions.addEventListener("click", function (event) {
+                if (event.target.tagName === "OPTION") {
+                    var selectedTagId = event.target.getAttribute("data-tag-id");
+                    var currentTags = tagsInput.value;
 
-            selectedTagIds.push(selectedTagId);
+                    selectedTagIds.push(selectedTagId);
 
-            var updatedTags = currentTags + "" + event.target.value;
+                    var updatedTags = currentTags + "" + event.target.value;
 
-            tagsInput.value = updatedTags.trim();
+                    tagsInput.value = updatedTags.trim();
 
-            selectedTagIdInput.value = selectedTagIds.join(" ");
+                    selectedTagIdInput.value = selectedTagIds.join(" ");
 
-            tagSuggestions.innerHTML = "";
-        }
-    });
-});
+                    tagSuggestions.innerHTML = "";
+                }
+            });
+        });
 
 
         function getTagSuggestions(prefix) {
