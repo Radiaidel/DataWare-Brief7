@@ -197,7 +197,7 @@ $id_question = null;
                         $imagePath = htmlspecialchars("/DATAWARE-BRIEF7/" . $row['image_url']);
                         echo "<div class=' flex w-full drop-shadow-2xl flex-col items-center gap-8 mx-auto mt-8  p-6 rounded mt-1 p-2 border rounded-md drop-shadow-md border-slate-950'>";
                         
-                        echo "<div class='bg-white w-full p-6 rounded mt-1 p-2 border-2 rounded-md drop-shadow-2xl border-red-500'>";
+                        echo "<div class='bg-white w-full p-6 rounded mt-1 p-2 border-2 rounded-md drop-shadow-2xl border-red-300'>";
                         echo "<div class='flex'>";
                         echo "<div class='flex-shrink-0'>";
                         echo "<img src='$imagePath' alt='User Image' class='w-10 h-10 rounded-full'>";
