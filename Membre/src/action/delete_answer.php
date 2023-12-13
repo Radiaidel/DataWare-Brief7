@@ -14,6 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         echo "Error deleting answer: " . $conn->error;
     }
-    header("Location:response.php"); 
+    header("Location:community.php"); 
 }
 ?>

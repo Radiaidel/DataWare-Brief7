@@ -22,7 +22,7 @@ if (isset($_GET['DeleteID'])) {
             <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         </head>
 
-        <body class="bg-gray-100 min-h-screen flex-col items-center justify-center">
+        <body class="bg-gray-100 min-h-screen flex-col flex items-center justify-center">
 
             <div class="max-w-xl bg-white p-8 rounded-md shadow-lg">
                 <p class="mb-4">Are you sure you want to delete the following question?</p>

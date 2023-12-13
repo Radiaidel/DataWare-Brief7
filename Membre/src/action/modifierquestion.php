@@ -40,18 +40,26 @@ if (isset($_GET['modifierID'])) {
             <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         </head>
 
-        <body class="bg-gray-100 min-h-screen flex-col items-center justify-center">
+        <body class="bg-gray-100 min-h-screen flex-col flex  items-center justify-center">
 
-            <div class="max-w-xl bg-white p-8 rounded-md shadow-lg">
-                <form action="" method="POST">
-                    <input type="text" hidden name="questionID" value="<?php echo $modifierID; ?>">
+            <div class="max-w-xl bg-white p-8 rounded-md shadow-lg w-9/12 ">
+                <!-- <form action="process_modification.php" method="post">
+                    <label for="questionText">Question Text:</label>
+                    <textarea name="questionText" id="questionText" rows="4" class="w-full mb-4"><?php echo $questionText; ?></textarea>
+                    <input type="hidden" name="questionID" value="<?php echo $modifierID; ?>">
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Modify Question</button>
+                </form> -->
+
+
+                <form action="process_modification.php" method="POST">
+                    <input type="text" hidden name="questionID" value=" <?php echo $modifierID; ?>">
                     <div class="mb-4">
-                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question"
-                            class="mt-1 p-2 w-full border rounded-md" required value="<?php echo htmlspecialchars($rowQuestion['title_question']); ?>">
+
+                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question" class="mt-1 p-2 w-full border  rounded-md" required>
                     </div>
 
                     <div class="mb-4">
-                        <textarea name="question_content" id="question_content" rows="2" placeholder="Contenu de la Question"
+                        <textarea name="question_content" id="question_content" rows="6" placeholder="Contenu de la Question"
                             class="mt-1 p-2 w-full border rounded-md" required><?php echo htmlspecialchars($questionText); ?></textarea>
                     </div>
 
@@ -66,7 +74,7 @@ if (isset($_GET['modifierID'])) {
                         <input type="hidden" id="selectedTagId" name="selectedTagId" value="">
                     </div>
 
-                    <button name="updateQuestion" type="submit" class="bg-blue-500 text-white p-2 rounded-md">Mettre à jour la
+                    <button name="updateQuestion" type="submit" class="bg-red-500 text-white p-2 rounded-md ">Mettre à jour la
                         Question</button>
                 </form>
             </div>

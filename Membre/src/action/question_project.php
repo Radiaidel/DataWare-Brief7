@@ -169,10 +169,10 @@ if (isset($_POST['askQuestion'])) {
                     <?php echo $projectDescription; ?>
                 </p>
                 <div class="flex justify-between">
-                    <span class="bg-blue-100 border border-blue-500 text-blue-500 px-5 py-2 rounded-full">
+                    <span class="bg-blue-100 border border-blue-500 text-blue-500 px-5 py-2 rounded-md">
                         <?php echo $projectStatus; ?>
                     </span>
-                    <span class="bg-red-100 border border-red-500 text-red-500 px-3 py-2 rounded-full">
+                    <span class="bg-red-100 border border-red-500 text-red-500 px-3 py-2 rounded-md">
                         <?php echo $daysRemaining; ?> restants
                     </span>
                 </div>
@@ -206,13 +206,13 @@ if (isset($_POST['askQuestion'])) {
                         <input type="hidden" id="selectedTagId" name="selectedTagId" value="">
                     </div>
 
-                    <button name="askQuestion" type="submit" class="bg-blue-500 text-white p-2 rounded-md ">Poser la
+                    <button name="askQuestion" type="submit" class="bg-red-500 text-white p-2 rounded-md ">Poser la
                         Question</button>
                 </form>
             </div>
 
-            <div class="bg-white p-4 rounded-lg shadow-md mt-4 ">
-                <h3>Questions liées au projet :</h3>
+            <div class="bg-gray-200 p-4 rounded-lg shadow-md mt-4 ">
+                <!-- <h3>Questions liées au projet :</h3> -->
                 <?php
                 // Affichez les questions liées au projet
                 foreach ($projectQuestions as $row) {
@@ -226,27 +226,28 @@ if (isset($_POST['askQuestion'])) {
                     $tagsSql = "SELECT t.tag_name FROM tags t JOIN question_tag qt ON qt.id_tag = t.id_tag WHERE qt.id_question = " . $id_question;
                     $tagsResult = $conn->query($tagsSql);
                     ?>
-                    <div class="mx-auto w-full bg-gray-800 p-8 rounded-xl shadow-xl text-white mb-4">
+                    <div class="mx-auto w-full bg-white  p-8 rounded-xl shadow-xl  
+drop-shadow-lg mb-4">
                         <div class="flex items-center text-gray-300 mb-4">
                             <div class="flex-shrink-0">
                                 <img src="<?php echo $imagePath; ?>" alt="User Image" class="w-10 h-10 rounded-full">
                             </div>
                             <div class="ml-2">
-                                <p class="text-sm">
+                                <p class="text-sm text-black">
                                     <?php echo $username; ?>
                                 </p>
-                                <p class="text-xs">
+                                <p class="text-xs text-black">
                                     <?php echo $insertionDate; ?>
                                 </p>
                             </div>
                         </div>
 
                         <div class="mb-6">
-                            <h1 class="text-white text-2xl font-bold">
+                            <h1 class="text-red-600 text-2xl font-bold ">
                                 <?php echo $questionTitre; ?>
                             </h1>
                             <br>
-                            <p class="text-gray-300">
+                            <p class="text-black">
                                 <?php echo $questionText; ?>
                             </p>
                         </div>
@@ -270,12 +271,43 @@ if (isset($_POST['askQuestion'])) {
 
                             <div class="flex items-center space-x-4 mb-4"> <!-- Ajout de la classe mb-4 ici -->
                                 <button class="flex items-center text-gray-300 hover:text-blue-500">
+                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" stroke="#000000">
+
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path
+                                                d="M8 10H4V20H8M8 10V20M8 10L13.1956 3.9385C13.6886 3.36333 14.4642 3.11607 15.1992 3.2998L15.2467 3.31169C16.5885 3.64714 17.1929 5.2106 16.4258 6.36138L14 10H18.5604C19.8225 10 20.7691 11.1547 20.5216 12.3922L19.3216 18.3922C19.1346 19.3271 18.3138 20 17.3604 20H8"
+                                                stroke="#646066" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </g>
+
+                                    </svg>
                                     <span class="ml-1">
                                         <?php echo $row['likes']; ?>
                                     </span>
                                 </button>
 
                                 <button class="flex items-center text-gray-300 hover:text-red-500">
+                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" transform="rotate(180)">
+
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path
+                                                d="M8 10H4V20H8M8 10V20M8 10L13.1956 3.9385C13.6886 3.36333 14.4642 3.11607 15.1992 3.2998L15.2467 3.31169C16.5885 3.64714 17.1929 5.2106 16.4258 6.36138L14 10H18.5604C19.8225 10 20.7691 11.1547 20.5216 12.3922L19.3216 18.3922C19.1346 19.3271 18.3138 20 17.3604 20H8"
+                                                stroke="#646066" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </g>
+
+                                    </svg>
+
                                     <span class="ml-1">
                                         <?php echo $row['dislikes']; ?>
                                     </span>
