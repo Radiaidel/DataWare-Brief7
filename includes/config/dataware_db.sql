@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 07 déc. 2023 à 10:56
+-- Généré le : mer. 13 déc. 2023 à 11:00
 -- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.2.4
+-- Version de PHP : 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,19 +35,53 @@ CREATE TABLE `answer` (
   `likes` int(11) DEFAULT 0,
   `dislikes` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `archived` varchar(20) DEFAULT '0'
+  `archived` tinyint(1) DEFAULT 0,
+  `is_solution` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `answer`
 --
 
-INSERT INTO `answer` (`answer_id`, `question_id`, `user_id`, `answer_text`, `likes`, `dislikes`, `created_at`, `archived`) VALUES
-(122, 68, 75, 'Closures in JavaScript provide a way to encapsulate variables and create private scopes. Here is an example: ...', 10, 2, '2023-12-07 09:01:34', '0'),
-(123, 66, 76, 'When redesigning a database for a large-scale application, consider normalization, indexing, and partitioning for performance. Avoid common pitfalls such as ...', 15, 5, '2023-12-07 09:01:34', '0'),
-(124, 67, 77, 'For responsive web design, use media queries, flexible grid layouts, and frameworks like Bootstrap. Here are some tips and tricks: ...', 8, 3, '2023-12-07 09:01:34', '0'),
-(125, 65, 76, 'Security best practices include using strong password hashing, implementing two-factor authentication, and role-based access control. Here is a guide on implementing these practices: ...', 20, 1, '2023-12-07 09:01:34', '0'),
-(126, 65, 77, 'In the upcoming year, trends in web development include the adoption of serverless architecture, the rise of progressive web apps (PWAs), and the continued popularity of JavaScript frameworks like React and Vue.', 12, 4, '2023-12-07 09:01:34', '0');
+INSERT INTO `answer` (`answer_id`, `question_id`, `user_id`, `answer_text`, `likes`, `dislikes`, `created_at`, `archived`, `is_solution`) VALUES
+(123, 66, 76, 'When redesigning a database for a large-scale application, consider normalization, indexing, and partitioning for performance. Avoid common pitfalls such as ...', 15, 5, '2023-12-07 08:01:34', 0, NULL),
+(124, 67, 77, 'For responsive web design, use media queries, flexible grid layouts, and frameworks like Bootstrap. Here are some tips and tricks: ...', 8, 3, '2023-12-07 08:01:34', 0, NULL),
+(125, 65, 76, 'Security best practices include using strong password hashing, implementing two-factor authentication, and role-based access control. Here is a guide on implementing these practices: ...', 20, 1, '2023-12-07 08:01:34', 0, NULL),
+(126, 65, 77, 'In the upcoming year, trends in web development include the adoption of serverless architecture, the rise of progressive web apps (PWAs), and the continued popularity of JavaScript frameworks like React and Vue.', 12, 4, '2023-12-07 08:01:34', 0, NULL),
+(152, 65, 75, ' test1 test1 test1 test1 test1 test1 test1 test1 test1 ', 0, 0, '2023-12-09 15:54:02', 1, NULL),
+(156, 65, 75, 'repondre', 0, 0, '2023-12-11 10:00:45', 1, NULL),
+(160, 65, 75, 'tesssssssssssst', 0, 0, '2023-12-11 10:06:22', 1, NULL),
+(161, 65, 75, 'test2', 0, 0, '2023-12-11 10:10:19', 0, NULL),
+(162, 65, 75, 'test2', 0, 0, '2023-12-11 10:11:31', 0, NULL),
+(163, 65, 75, 'test2', 0, 0, '2023-12-11 10:13:26', 0, NULL),
+(164, 65, 75, 'azertyuiop^mlqsdfghjklm', 0, 0, '2023-12-11 10:13:50', 0, NULL),
+(165, 65, 75, 'azertyuiop^mlqsdfghjklm', 0, 0, '2023-12-11 10:14:02', 0, NULL),
+(166, 65, 75, 'jyztfdjzetfd', 0, 0, '2023-12-11 10:14:22', 0, NULL),
+(167, 65, 75, 'raaaaaaaaaaaaaaaaadia', 0, 0, '2023-12-11 10:16:23', 0, NULL),
+(168, 65, 75, 'repooooooooooooooooooooooooooooooooooooooondre', 0, 0, '2023-12-11 10:30:29', 0, NULL),
+(169, 65, 75, 'i\'m radia', 0, 0, '2023-12-11 10:33:54', 0, NULL),
+(170, 65, 75, 'test test teestt', 0, 0, '2023-12-11 10:36:25', 0, NULL),
+(171, 65, 75, 'repo', 0, 0, '2023-12-11 10:36:40', 0, NULL),
+(172, 65, 75, 'repo', 0, 0, '2023-12-11 10:36:47', 0, NULL),
+(173, 65, 75, 'rep', 0, 0, '2023-12-11 10:36:54', 0, NULL),
+(174, 65, 75, 'ertyuio', 0, 0, '2023-12-11 10:37:39', 0, NULL),
+(175, 65, 75, 'ukydf', 0, 0, '2023-12-11 10:41:03', 0, NULL),
+(176, 65, 75, 'aizuegd', 0, 0, '2023-12-11 10:42:36', 0, NULL),
+(177, 65, 75, 'aizuegd', 0, 0, '2023-12-11 10:42:50', 0, NULL),
+(178, 65, 75, 'aizuegd', 0, 0, '2023-12-11 10:43:04', 0, NULL),
+(179, 65, 75, 'jdbch', 0, 0, '2023-12-11 10:43:23', 0, NULL),
+(180, 65, 75, 'iegdulzeiuf', 0, 0, '2023-12-11 10:43:37', 0, NULL),
+(181, 65, 75, 'qiudg', 0, 0, '2023-12-11 10:43:47', 0, NULL),
+(182, 65, 75, 'iducgy', 0, 0, '2023-12-11 10:44:29', 0, NULL),
+(183, 65, 75, 'heeeeeeeeeeeeeeeeeeeellllllllllllllllllllllooooooooooooooooooooooo wooooooooooooooooooooooooorllllllllllllllllllllllllllllllllllllllllllld', 0, 0, '2023-12-11 10:44:55', 0, NULL),
+(184, 65, 75, 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasssssssssssssssssssssssssssssssssssssssssssssiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiirrrrrrrrrrrrrrrrrrrrrrr', 0, 0, '2023-12-11 10:46:03', 0, NULL),
+(185, 65, 75, 'fdxfgcnfc', 0, 0, '2023-12-11 10:48:07', 0, NULL),
+(186, 67, 75, 'tessst', 0, 0, '2023-12-11 10:54:12', 0, NULL),
+(187, 66, 75, 'repondre', 0, 0, '2023-12-11 10:55:02', 0, NULL),
+(188, 68, 75, 'zkjebndlizejb', 0, 0, '2023-12-12 19:18:59', 1, NULL),
+(189, 68, 75, ';jhvckvhdyec', 0, 0, '2023-12-12 19:19:10', 1, NULL),
+(190, 68, 75, ';jhvckvhdyec', 0, 0, '2023-12-12 19:19:14', 0, 1),
+(191, 68, 75, 'anaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 0, 0, '2023-12-12 23:20:30', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -111,7 +145,7 @@ CREATE TABLE `question` (
   `likes` int(11) DEFAULT 0,
   `dislikes` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `archived` varchar(20) DEFAULT '0',
+  `archived` tinyint(1) DEFAULT 0,
   `title_question` varchar(55) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -120,11 +154,11 @@ CREATE TABLE `question` (
 --
 
 INSERT INTO `question` (`question_id`, `user_id`, `Id_Project`, `question_text`, `likes`, `dislikes`, `created_at`, `archived`, `title_question`) VALUES
-(65, 75, 24, 'I am working on a web development project using JavaScript, and I am struggling with understanding the concept of closures. Can someone provide a detailed explanation with examples?', 0, 0, '2023-12-07 08:50:43', '0', 'Understanding JavaScript Closures'),
-(66, 76, 25, 'In our team, we are planning to redesign our database for a large-scale application. What are the best practices for designing a scalable and efficient database schema? Are there any common pitfalls we should avoid?', 0, 0, '2023-12-07 08:50:43', '0', 'Best Practices for Database Schema Design'),
-(67, 77, 24, 'I have been learning front-end development, and I find responsive web design challenging. Can someone share tips and tricks for creating responsive layouts? Are there any recommended frameworks or libraries for responsive design?', 0, 0, '2023-12-07 08:50:43', '0', 'Tips for Responsive Web Design'),
-(68, 75, 25, 'As a backend developer, I often deal with handling user authentication and authorization. What are the security best practices for user authentication, and how can I implement role-based access control in my applications?', 0, 0, '2023-12-07 08:50:43', '0', 'Security Best Practices for User Authentication and Aut'),
-(69, 76, 24, 'I am curious about the latest trends in web development for the upcoming year. What technologies, frameworks, or methodologies are gaining popularity, and how can developers stay up-to-date with industry trends?', 0, 0, '2023-12-07 08:50:43', '0', 'Exploring Web Development Trends for the Future');
+(65, 75, 24, 'I am working on a web development project using JavaScript, and I am struggling with understanding the concept of closures. Can someone provide a detailed explanation with examples?', 4, 5, '2023-12-07 08:50:43', 1, 'Understanding JavaScript Closures'),
+(66, 76, 25, 'In our team, we are planning to redesign our database for a large-scale application. What are the best practices for designing a scalable and efficient database schema? Are there any common pitfalls we should avoid?', 1, 2, '2023-12-07 08:50:43', 1, 'Best Practices for Database Schema Design'),
+(67, 77, 24, 'I have been learning front-end development, and I find responsive web design challenging. Can someone share tips and tricks for creating responsive layouts? Are there any recommended frameworks or libraries for responsive design?', 1, 2, '2023-12-07 08:50:43', 0, 'Tips for Responsive Web Design'),
+(68, 75, 25, 'As a backend developer, I often deal with handling user authentication and authorization. What are the security best practices for user authentication, and how can I implement role-based access control in my applications?', 0, 0, '2023-12-07 08:50:43', 0, 'Security Best Practices for User Authentication and Aut'),
+(69, 76, 24, 'I am curious about the latest trends in web development for the upcoming year. What technologies, frameworks, or methodologies are gaining popularity, and how can developers stay up-to-date with industry trends?', 0, 0, '2023-12-07 08:50:43', 0, 'Exploring Web Development Trends for the Future');
 
 -- --------------------------------------------------------
 
@@ -137,6 +171,14 @@ CREATE TABLE `question_tag` (
   `id_question` int(11) DEFAULT NULL,
   `id_tag` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `question_tag`
+--
+
+INSERT INTO `question_tag` (`id_question_tag`, `id_question`, `id_tag`) VALUES
+(103, 65, 8),
+(104, 65, 7);
 
 -- --------------------------------------------------------
 
@@ -209,11 +251,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `email`, `pass_word`, `role`, `status`, `image_url`) VALUES
-(74, 'oumaima', 'oumaima@gmail.com', '$2y$10$ljxMUm1Yb7rZWY2aGx3F9OTXXMdsmVcBhJPIjC/ItxOgso/foi77W', 'po', 'active', 'default.jpg'),
-(75, 'yassir', 'yassir@gmail.com', '$2y$10$O2xTEWnowOml2ZTbfD53QOfa4ZCqrgeMqvG/vNvywo0kUsWHGOIUW', 'user', 'active', 'default.jpg'),
-(76, 'ahmed', 'ahmed@gmail.com', '$2y$10$nT5sh/h51aEv5K.V6K.kqO0k.aY6SDr8IJECsrwR5kJem6i88UHuq', 'user', 'active', 'default.jpg'),
-(77, 'abderahman', 'abderahman@gmail.com', '$2y$10$iBVbVUdpW3OELQ8DO5pGZ./6P/7FcFQcod6pGY4zvrtYZO5fHNi6u', 'user', 'active', 'default.jpg'),
-(78, 'sm', 'sm@gmail.com', '$2y$10$tYoCRXKQ.GGbIsIoDYzVf.IO.gH/05LwKUzCDt95rsiap59AbtGeS', 'sm', 'active', 'default.jpg');
+(74, 'oumaima', 'oumaima@gmail.com', '$2y$10$ljxMUm1Yb7rZWY2aGx3F9OTXXMdsmVcBhJPIjC/ItxOgso/foi77W', 'po', 'active', 'upload/jane.jpg'),
+(75, 'yassir', 'yassir@gmail.com', '$2y$10$O2xTEWnowOml2ZTbfD53QOfa4ZCqrgeMqvG/vNvywo0kUsWHGOIUW', 'user', 'active', 'upload/jane.jpg'),
+(76, 'ahmed', 'ahmed@gmail.com', '$2y$10$nT5sh/h51aEv5K.V6K.kqO0k.aY6SDr8IJECsrwR5kJem6i88UHuq', 'user', 'active', 'upload/jane.jpg'),
+(77, 'abderahman', 'abderahman@gmail.com', '$2y$10$iBVbVUdpW3OELQ8DO5pGZ./6P/7FcFQcod6pGY4zvrtYZO5fHNi6u', 'user', 'active', 'upload/jane.jpg'),
+(78, 'sm', 'sm@gmail.com', '$2y$10$tYoCRXKQ.GGbIsIoDYzVf.IO.gH/05LwKUzCDt95rsiap59AbtGeS', 'sm', 'active', 'upload/jane.jpg');
 
 --
 -- Index pour les tables déchargées
@@ -287,7 +329,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
 
 --
 -- AUTO_INCREMENT pour la table `in_team`
@@ -305,13 +347,13 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT pour la table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT pour la table `question_tag`
 --
 ALTER TABLE `question_tag`
-  MODIFY `id_question_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_question_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT pour la table `tags`
@@ -339,6 +381,9 @@ ALTER TABLE `users`
 -- Contraintes pour la table `answer`
 --
 ALTER TABLE `answer`
+  ADD CONSTRAINT `answer` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `answer_ibf` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `answer_ibfk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE CASCADE,
   ADD CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`),
   ADD CONSTRAINT `answer_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
 
@@ -346,6 +391,8 @@ ALTER TABLE `answer`
 -- Contraintes pour la table `in_team`
 --
 ALTER TABLE `in_team`
+  ADD CONSTRAINT `in_team_ibf` FOREIGN KEY (`Id_Team`) REFERENCES `team` (`Id_Team`) ON DELETE CASCADE,
+  ADD CONSTRAINT `in_team_ibfk1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE,
   ADD CONSTRAINT `in_team_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
   ADD CONSTRAINT `in_team_ibfk_2` FOREIGN KEY (`Id_Team`) REFERENCES `team` (`Id_Team`);
 
@@ -353,12 +400,15 @@ ALTER TABLE `in_team`
 -- Contraintes pour la table `project`
 --
 ALTER TABLE `project`
+  ADD CONSTRAINT `project_ibfk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE,
   ADD CONSTRAINT `project_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 --
 -- Contraintes pour la table `question`
 --
 ALTER TABLE `question`
+  ADD CONSTRAINT `question_ib` FOREIGN KEY (`Id_Project`) REFERENCES `project` (`Id_Project`) ON DELETE CASCADE,
+  ADD CONSTRAINT `question_ibf` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE CASCADE,
   ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`),
   ADD CONSTRAINT `question_ibfk_2` FOREIGN KEY (`Id_Project`) REFERENCES `project` (`Id_Project`);
 
@@ -366,6 +416,10 @@ ALTER TABLE `question`
 -- Contraintes pour la table `question_tag`
 --
 ALTER TABLE `question_tag`
+  ADD CONSTRAINT `question_tag` FOREIGN KEY (`id_question`) REFERENCES `question` (`question_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `question_tag_i` FOREIGN KEY (`id_tag`) REFERENCES `tags` (`id_tag`) ON DELETE CASCADE,
+  ADD CONSTRAINT `question_tag_ib` FOREIGN KEY (`id_question`) REFERENCES `question` (`question_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `question_tag_ibf` FOREIGN KEY (`id_question`) REFERENCES `question` (`question_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `question_tag_ibfk_1` FOREIGN KEY (`id_question`) REFERENCES `question` (`question_id`),
   ADD CONSTRAINT `question_tag_ibfk_2` FOREIGN KEY (`id_tag`) REFERENCES `tags` (`id_tag`);
 
@@ -373,6 +427,8 @@ ALTER TABLE `question_tag`
 -- Contraintes pour la table `team`
 --
 ALTER TABLE `team`
+  ADD CONSTRAINT `team_ib` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE,
+  ADD CONSTRAINT `team_ibf` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE,
   ADD CONSTRAINT `team_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
   ADD CONSTRAINT `team_ibfk_2` FOREIGN KEY (`Id_Project`) REFERENCES `project` (`Id_Project`);
 COMMIT;
