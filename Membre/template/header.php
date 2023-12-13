@@ -1,5 +1,5 @@
 <!-- In your header.php or any appropriate template file -->
-<header class="sticky top-0 w-full bg-ce0033 p-4 flex justify-between items-center">
+<header class="sticky top-0 w-full  z-30 bg-ce0033 p-4 flex justify-between items-center">
     <div class="text-xl font-bold w-32 mt-1">
     <img src="http://localhost/DataWare-Brief7/Membre/image/logov.PNG" class="w-full h-auto" alt="Logo">
     </div>

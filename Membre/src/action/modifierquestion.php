@@ -23,9 +23,9 @@ if (isset($_GET['modifierID'])) {
             <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         </head>
 
-        <body class="bg-gray-100 min-h-screen flex-col items-center justify-center">
+        <body class="bg-gray-100 min-h-screen flex-col flex  items-center justify-center">
 
-            <div class="max-w-xl bg-white p-8 rounded-md shadow-lg">
+            <div class="max-w-xl bg-white p-8 rounded-md shadow-lg w-9/12 ">
                 <!-- <form action="process_modification.php" method="post">
                     <label for="questionText">Question Text:</label>
                     <textarea name="questionText" id="questionText" rows="4" class="w-full mb-4"><?php echo $questionText; ?></textarea>
@@ -38,7 +38,7 @@ if (isset($_GET['modifierID'])) {
                     <input type="text" hidden name="questionID" value=" <?php echo $modifierID; ?>">
                     <div class="mb-4">
 
-                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question" class="mt-1 p-2 w-full border rounded-md" required>
+                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question" class="mt-1 p-2 w-full border  rounded-md" required>
                     </div>
 
                     <div class="mb-4">
@@ -54,7 +54,7 @@ if (isset($_GET['modifierID'])) {
                         <input type="hidden" id="selectedTagId" name="selectedTagId" value="">
                     </div>
 
-                    <button name="askQuestion" type="submit" class="bg-blue-500 text-white p-2 rounded-md ">Poser la
+                    <button name="askQuestion" type="submit" class="bg-red-500 text-white p-2 rounded-md ">Poser la
                         Question</button>
                 </form>
             </div>

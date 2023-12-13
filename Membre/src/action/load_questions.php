@@ -15,7 +15,7 @@
     session_start();
 
     $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-    $limit = 3;
+    $limit = 10;
     $offset = max(0, ($page - 1) * $limit);  // Ensure that offset is non-negative
     $sql = "";
     $userId = $_SESSION['id'];
@@ -104,13 +104,13 @@
 
                 ?>
                 <div class="mx-auto w-3/5  bg-gray-100 p-8 rounded-xl shadow-xl text-white mb-4">
-                    <div class="flex  justify-between width-full ">
-                        <div class="flex items-center text-gray-300 mb-4 ">
+                    <div class="flex  justify-between  width-full ">
+                        <div class="flex items-center text-black mb-4 ">
                             <div class="flex-shrink-0">
                                 <img src="<?php echo $imagePath; ?>" alt="User Image" class="w-10 h-10 rounded-full">
                             </div>
                             <div class="ml-2">
-                                <p class="text-sm">
+                                <p class="text-sm  ">
                                     <?php echo $username; ?>
                                 </p>
                                 <p class="text-xs">
@@ -155,6 +155,24 @@
                                         d="M682.4 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM367.2 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM524.8 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM655.2 213.6v-48.8c0-17.6-14.4-32-32-32H418.4c-18.4 0-32 14.4-32 32.8V208h-40v-42.4c0-40 32.8-72.8 72.8-72.8H624c40 0 72.8 32.8 72.8 72.8v48.8h-41.6z"
                                         fill="" />
                                 </svg>
+
+
+
+
+                                <!-- echo '<svg width="25px" height="25px" viewBox="0 0 1024 1024" fill="#000000" class="icon" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg">';
+                            echo '<path
+                                d="M32 241.6c-11.2 0-20-8.8-20-20s8.8-20 20-20l940 1.6c11.2 0 20 8.8 20 20s-8.8 20-20 20L32 241.6zM186.4 282.4c0-11.2 8.8-20 20-20s20 8.8 20 20v688.8l585.6-6.4V289.6c0-11.2 8.8-20 20-20s20 8.8 20 20v716.8l-666.4 7.2V282.4z"
+                                fill="" />';
+                            echo '<path
+                                d="M682.4 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM367.2 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM524.8 867.2c-11.2 0-20-8.8-20-20V372c0-11.2 8.8-20 20-20s20 8.8 20 20v475.2c0.8 11.2-8.8 20-20 20zM655.2 213.6v-48.8c0-17.6-14.4-32-32-32H418.4c-18.4 0-32 14.4-32 32.8V208h-40v-42.4c0-40 32.8-72.8 72.8-72.8H624c40 0 72.8 32.8 72.8 72.8v48.8h-41.6z"
+                                fill="" />';
+                            echo ' </svg>'; -->
+
+
+
+
+
                             </a>
                             </li>
                             <?php
@@ -172,7 +190,7 @@
                             <?php echo $questionTitre; ?>
                         </h1>
                         <br>
-                        <p class="text-gray-300">
+                        <p class="text-black">
                             <?php echo $questionText; ?>
                         </p>
                     </div>

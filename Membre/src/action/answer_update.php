@@ -18,7 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["toupdate"])) {
 
         <head>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-
+            <style>
+        .bg-ce0033 {
+            background-color: #CE0033;
+        }
+    </style>
         </head> 
 
         <div class="w-full lg:w-3/4">
