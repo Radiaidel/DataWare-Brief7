@@ -45,7 +45,7 @@
                         header("Location:  ./ProductOwner/src/action/static.php");
                         exit();
                     } elseif($utilisateur['role'] == 'sm') {
-                        header("Location:  ./ScrumMaster/src/action/community.php");
+                        header("Location: ./ScrumMaster/index.php");
                         exit();
                     }
                 } else {
