@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--CDN du Tailwind -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-     <!--CDN du JS -->
+    <!--CDN du JS -->
     <script src="./js/main.js" defer></script>
     <title>Sign In</title>
     <style>
@@ -45,15 +45,15 @@
 
                 if (password_verify($motDePasse, $utilisateur['pass_word'])) {
                     session_start();
-                    $_SESSION['id'] =$utilisateur['id_user'];
+                    $_SESSION['id'] = $utilisateur['id_user'];
                     if ($utilisateur['role'] == 'user') {
                         header("Location: ./Membre/src/action/community.php");
                         exit();
                     } elseif ($utilisateur['role'] == 'po') {
                         header("Location:  ./ProductOwner/src/action/static.php");
                         exit();
-                    } elseif($utilisateur['role'] == 'sm') {
-                        header("Location:  ./ScrumMaster/src/action/community.php");
+                    } elseif ($utilisateur['role'] == 'sm') {
+                        header("Location: ./ScrumMaster/index.php");
                         exit();
                     }
                 } else {
@@ -83,7 +83,8 @@
             </div>
 
             <button type="submit"
-                class="w-full bg-red-500 text-white py-2 rounded-2xl hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Get
+                class="w-full text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full px-5 py-2.5 text-center ">
+                Get
                 started</button>
             <p class="mt-4 text-gray-600 text-xs text-center">Don't have an account? <a href="./SignUp.php"
                     class="text-blue-500 hover:underline">Sign up here</a>.</p>

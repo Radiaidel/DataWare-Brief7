@@ -46,8 +46,7 @@
 
     $result = $stmt->get_result();
 
-    echo " <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-12 mt-10 \">";
-
+    echo "<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-12 mt-10 mx-auto\">";
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             ?>

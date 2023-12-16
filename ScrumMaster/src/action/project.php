@@ -10,7 +10,13 @@
     <!--icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha384-GLhlTQ8iN17SJLlFfZVfP5z01K4JPTNqDQ5a6jgl5Up3H+9TP5IotK2+Obr4u" crossorigin="anonymous" />
-</head>
+
+        <style>
+        .bg-ce0033 {
+            background-color: #CE0033;
+        }
+    </style>
+    </head>
 
 <body class="bg-gray-200 ">
 
@@ -40,8 +46,7 @@
 
     $result = $stmt->get_result();
 
-    echo " <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-12 mt-10 \">";
-
+    echo "<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-12 mt-10 mx-auto\">";
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             ?>
