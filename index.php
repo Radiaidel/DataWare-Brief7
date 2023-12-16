@@ -9,6 +9,14 @@
      <!--CDN du JS -->
     <script src="./js/main.js" defer></script>
     <title>Sign In</title>
+    <style>
+        body {
+            background-image: url('./img/bg.jpg');
+            background-size: cover; /* Adjust as needed */
+            background-position: center; /* Adjust as needed */
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100 h-screen flex items-center justify-center">
