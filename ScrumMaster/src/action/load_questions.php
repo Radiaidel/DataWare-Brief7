@@ -120,7 +120,6 @@ if (isset($_GET['filter'])) {
                     <div class="flex  ">
                         <ul role="list" class="flex justify-center space-x-5">
                             <?php
-                            // Check if the logged-in user is the creator of the question
                             if ($userId == $row['user_id']) {
                                 ?>
                                 <li>
@@ -358,6 +357,5 @@ if (isset($_GET['filter'])) {
     <script src="../../../Javascript/pagination.js" defer></script>
     <?php
 }
-// Close your database connection
 $conn->close();
 ?>

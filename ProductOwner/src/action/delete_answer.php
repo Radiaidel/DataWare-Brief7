@@ -1,6 +1,3 @@
-
-
-
 <?php
 include("../../../includes/config/connection.php");
 
@@ -14,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
         $stmt = $conn->prepare($deleteQuery);
-        $stmt->bind_param("i",$answerId);
+        $stmt->bind_param("i", $answerId);
         $stmt->execute();
 
         if ($stmt) {
@@ -23,6 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             echo "Error deleting answer: " . $conn->error;
         }
+    }
+    elseif(isset($_POST['cancel_delete'])){
+        header("Location: response.php?question_id=" . $id_question);
+
     }
 }
 ?>
@@ -45,8 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <form method="post" action="">
             <input type="hidden" name="answer_id" value="<?php echo $answerId; ?>">
             <input type="hidden" name="question_id" value="<?php echo $id_question; ?>">
+            <div class="flex space-x-4 justify-between  ">
+                <button type="submit" name="confirm_delete"
+                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Yes, Delete Answer</button>
+                <button type="submit" name="cancel_delete"
+                    class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">Cancel</button>
+            </div>
 
-            <button type="submit" name="confirm_delete" class="bg-red-500 text-white px-4 py-2 rounded">Yes, Delete Answer</button>
         </form>
     </div>
 

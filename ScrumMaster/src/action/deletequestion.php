@@ -9,7 +9,7 @@ if (isset($_GET['DeleteID'])) {
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-?>
+        ?>
 
         <!DOCTYPE html>
         <html lang="en">
@@ -28,7 +28,12 @@ if (isset($_GET['DeleteID'])) {
 
                 <form action="process_deletion.php" method="post">
                     <input type="hidden" name="questionID" value="<?php echo $deleteID; ?>">
-                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete Question</button>
+                    <div class="flex space-x-4 justify-between  ">
+                        <button type="submit" name="confirm_delete"
+                            class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Delete Question</button>
+                        <button type="submit" name="cancel_delete"
+                            class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">Cancel</button>
+                    </div>
                 </form>
             </div>
 
@@ -36,11 +41,11 @@ if (isset($_GET['DeleteID'])) {
 
         </html>
 
-<?php
+        <?php
     } else {
         echo "Question not found.";
     }
-} 
+}
 
 // Close the database connection
 $conn->close();
