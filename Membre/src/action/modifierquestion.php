@@ -14,6 +14,7 @@ if (isset($_GET['modifierID'])) {
     if ($resultQuestion->num_rows > 0) {
         $rowQuestion = $resultQuestion->fetch_assoc();
         $questionText = $rowQuestion['question_text'];
+        $questionTitle = $rowQuestion['title_question'];
 
         // Retrieve the associated tags for the question using prepared statement
         $sqlTags = "SELECT tags.tag_name FROM tags 
@@ -43,30 +44,25 @@ if (isset($_GET['modifierID'])) {
         <body class="bg-gray-100 min-h-screen flex-col flex  items-center justify-center">
 
             <div class="max-w-xl bg-white p-8 rounded-md shadow-lg w-9/12 ">
-                <!-- <form action="process_modification.php" method="post">
-                    <label for="questionText">Question Text:</label>
-                    <textarea name="questionText" id="questionText" rows="4" class="w-full mb-4"><?php echo $questionText; ?></textarea>
-                    <input type="hidden" name="questionID" value="<?php echo $modifierID; ?>">
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Modify Question</button>
-                </form> -->
-
 
                 <form action="process_modification.php" method="POST">
                     <input type="text" hidden name="questionID" value=" <?php echo $modifierID; ?>">
                     <div class="mb-4">
 
-                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question" class="mt-1 p-2 w-full border  rounded-md" required>
+                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question"
+                            class="mt-1 p-2 w-full border  rounded-md" value=" <?php echo $questionTitle; ?>" required>
                     </div>
 
                     <div class="mb-4">
                         <textarea name="question_content" id="question_content" rows="6" placeholder="Contenu de la Question"
-                            class="mt-1 p-2 w-full border rounded-md" required><?php echo htmlspecialchars($questionText); ?></textarea>
+                            class="mt-1 p-2 w-full border rounded-md"
+                            required><?php echo htmlspecialchars($questionText); ?></textarea>
                     </div>
 
                     <div class="mb-4">
                         <!-- Add code for displaying existing tags here if needed -->
-                        <input type="text" id="tags" name="tags" placeholder="#Tag" class="mt-1 p-2 w-full border rounded-md" list="tagSuggestionsList"
-        value="<?php echo '#' . implode(' #', $existingTags); ?>" />
+                        <input type="text" id="tags" name="tags" placeholder="#Tag" class="mt-1 p-2 w-full border rounded-md"
+                            list="tagSuggestionsList" value="<?php echo '#' . implode(' #', $existingTags); ?>" />
                         <div id="tagSuggestions">
                             <datalist id="tagSuggestionsList" class="hidden">
                             </datalist>
@@ -134,9 +130,7 @@ if (isset($_GET['modifierID'])) {
         </html>
 
         <?php
-    } else {
-        echo "Question not found.";
-    }
+    } 
 } else {
     echo "Invalid request. Please provide a question ID.";
 }
@@ -146,65 +140,6 @@ if (isset($_GET['modifierID'])) {
 
 
 
-
-
-
-if (isset($_POST['updateQuestion'])) {
-    $questionID = $_POST['questionID'];
-    $questionTitle = $_POST['question_title'];
-    $questionContent = $_POST['question_content'];
-    $tags = $_POST['selectedTagId'];
-
-    // Perform the update for the question
-    $sqlUpdateQuestion = "UPDATE question SET question_text = ?, title_question = ? WHERE question_id = ?";
-    $stmtUpdateQuestion = $conn->prepare($sqlUpdateQuestion);
-
-    if ($stmtUpdateQuestion === false) {
-        die("Erreur de préparation de la requête : " . $conn->error);
-    }
-
-    $stmtUpdateQuestion->bind_param("ssi", $questionContent, $questionTitle, $questionID);
-    $stmtUpdateQuestion->execute();
-
-    $stmtUpdateQuestion->close();
-
-    // Update tags for the question
-    $tagIDs = explode(" ", $tags);
-
-    // Delete existing tags for the question
-    $sqlDeleteTags = "DELETE FROM question_tag WHERE id_question = ?";
-    $stmtDeleteTags = $conn->prepare($sqlDeleteTags);
-
-    if ($stmtDeleteTags === false) {
-        die("Erreur de préparation de la requête : " . $conn->error);
-    }
-
-    $stmtDeleteTags->bind_param("i", $questionID);
-    $stmtDeleteTags->execute();
-
-    $stmtDeleteTags->close();
-
-   // Insert new tags for the question
-   $sqlInsertQuestionTag = "INSERT INTO question_tag (id_question, id_tag) VALUES (?, ?)";
-   $stmtInsertQuestionTag = $conn->prepare($sqlInsertQuestionTag);
-
-   if ($stmtInsertQuestionTag === false) {
-       die("Erreur de préparation de la requête : " . $conn->error);
-   }
-
-   foreach ($tagIDs as $tagID) {
-       $tagID = intval($tagID);
-
-       $stmtInsertQuestionTag->bind_param("ii", $questionID, $tagID);
-       $stmtInsertQuestionTag->execute();
-   }
-
-   $stmtInsertQuestionTag->close();
-
-   // Redirect to the question page or wherever needed
-   header("Location: question_project.php");
-   exit(); // Ensure that no code is executed after the header function
-}
 
 $conn->close();
 ?>

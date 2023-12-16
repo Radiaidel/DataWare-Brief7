@@ -1,5 +1,5 @@
 <!-- In your header.php or any appropriate template file -->
-<header class="sticky top-0 w-full bg-ce0033 p-4 flex justify-between items-center">
+<header class="sticky z-50 top-0 w-full bg-ce0033 p-4 flex justify-between items-center ">
     <div class="text-xl font-bold w-32 mt-1">
     <img src="http://localhost/DataWare-Brief7/Membre/image/logov.PNG" class="w-full h-auto" alt="Logo">
     </div>
@@ -14,7 +14,7 @@
         </button>
 
         <nav class="space-x-4 hidden sm:flex items-center">
-            <a href="./project.php" class="text-white hover:text-gray-300 transition duration-300">Dashboard</a>
+            <a href="../../index.php" class="text-white hover:text-gray-300 transition duration-300">Dashboard</a>
             <a href="./community.php"  class="text-white hover:text-gray-300 transition duration-300">Community</a>
             <button id="logoutBtn" class="text-white px-7 py-2 rounded-full border border-white">
                 <a href="../../../logout.php" class="text-white">Log Out</a>
