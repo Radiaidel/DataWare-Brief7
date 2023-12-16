@@ -293,7 +293,7 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
         <div>
             <form method="POST" class="flex justify-end p-10">
                 <input type='hidden' name='input_id' value="<?php echo $id_question; ?>">
-                <button type="submit" name="showArchivedBtn" id="showArchivedBtn" 
+                <button type="submit" name="showArchivedBtn" id="showArchivedBtn"
                     class="inline-flex justify-center  rounded-md border border-gray-400 shadow-sm px-4 py-2  bg-white z-40 text-sm font-medium text-gray-500 hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
                     Archived Answers</button>
                 <button type="submit" name="showAllBtn" id="showAllBtn"
@@ -303,11 +303,10 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
         <?php
         if (isset($_POST["showAllBtn"])) {
             $sql = "SELECT answer_id, answer.user_id, created_at, answer_text, username, image_url, likes, dislikes,is_solution,archived FROM answer INNER JOIN users ON answer.user_id = id_user WHERE answer.question_id = ?  ORDER BY is_solution DESC, created_at DESC ";
-        } elseif(isset($_POST["showArchivedBtn"])) {
+        } elseif (isset($_POST["showArchivedBtn"])) {
             $sql = "SELECT answer_id, answer.user_id, created_at, answer_text, username, image_url, likes, dislikes,is_solution,archived FROM answer INNER JOIN users ON answer.user_id = id_user WHERE answer.question_id = ? and archived=1 ORDER BY is_solution DESC, created_at DESC ";
 
-        }
-        else{
+        } else {
 
             $sql = "SELECT answer_id, answer.user_id, created_at, answer_text, username, image_url, likes, dislikes,is_solution,archived FROM answer INNER JOIN users ON answer.user_id = id_user WHERE answer.question_id = ? and archived=0 ORDER BY is_solution DESC, created_at DESC ";
         }
@@ -419,7 +418,7 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
                     }
 
                     ?>
-                    <li>
+                    
                         <a href="archive.php?answerid=<?php echo $row['answer_id'] ?>"
                             class="text-indigo-300 hover:text-indigo-500">
 
@@ -454,7 +453,7 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
                             ?>
                         </a>
 
-                    </li>
+                    
                     <?php
 
 
