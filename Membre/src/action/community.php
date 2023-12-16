@@ -9,10 +9,8 @@ include("../../../includes/config/connection.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community Page</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha384-GLhlTQ8iN17SJLlFfZVfP5z01K4JPTNqDQ5a6jgl5Up3H+9TP5IotK2+Obr4u" crossorigin="anonymous" />
+   
     <script src="../../../Javascript/pagination.js" defer></script>
-    <script src="../../../Javascript/like_dislike.js" defer></script>
     <style>
         .bg-ce0033 {
             background-color: #CE0033;
@@ -75,7 +73,7 @@ include("../../../includes/config/connection.php");
 
     </div>
 
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
 
 
@@ -128,10 +126,70 @@ include("../../../includes/config/connection.php");
 
             DisplayQuestions('new', 1, searchQuery);
         });
+        $(document).ready(function () {
+        $('#filterBotton').on('click', function () {
+            $('#MenuFilter').toggleClass('hidden');
+        });
+
+        $('#searchForm').on('submit', function (event) {
+            event.preventDefault();
+            searchQuestions();
+        });
+
+        $('.filter-option').on('click', function () {
+            var filterType = $(this).data('filter-type');
+            DisplayQuestions(filterType, 1, $('#searchInput').val());
+        });
+
+        $('.like-answer-button').on('click', function () {
+            var answerId = $(this).data('answer-id');
+            console.log('Liked answer with ID:', answerId);
+            // Perform the like action (you can send this information to the server using AJAX)
+            // Update the UI as needed
+        });
+
+        $('.dislike-answer-button').on('click', function () {
+            var answerId = $(this).data('answer-id');
+            console.log('Disliked answer with ID:', answerId);
+            // Perform the dislike action (you can send this information to the server using AJAX)
+            // Update the UI as needed
+        });
+
+        $('#searchInput').on('input', function () {
+            var searchQuery = $(this).val();
+            searchQuestions();
+        });
+
+        function searchQuestions() {
+            var searchQuery = $('#searchInput').val();
+            DisplayQuestions('search', 1, searchQuery);
+        }
+
+        function DisplayQuestions(filterType, page, searchQuery) {
+            $.ajax({
+                url: 'load_questions.php',
+                type: 'GET',
+                data: {
+                    filter: filterType,
+                    page: page,
+                    search: searchQuery
+                },
+                success: function (response) {
+                    $('#questionsContainer').html(response);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+
+        DisplayQuestions('new', 1, '');
+    });
+
 
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
 
 </body>

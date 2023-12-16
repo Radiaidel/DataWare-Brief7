@@ -1,5 +1,6 @@
 <?php
-require_once "./includes/config/connection.php"; 
+require_once "./includes/config/connection.php"; // Adjust the path as needed
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Get form data

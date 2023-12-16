@@ -1,3 +1,10 @@
+<?php
+// Generate CSRF token and store it in the session
+session_start();
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,14 +16,6 @@
     <!--CDN du JS -->
     <script src="./js/main.js" defer></script>
     <title>Sign In</title>
-    <style>
-        body {
-            background-image: url('./img/bg.jpg');
-            background-size: cover; /* Adjust as needed */
-            background-position: center; /* Adjust as needed */
-            background-repeat: no-repeat;
-        }
-    </style>
 </head>
 
 <body class="bg-gray-100 h-screen flex items-center justify-center">
