@@ -40,15 +40,15 @@ switch ($chartType) {
                 LIMIT 1";
         break;
 
-    case 'userMostAnswers':
-        $labelField = 'username';
-        $sql = "SELECT users.$labelField AS label, COUNT(answer.answer_id) AS num_answers 
-                FROM users
-                LEFT JOIN answer ON users.id_user = answer.user_id
-                GROUP BY users.id_user
-                ORDER BY num_answers DESC
-                LIMIT 5";
-        break;
+        case 'userMostAnswers':
+            $labelField = 'username';
+            $sql = "SELECT users.$labelField AS label, COUNT(answer.answer_id) AS num_answers 
+                    FROM users
+                    LEFT JOIN answer ON users.id_user = answer.user_id
+                    GROUP BY users.id_user
+                    ORDER BY num_answers DESC
+                    LIMIT 5";
+            break;
 
     default:
         $labelField = 'project_name';
