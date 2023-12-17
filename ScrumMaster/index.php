@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION['id'])) {
+    header("Location:../logout.php ");
+}
 // Include your database connection file
 include_once("..\includes\config\connection.php");
 
@@ -42,6 +46,8 @@ $result = mysqli_query($conn, $query);
                 <a href="" class="text-white hover:text-gray-300 transition duration-300">Dashboard</a>
                 <a href="./src/action/community.php"
                     class="text-white hover:text-gray-300 transition duration-300">Community</a>
+                    <a href="./src/action/project.php"  class="text-white hover:text-gray-300 transition duration-300">Project</a>
+
                 <button id="logoutBtn" class="text-white px-7 py-2 rounded-full border border-white">
                     <a href="../logout.php" class="text-white">Log Out</a>
                 </button>
@@ -56,6 +62,8 @@ $result = mysqli_query($conn, $query);
             <a href="" class="text-white hover:text-gray-300 transition duration-300">Dashboard</a>
             <a href="./src/action/community.php"
                 class="text-white hover:text-gray-300 transition duration-300">Community</a>
+                <a href="./src/action/project.php"  class="text-white hover:text-gray-300 transition duration-300">Project</a>
+
             <a href="../logout.php" class="text-white hover:text-gray-300 transition duration-300">Log out</a>
         </nav>
     </div>

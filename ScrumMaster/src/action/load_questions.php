@@ -23,7 +23,7 @@ if (isset($_GET['filter'])) {
             break;
 
         case 'all':
-            $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user where q.archived=0 ";
+            $sql = "SELECT q.*, u.image_url, u.username FROM question q  INNER JOIN users u ON q.user_id = u.id_user";
             break;
 
         case 'my':
@@ -93,7 +93,10 @@ if (isset($_GET['filter'])) {
             $tagsSql = "SELECT t.tag_name FROM tags t JOIN question_tag qt ON qt.id_tag = t.id_tag WHERE qt.id_question = " . $id_question;
             $tagsResult = $conn->query($tagsSql);
 
-
+            $responseCountSql = "SELECT COUNT(*) AS response_count FROM answer WHERE question_id =$id_question";
+            $responseCountResult = $conn->query($responseCountSql);
+            $responseCountRow = $responseCountResult->fetch_assoc();
+            $responseCount = $responseCountRow['response_count'];
 
             ?>
 
@@ -302,7 +305,7 @@ if (isset($_GET['filter'])) {
                                     </g>
                                 </g>
                             </svg>
-                            <span class="ml-1">Respond</span>
+                            <span class="ml-1 text-black"><?php echo $responseCount; ?></span>
                         </button>
                     </form>
                 </div>

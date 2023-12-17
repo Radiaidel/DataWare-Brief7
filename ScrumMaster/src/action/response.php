@@ -1,6 +1,8 @@
 <?php
 session_start();
-include("../../../includes/config/connection.php");
+if (!isset($_SESSION['id'])) {
+    header("Location:../../../logout.php ");
+}include("../../../includes/config/connection.php");
 include '../../template/header.php';
 $userId = $_SESSION["id"];
 
@@ -60,6 +62,11 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
                         $tagsStmt->execute();
                         $tagsResult =
                             $tagsStmt->get_result();
+
+                            $responseCountSql = "SELECT COUNT(*) AS response_count FROM answer WHERE question_id =$id_question";
+                            $responseCountResult = $conn->query($responseCountSql);
+                            $responseCountRow = $responseCountResult->fetch_assoc();
+                            $responseCount = $responseCountRow['response_count'];
 
                         ?>
 
@@ -250,7 +257,25 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
                                         <?php echo $dislikes; ?>
                                     </span>
                                 </button>
-
+                                <form action="response.php" method="POST" class="m-0">
+                        <input type="text" hidden name="input_id" value=" <?php echo $id_question; ?> ">
+                        <button type="submit" class="flex items-center text-gray-600 hover:text-green-500">
+                            <svg width="20px" height="20px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                                    <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-100.000000, -255.000000)"
+                                        fill="#000000">
+                                        <path
+                                            d="M116,281 C114.832,281 113.704,280.864 112.62,280.633 L107.912,283.463 L107.975,278.824 C104.366,276.654 102,273.066 102,269 C102,262.373 108.268,257 116,257 C123.732,257 130,262.373 130,269 C130,275.628 123.732,281 116,281 L116,281 Z M116,255 C107.164,255 100,261.269 100,269 C100,273.419 102.345,277.354 106,279.919 L106,287 L113.009,282.747 C113.979,282.907 114.977,283 116,283 C124.836,283 132,276.732 132,269 C132,261.269 124.836,255 116,255 L116,255 Z"
+                                            id="comment-1" sketch:type="MSShapeGroup">
+    
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                            <span class="text-black"><?php echo $responseCount; ?></span>
+                        </button>
+                    </form>
                             </div>
 
 
@@ -293,7 +318,7 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
         <div>
             <form method="POST" class="flex justify-end p-10">
                 <input type='hidden' name='input_id' value="<?php echo $id_question; ?>">
-                <button type="submit" name="showArchivedBtn" id="showArchivedBtn" 
+                <button type="submit" name="showArchivedBtn" id="showArchivedBtn"
                     class="inline-flex justify-center  rounded-md border border-gray-400 shadow-sm px-4 py-2  bg-white z-40 text-sm font-medium text-gray-500 hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
                     Archived Answers</button>
                 <button type="submit" name="showAllBtn" id="showAllBtn"
@@ -303,11 +328,10 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
         <?php
         if (isset($_POST["showAllBtn"])) {
             $sql = "SELECT answer_id, answer.user_id, created_at, answer_text, username, image_url, likes, dislikes,is_solution,archived FROM answer INNER JOIN users ON answer.user_id = id_user WHERE answer.question_id = ?  ORDER BY is_solution DESC, created_at DESC ";
-        } elseif(isset($_POST["showArchivedBtn"])) {
+        } elseif (isset($_POST["showArchivedBtn"])) {
             $sql = "SELECT answer_id, answer.user_id, created_at, answer_text, username, image_url, likes, dislikes,is_solution,archived FROM answer INNER JOIN users ON answer.user_id = id_user WHERE answer.question_id = ? and archived=1 ORDER BY is_solution DESC, created_at DESC ";
 
-        }
-        else{
+        } else {
 
             $sql = "SELECT answer_id, answer.user_id, created_at, answer_text, username, image_url, likes, dislikes,is_solution,archived FROM answer INNER JOIN users ON answer.user_id = id_user WHERE answer.question_id = ? and archived=0 ORDER BY is_solution DESC, created_at DESC ";
         }
@@ -419,7 +443,7 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
                     }
 
                     ?>
-                    <li>
+                    
                         <a href="archive.php?answerid=<?php echo $row['answer_id'] ?>"
                             class="text-indigo-300 hover:text-indigo-500">
 
@@ -454,7 +478,7 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
                             ?>
                         </a>
 
-                    </li>
+                    
                     <?php
 
 
