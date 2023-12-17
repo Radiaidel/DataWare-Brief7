@@ -42,7 +42,7 @@ if (!isset($_SESSION['id'])) {
                 <a href="./static.php"
                     class="text-white hover:text-gray-300 transition duration-300">Statics</a>
                 <button id="logoutBtn" class="text-white px-7 py-2 rounded-full border border-white">
-                    <a href="../logout.php" class="text-white">Log Out</a>
+                <a href="../../../logout.php" class="text-white">Log Out</a>
                 </button>
             </nav>
         </div>
@@ -64,7 +64,7 @@ if (!isset($_SESSION['id'])) {
   
     <div class="w-full p-4 mb-4 lg:mb-0 bg-gray-200 rounded-md shadow-lg text-white">
 
-        <div class="mx-auto w-3/5 flex items-center space-x-3 mb-4 my-5 z-10 p-4">
+    <div class="mx-auto w-3/5 flex items-center space-x-3 mb-4 my-5 z-10 p-4">
             <div class="relative inline-block text-left">
                 <div>
                     <button type="button" id="filterBotton"

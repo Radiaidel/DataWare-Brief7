@@ -1,5 +1,11 @@
 <?php
 // Include your database connection file
+
+session_start();
+if (!isset($_SESSION['id'])) {
+    header("Location:../logout.php ");
+}
+
 require_once "../includes/config/connection.php"; 
 
 // Fetch project data from the database
@@ -100,12 +106,19 @@ $userResult = mysqli_query($conn, $userQuery);
 
                     <div class="flex justify-center mt-4 space-x-5">
                         <button type="button" class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" onclick="editProject(<?php echo $row['Id_Project']; ?>)">
-                            <i class="fas fa-edit"></i>
-                        </button>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M3 17V21H7L17.59 10.41L13.17 6L3 16.17V17ZM21.41 5.59L18.83 3L20.41 1.41C20.59 1.23 20.8 1.09 21 1.03C21.2 0.97 21.41 0.99 21.59 1.07L23.59 3.07C23.77 3.15 23.91 3.36 23.97 3.57C24.03 3.78 24.01 3.99 23.93 4.17L22.34 6.76L21.41 5.59Z"
+                                    fill="currentColor" />
+                            </svg>                        </button>
 
                         <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onclick="confirmDelete(<?php echo $row['Id_Project']; ?>)">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 6L5 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M5 6L19 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>                        </button>
                     </div>
 
                 </div>

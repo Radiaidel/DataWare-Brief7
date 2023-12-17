@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION['id'])) {
+    header("Location:../logout.php ");
+}
 // Include your database connection file
 include_once("..\includes\config\connection.php");
 
