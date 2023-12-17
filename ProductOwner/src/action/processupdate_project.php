@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
 
         // Redirect to the projects page or show a success message
-        header("Location: ./index.php");
+        header("Location: ../../index.php");
         exit();
     } else {
         // Handle the error

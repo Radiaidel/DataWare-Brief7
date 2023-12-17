@@ -1,7 +1,7 @@
 <?php
 // Include your database connection file
 require_once "../../../includes/config/connection.php"; 
-include "/xampp/htdocs/data/product_owner/templates/header.php";
+
 
 // Check if the project ID is provided in the URL
 if (isset($_GET['Id_Project'])) {
@@ -42,7 +42,49 @@ if (isset($_GET['Id_Project'])) {
     exit();
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>dataware | DashBoard</title>
+    <style>
+        .bg-ce0033 {
+            background-color: #CE0033;
+        }
+    </style>
+</head>
+
+<body class=" bg-gray-200">
+    <header class="bg-ce0033 sticky top-0 w-full  p-4 flex justify-between items-center ">
+        <div class="text-xl font-bold w-32 mt-1">
+            <img src="http://localhost/DataWare-Brief7/Membre/image/logov.PNG" class="w-full h-auto" alt="Logo">
+        </div>
+
+        <div class="flex items-center">
+
+            <button id="burgerBtn" class="sm:hidden focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-6 h-6 text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+
+            <nav class="space-x-4 hidden sm:flex items-center">
+                <a href="" class="text-white hover:text-gray-300 transition duration-300">Dashboard</a>
+                <a href="./src/action/community.php"
+                    class="text-white hover:text-gray-300 transition duration-300">Community</a>
+                    <a href="./src/action/static.php"
+                    class="text-white hover:text-gray-300 transition duration-300">Statics</a>    
+                <button id="logoutBtn" class="text-white px-7 py-2 rounded-full border border-white">
+                    <a href="../logout.php" class="text-white">Log Out</a>
+                </button>
+            </nav>
+        </div>
+    </header>
 <div class="container mx-auto mt-10">
     <h1 class="text-center text-2xl font-semibold mb-4">Edit Project: <?php echo $projectData['project_name']; ?></h1>
 

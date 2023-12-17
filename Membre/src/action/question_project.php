@@ -112,23 +112,27 @@ if (isset($_POST['askQuestion'])) {
 
     $tagIDs = explode(" ", $tags);
 
-    $sqlInsertQuestionTag = "INSERT INTO question_tag (id_question, id_tag) VALUES (?, ?)";
-    $stmtInsertQuestionTag = $conn->prepare($sqlInsertQuestionTag);
+// Assuming you have obtained $newQuestionID and $tagIDs
 
-    if ($stmtInsertQuestionTag === false) {
-        die("Erreur de préparation de la requête : " . $conn->error);
-    }
+$sqlInsertQuestionTag = "INSERT INTO question_tag (id_question, id_tag) VALUES (?, ?)";
+$stmtInsertQuestionTag = $conn->prepare($sqlInsertQuestionTag);
 
-    $stmtInsertQuestionTag->bind_param("ii", $newQuestionID, $tagID);
+if ($stmtInsertQuestionTag === false) {
+    die("Erreur de préparation de la requête : " . $conn->error);
+}
 
-    foreach ($tagIDs as $tagID) {
-        $tagID = intval($tagID);
-        $stmtInsertQuestionTag->execute();
-    }
+$stmtInsertQuestionTag->bind_param("ii", $newQuestionID, $tagID);
 
-    $stmtInsertQuestionTag->close();
+foreach ($tagIDs as $tagID) {
+    $tagID = intval($tagID);
+    $stmtInsertQuestionTag->execute();
+}
+
+$stmtInsertQuestionTag->close();
     header("Location: project.php");
 }
+
+
 
 ?>
 
@@ -177,19 +181,19 @@ if (isset($_POST['askQuestion'])) {
 
             <div class=" w-full bg-white p-8 rounded-lg shadow-md">
                 <h2 class="text-2xl text-center font-semibold mb-4">Poser une Question</h2>
-
-                <form action="question_project.php" method="POST">
+                <form action="question_project.php" method="POST" onsubmit="return validateQuestionForm()">
                     <input type="text" hidden name="idprojet" value=" <?php echo $projectId; ?>">
                     <div class="mb-4">
-
-                        <input type="text" name="question_title" id="question_title" placeholder="Titre de la Question"
-                            class="mt-1 p-2 w-full border rounded-md" required>
+                        <input type="text" name="question_title" id="question_title"
+                            placeholder="Titre de la Question" class="mt-1 p-2 w-full border rounded-md" required>
+                        <div id="titleError" class="text-red-500 text-xs mt-1"></div>
                     </div>
 
                     <div class="mb-4">
                         <textarea name="question_content" id="question_content" rows="2"
                             placeholder="Contenu de la Question" class="mt-1 p-2 w-full border rounded-md"
                             required></textarea>
+                        <div id="contentError" class="text-red-500 text-xs mt-1"></div>
                     </div>
 
                     <div class="mb-4">
@@ -425,6 +429,45 @@ if (isset($_POST['askQuestion'])) {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
+    
+    function validateQuestionForm() {
+        var title = document.getElementById("question_title").value.trim();
+        var content = document.getElementById("question_content").value.trim();
+        var tags = document.getElementById("tags").value.trim();
+
+        var titleRegex = /^[a-zA-Z0-9\s']+$/; // Alphanumeric with spaces and single quotes
+        var contentRegex = /^[a-zA-Z0-9\s']+$/; // Alphanumeric with spaces and single quotes
+        var tagsRegex = /^#[a-zA-Z0-9]+(?: #[a-zA-Z0-9]+)*$/; // Hashtags separated by spaces
+
+        var titleError = document.getElementById("titleError");
+        var contentError = document.getElementById("contentError");
+
+        // Validate title
+        if (!titleRegex.test(title)) {
+            titleError.textContent = "Please enter a valid title (alphanumeric characters, spaces, and single quotes only).";
+            return false;
+        } else {
+            titleError.textContent = "";
+        }
+
+        // Validate content
+        if (!contentRegex.test(content)) {
+            contentError.textContent = "Please enter valid content (alphanumeric characters, spaces, and single quotes only).";
+            return false;
+        } else {
+            contentError.textContent = "";
+        }
+
+        // Validate tags
+        if (!tagsRegex.test(tags)) {
+            alert("Please enter valid tags (each tag should start with '#' and be separated by spaces).");
+            return false;
+        }
+
+
+        return true;
+    }
+
         document.addEventListener("DOMContentLoaded", function () {
             var tagsInput = document.getElementById("tags");
             var tagSuggestions = document.getElementById("tagSuggestions");
