@@ -180,7 +180,7 @@ if (isset($_POST['askQuestion'])) {
             <div class=" w-full bg-white p-8 rounded-lg shadow-md">
                 <h2 class="text-2xl text-center font-semibold mb-4">Poser une Question</h2>
 
-                <form action="question_project.php" method="POST">
+                <form action="question_project.php" method="POST" onsubmit="return validateQuestionForm()">
                     <input type="text" hidden name="idprojet" value=" <?php echo $projectId; ?>">
                     <div class="mb-4">
 
@@ -475,6 +475,44 @@ if (isset($_POST['askQuestion'])) {
             };
             xhr.send("prefix=" + encodeURIComponent(prefix));
         }
+
+        function validateQuestionForm() {
+        var title = document.getElementById("question_title").value.trim();
+        var content = document.getElementById("question_content").value.trim();
+        var tags = document.getElementById("tags").value.trim();
+
+        var titleRegex = /^[a-zA-Z0-9\s']+$/; // Alphanumeric with spaces and single quotes
+        var contentRegex = /^[a-zA-Z0-9\s']+$/; // Alphanumeric with spaces and single quotes
+        var tagsRegex = /^#[a-zA-Z0-9]+(?: #[a-zA-Z0-9]+)*$/; // Hashtags separated by spaces
+
+        var titleError = document.getElementById("titleError");
+        var contentError = document.getElementById("contentError");
+
+        // Validate title
+        if (!titleRegex.test(title)) {
+            titleError.textContent = "Please enter a valid title (alphanumeric characters, spaces, and single quotes only).";
+            return false;
+        } else {
+            titleError.textContent = "";
+        }
+
+        // Validate content
+        if (!contentRegex.test(content)) {
+            contentError.textContent = "Please enter valid content (alphanumeric characters, spaces, and single quotes only).";
+            return false;
+        } else {
+            contentError.textContent = "";
+        }
+
+        // Validate tags
+        if (!tagsRegex.test(tags)) {
+            alert("Please enter valid tags (each tag should start with '#' and be separated by spaces).");
+            return false;
+        }
+
+
+        return true;
+    }
     </script>
 
 </body>
