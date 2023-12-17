@@ -38,7 +38,7 @@ include("../../../includes/config/connection.php");
                 <a href="./static.php"
                     class="text-white hover:text-gray-300 transition duration-300">Statics</a>
                 <button id="logoutBtn" class="text-white px-7 py-2 rounded-full border border-white">
-                    <a href="../logout.php" class="text-white">Log Out</a>
+                    <a href="../../../logout.php" class="text-white">Log Out</a>
                 </button>
             </nav>
         </div>
