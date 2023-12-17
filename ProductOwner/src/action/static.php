@@ -72,7 +72,7 @@
         </nav>
     </div>
     <div class="container mx-auto p-8">
-        <h1 class="text-3xl font-semibold mb-4">DataWare Dashboard</h1>
+        <h1 class="text-3xl font-semibold mb-4">DataWare Statics : </h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
             <!-- Chart Card 1 -->

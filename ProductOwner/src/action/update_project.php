@@ -74,10 +74,10 @@ if (isset($_GET['Id_Project'])) {
             </button>
 
             <nav class="space-x-4 hidden sm:flex items-center">
-                <a href="" class="text-white hover:text-gray-300 transition duration-300">Dashboard</a>
-                <a href="./src/action/community.php"
+                <a href="../../index.php" class="text-white hover:text-gray-300 transition duration-300">Dashboard</a>
+                <a href="./community.php"
                     class="text-white hover:text-gray-300 transition duration-300">Community</a>
-                    <a href="./src/action/static.php"
+                    <a href="./static.php"
                     class="text-white hover:text-gray-300 transition duration-300">Statics</a>    
                 <button id="logoutBtn" class="text-white px-7 py-2 rounded-full border border-white">
                     <a href="../logout.php" class="text-white">Log Out</a>
