@@ -24,14 +24,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Now move the uploaded file
     if (move_uploaded_file($_FILES['profilePicture']['tmp_name'], $targetPath)) {
       // File uploaded successfully
-      echo "The file " . basename($_FILES['profilePicture']['name']) . " has been uploaded.";
+      $message= "The file " . basename($_FILES['profilePicture']['name']) . " has been uploaded.";
       $img = "upload/" . $_FILES['profilePicture']['name'];
     } else {
       // Error uploading file
-      echo "Sorry, there was a problem uploading your file.";
+      $message= "Sorry, there was a problem uploading your file.";
     }
   }
+  $checkEmailQuery = "SELECT * FROM users WHERE email = ?";
+  $checkEmailStmt = $conn->prepare($checkEmailQuery);
+  $checkEmailStmt->bind_param("s", $email);
+  $checkEmailStmt->execute();
+  $checkEmailResult = $checkEmailStmt->get_result();
+  $checkEmailStmt->close();
 
+  if ($checkEmailResult->num_rows > 0) {
+      $message= "This email is already registered.";
+  }
+else{
 
   // Insert user data into the database
   $query = "INSERT INTO users (username, pass_word, status, email, image_url, role) VALUES (?, ?, 'active', ?, ?, 'user')";
@@ -45,25 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: index.php");
     exit();
   } else {
-    echo "Error: " . $conn->error;
+    $message= "Error: " . $conn->error;
   }
-
-
-
-  // Insert user data into the database
-  $query = "INSERT INTO users (username, pass_word , status, email, image_url, role) VALUES (?, ?, 'active',?, ?, 'user')";
-  $stmt = $conn->prepare($query);
-
-  if ($stmt) {
-    $stmt->bind_param("ssss", $username, $password, $email, $img);
-    $stmt->execute();
-    $stmt->close();
-
-    header("Location: index.php");
-    exit();
-  } else {
-    echo "Error: " . $conn->error;
-  }
+}
 
   // Close the database nnection
   $conn->close();
@@ -86,12 +80,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </style>
 </head>
 
-<body class="bg-gray-200 h-screen flex items-center justify-center ">
+<body class="bg-cover bg-center h-screen flex items-center justify-center"  style="background-image: url('./Images/geometric-background-with-copy-space.jpg');">
 
 
   <div class="bg-white p-8 rounded w-96 shadow-md max-w-md rounded-2xl">
 
     <h2 class="text-2xl text-center mb-6">Sign Up</h2>
+
+
 
     <form action="SignUp.php" method="POST" enctype="multipart/form-data">
       <div class="mt-4">
@@ -124,9 +120,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             class="text-blue-500 hover:underline"> Sign in here </a>.</p>
       </div>
       <div class="mt-6">
+
+      
         <button type="submit"
-          class="w-full text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full px-5 py-2.5 text-center ">
+        class="w-full text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full px-5 py-2.5 text-center ">
           Register Now</button>
+          <p class="my-4 text-red-600 text-xs text-center">          <?php
+          
+          if(!empty($message)){
+            echo $message;
+          }?></div>
+
+
+
       </div>
     </form>
   </div>

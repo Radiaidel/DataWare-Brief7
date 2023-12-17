@@ -1,6 +1,8 @@
 <?php
 session_start();
-$userID = (isset($_SESSION["id"])) ? $_SESSION['id'] : '';
+if (!isset($_SESSION['id'])) {
+    header("Location:../../../logout.php ");
+}$userID = (isset($_SESSION["id"])) ? $_SESSION['id'] : '';
 include("../../../includes/config/connection.php");
 include '../../template/header.php';
 

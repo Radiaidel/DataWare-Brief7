@@ -24,14 +24,15 @@
     include("../../../includes/config/connection.php");
     include '../../template/header.php';
     session_start();
-    $userId = $_SESSION['id'];
+    if (!isset($_SESSION['id'])) {
+        header("Location:../../../logout.php ");
+    }
+        $userId = $_SESSION['id'];
     $sql = "
     SELECT DISTINCT p.*,DATEDIFF(p.deadline, CURDATE()) AS days_remaining ,u.username as scrum_master
     FROM project p
     Join users u on u.id_user = p.id_user
-    JOIN team t ON p.Id_Project = t.Id_Project
-    JOIN in_team it ON t.Id_Team = it.Id_Team
-    WHERE it.id_user = ?
+    WHERE p.id_user = ?
 ";
 
     $stmt = $conn->prepare($sql);

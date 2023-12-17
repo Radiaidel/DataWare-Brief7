@@ -16,6 +16,8 @@
         <nav class="space-x-4 hidden sm:flex items-center">
             <a href="../../index.php" class="text-white hover:text-gray-300 transition duration-300">Dashboard</a>
             <a href="./community.php"  class="text-white hover:text-gray-300 transition duration-300">Community</a>
+            <a href="./project.php"  class="text-white hover:text-gray-300 transition duration-300">Project</a>
+
             <button id="logoutBtn" class="text-white px-7 py-2 rounded-full border border-white">
                 <a href="../../../logout.php" class="text-white">Log Out</a>
             </button>
@@ -29,6 +31,8 @@
     <nav class="flex flex-col items-center space-y-5">
         <a href="./project.php" class="text-white hover:text-gray-300 transition duration-300">Dashboard</a>
         <a href="./community.php" class="text-white hover:text-gray-300 transition duration-300">Community</a>
+        <a href="./project.php"  class="text-white hover:text-gray-300 transition duration-300">Project</a>
+
         <a href="../../../logout.php"  class="text-white hover:text-gray-300 transition duration-300">Log out</a>
     </nav>
 </div>

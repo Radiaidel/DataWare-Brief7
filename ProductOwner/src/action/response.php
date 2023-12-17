@@ -1,6 +1,8 @@
 <?php
 session_start();
-include("../../../includes/config/connection.php");
+if (!isset($_SESSION['id'])) {
+    header("Location:../../../logout.php ");
+}include("../../../includes/config/connection.php");
 include '../../template/header.php';
 $userId = $_SESSION["id"];
 
@@ -60,6 +62,13 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
                         $tagsStmt->execute();
                         $tagsResult =
                             $tagsStmt->get_result();
+
+
+
+                        $responseCountSql = "SELECT COUNT(*) AS response_count FROM answer WHERE question_id =$id_question";
+                        $responseCountResult = $conn->query($responseCountSql);
+                        $responseCountRow = $responseCountResult->fetch_assoc();
+                        $responseCount = $responseCountRow['response_count'];
 
                         ?>
 
@@ -165,57 +174,72 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
                             </div>
 
 
-                            <div class="flex gap-10">
-                                <button class="flex items-center text-gray-600 hover:text-blue-500 like-button"
-                                    data-question-id="<?php echo $id_question; ?>" data-likes-count="<?php echo $likes; ?>">
+                             <div class="flex gap-10">
+                    <button class="flex items-center text-gray-600 hover:text-blue-500 like-button"
+                        data-question-id="<?php echo $id_question; ?>" data-likes-count="<?php echo $likes; ?>">
 
-                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" stroke="#000000">
+                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            stroke="#000000">
 
-                                        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                            <g id="SVGRepo_bgCarrier" stroke-width="0" />
 
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
 
-                                        <g id="SVGRepo_iconCarrier">
-                                            <path
-                                                d="M8 10H4V20H8M8 10V20M8 10L13.1956 3.9385C13.6886 3.36333 14.4642 3.11607 15.1992 3.2998L15.2467 3.31169C16.5885 3.64714 17.1929 5.2106 16.4258 6.36138L14 10H18.5604C19.8225 10 20.7691 11.1547 20.5216 12.3922L19.3216 18.3922C19.1346 19.3271 18.3138 20 17.3604 20H8"
-                                                stroke="#646066" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path
+                                    d="M8 10H4V20H8M8 10V20M8 10L13.1956 3.9385C13.6886 3.36333 14.4642 3.11607 15.1992 3.2998L15.2467 3.31169C16.5885 3.64714 17.1929 5.2106 16.4258 6.36138L14 10H18.5604C19.8225 10 20.7691 11.1547 20.5216 12.3922L19.3216 18.3922C19.1346 19.3271 18.3138 20 17.3604 20H8"
+                                    stroke="#646066" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
 
-                                    </svg>
+                        </svg>
 
-                                    <span class="ml-1 like-count">
-                                        <?php echo $likes; ?>
-                                    </span>
-                                </button>
+                        <span class="ml-1 like-count">
+                            <?php echo $likes; ?>
+                        </span>
+                    </button>
 
-                                <button class="flex items-center text-gray-600 hover:text-red-500 dislike-button"
-                                    data-question-id="<?php echo $id_question; ?>" data-dislikes-count="<?php echo $dislikes; ?>">
+                    <button class="flex items-center text-gray-600 hover:text-red-500 dislike-button"
+                        data-question-id="<?php echo $id_question; ?>" data-dislikes-count="<?php echo $dislikes; ?>">
 
 
-                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" transform="rotate(180)">
+                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            transform="rotate(180)">
 
-                                        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                            <g id="SVGRepo_bgCarrier" stroke-width="0" />
 
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
 
-                                        <g id="SVGRepo_iconCarrier">
-                                            <path
-                                                d="M8 10H4V20H8M8 10V20M8 10L13.1956 3.9385C13.6886 3.36333 14.4642 3.11607 15.1992 3.2998L15.2467 3.31169C16.5885 3.64714 17.1929 5.2106 16.4258 6.36138L14 10H18.5604C19.8225 10 20.7691 11.1547 20.5216 12.3922L19.3216 18.3922C19.1346 19.3271 18.3138 20 17.3604 20H8"
-                                                stroke="#646066" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path
+                                    d="M8 10H4V20H8M8 10V20M8 10L13.1956 3.9385C13.6886 3.36333 14.4642 3.11607 15.1992 3.2998L15.2467 3.31169C16.5885 3.64714 17.1929 5.2106 16.4258 6.36138L14 10H18.5604C19.8225 10 20.7691 11.1547 20.5216 12.3922L19.3216 18.3922C19.1346 19.3271 18.3138 20 17.3604 20H8"
+                                    stroke="#646066" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
 
-                                    </svg>
-                                    <span class="ml-1 dislike-count">
-                                        <?php echo $dislikes; ?>
-                                    </span>
-                                </button>
-
-                            </div>
-
+                        </svg>
+                        <span class="ml-1 dislike-count">
+                            <?php echo $dislikes; ?>
+                        </span>
+                    </button>
+                    <form action="response.php" method="POST" class="m-0">
+                        <input type="text" hidden name="input_id" value=" <?php echo $id_question; ?> ">
+                        <button type="submit" class="flex items-center text-gray-600 hover:text-green-500">
+                            <svg width="20px" height="20px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                                    <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-100.000000, -255.000000)"
+                                        fill="#000000">
+                                        <path
+                                            d="M116,281 C114.832,281 113.704,280.864 112.62,280.633 L107.912,283.463 L107.975,278.824 C104.366,276.654 102,273.066 102,269 C102,262.373 108.268,257 116,257 C123.732,257 130,262.373 130,269 C130,275.628 123.732,281 116,281 L116,281 Z M116,255 C107.164,255 100,261.269 100,269 C100,273.419 102.345,277.354 106,279.919 L106,287 L113.009,282.747 C113.979,282.907 114.977,283 116,283 C124.836,283 132,276.732 132,269 C132,261.269 124.836,255 116,255 L116,255 Z"
+                                            id="comment-1" sketch:type="MSShapeGroup">
+    
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                            <span class="text-black"><?php echo $responseCount; ?></span>
+                        </button>
+                    </form>
+                </div>
 
 
                         </div>
@@ -458,7 +482,7 @@ if (isset($_POST['answer_id']) && isset($_POST['mark_as_solution'])) {
     $updateStmt->bind_param("ii", $newIsSolution, $answerId);
     $updateStmt->execute();
     $updateStmt->close();
-    if($updateStmt){
+    if ($updateStmt) {
         echo '<form id="refreshForm" action="' . $_SERVER['PHP_SELF'] . '" method="POST">';
         echo '<input type="hidden" name="input_id" value="' . $id_question . '">';
         echo '</form>';

@@ -24,7 +24,9 @@
     include("../../../includes/config/connection.php");
     include '../../template/header.php';
     session_start();
-    $userId = $_SESSION['id'];
+    if (!isset($_SESSION['id'])) {
+        header("Location:../../../logout.php ");
+    }    $userId = $_SESSION['id'];
     $sql = "
     SELECT DISTINCT p.*,DATEDIFF(p.deadline, CURDATE()) AS days_remaining ,u.username as scrum_master
     FROM project p

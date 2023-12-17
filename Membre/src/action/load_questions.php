@@ -95,6 +95,11 @@ if (isset($_GET['filter'])) {
             $tagsResult = $conn->query($tagsSql);
 
 
+            //total reponse
+            $responseCountSql = "SELECT COUNT(*) AS response_count FROM answer WHERE question_id =$id_question";
+            $responseCountResult = $conn->query($responseCountSql);
+            $responseCountRow = $responseCountResult->fetch_assoc();
+            $responseCount = $responseCountRow['response_count'];
 
             ?>
 
@@ -266,7 +271,7 @@ if (isset($_GET['filter'])) {
                                     </g>
                                 </g>
                             </svg>
-                            <span class="ml-1">Respond</span>
+                            <span class="ml-1 text-black"><?php echo $responseCount; ?></span>
                         </button>
                     </form>
                 </div>

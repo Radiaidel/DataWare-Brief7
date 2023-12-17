@@ -11,7 +11,7 @@
     <title>Sign In</title>
 </head>
 
-<body class="bg-gray-100 h-screen flex items-center justify-center">
+<body class="bg-cover bg-center h-screen flex items-center justify-center"  style="background-image: url('./Images/geometric-background-with-copy-space.jpg');">
 
     <div class="bg-white p-8 rounded w-96 shadow-md max-w-md rounded-2xl">
 
@@ -49,16 +49,21 @@
                         exit();
                     }
                 } else {
-                    echo "Mot de passe incorrect.";
+                    $message= "Mot de passe incorrect.";
                 }
             } else {
-                echo "Aucun utilisateur trouvé avec cet email.";
+                $message= "Aucun utilisateur trouvé avec cet email.";
             }
 
             $requete->close();
         }
 
         ?>
+                <p class="my-4 text-red-600 text-xs text-center">          <?php
+          
+          if(!empty($message)){
+            echo $message;
+          }?></p>
         <form name="signInForm" action="index.php" method="POST" onsubmit="return validateForm();">
             <!--Email input-->
             <div class="mb-4">
@@ -75,9 +80,10 @@
             </div>
 
             <button type="submit"
-                class="w-full text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full px-5 py-2.5 text-center ">
+                class="w-full text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full px-5 py-2.5 text-center ">
                 Get
                 started</button>
+        
             <p class="mt-4 text-gray-600 text-xs text-center">Don't have an account? <a href="./SignUp.php"
                     class="text-blue-500 hover:underline">Sign up here</a>.</p>
         </form>

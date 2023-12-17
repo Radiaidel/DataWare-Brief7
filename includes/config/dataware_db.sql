@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 13 déc. 2023 à 11:00
+-- Généré le : sam. 16 déc. 2023 à 15:17
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.0.28
 
@@ -80,8 +80,15 @@ INSERT INTO `answer` (`answer_id`, `question_id`, `user_id`, `answer_text`, `lik
 (187, 66, 75, 'repondre', 0, 0, '2023-12-11 10:55:02', 0, NULL),
 (188, 68, 75, 'zkjebndlizejb', 0, 0, '2023-12-12 19:18:59', 1, NULL),
 (189, 68, 75, ';jhvckvhdyec', 0, 0, '2023-12-12 19:19:10', 1, NULL),
-(190, 68, 75, ';jhvckvhdyec', 0, 0, '2023-12-12 19:19:14', 0, 1),
-(191, 68, 75, 'anaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 0, 0, '2023-12-12 23:20:30', 0, 1);
+(191, 68, 75, 'anaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 0, 0, '2023-12-12 23:20:30', 0, 1),
+(194, 65, 75, 'hiiiiii', 0, 0, '2023-12-15 10:27:58', 0, NULL),
+(195, 65, 75, 'hiiiiii', 0, 0, '2023-12-15 10:28:10', 0, NULL),
+(196, 69, 75, 'ouiiiiiiiii', 0, 0, '2023-12-15 10:28:42', 0, NULL),
+(197, 69, 75, 'ouiiiiiiiii', 0, 0, '2023-12-15 10:28:46', 0, NULL),
+(206, NULL, 75, 'hellooo dear', 0, 0, '2023-12-16 04:36:36', 0, 0),
+(207, NULL, 75, 'teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeet', 0, 0, '2023-12-16 04:37:37', 0, 0),
+(208, 67, 75, 'idaaaa', 0, 0, '2023-12-16 04:40:35', 0, 0),
+(209, 68, 75, 'helooooooooooooooooooooooooo', 0, 0, '2023-12-16 04:57:28', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -105,7 +112,11 @@ INSERT INTO `in_team` (`id_user_team`, `id_user`, `Id_Team`) VALUES
 (45, 76, 6),
 (46, 76, 5),
 (47, 77, 7),
-(48, 77, 6);
+(48, 77, 6),
+(61, 75, 16),
+(62, 79, 16),
+(64, 77, 8),
+(65, 81, 8);
 
 -- --------------------------------------------------------
 
@@ -128,8 +139,8 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`Id_Project`, `project_name`, `project_description`, `project_status`, `created_at`, `deadline`, `id_user`) VALUES
-(24, 'Web Development', 'Building a new website', 'ongoing', '2023-12-07 08:22:51', '2023-12-31', 74),
-(25, 'Mobile App', 'Developing a mobile application', 'pending', '2023-12-07 08:22:51', '2024-01-15', 74);
+(24, 'Web Development', 'Building a new website', 'ongoing', '2023-12-07 08:22:51', '2023-12-31', 78),
+(25, 'Mobile App', 'Developing a mobile application', 'pending', '2023-12-07 08:22:51', '2024-01-15', 78);
 
 -- --------------------------------------------------------
 
@@ -157,8 +168,9 @@ INSERT INTO `question` (`question_id`, `user_id`, `Id_Project`, `question_text`,
 (65, 75, 24, 'I am working on a web development project using JavaScript, and I am struggling with understanding the concept of closures. Can someone provide a detailed explanation with examples?', 4, 5, '2023-12-07 08:50:43', 1, 'Understanding JavaScript Closures'),
 (66, 76, 25, 'In our team, we are planning to redesign our database for a large-scale application. What are the best practices for designing a scalable and efficient database schema? Are there any common pitfalls we should avoid?', 1, 2, '2023-12-07 08:50:43', 1, 'Best Practices for Database Schema Design'),
 (67, 77, 24, 'I have been learning front-end development, and I find responsive web design challenging. Can someone share tips and tricks for creating responsive layouts? Are there any recommended frameworks or libraries for responsive design?', 1, 2, '2023-12-07 08:50:43', 0, 'Tips for Responsive Web Design'),
-(68, 75, 25, 'As a backend developer, I often deal with handling user authentication and authorization. What are the security best practices for user authentication, and how can I implement role-based access control in my applications?', 0, 0, '2023-12-07 08:50:43', 0, 'Security Best Practices for User Authentication and Aut'),
-(69, 76, 24, 'I am curious about the latest trends in web development for the upcoming year. What technologies, frameworks, or methodologies are gaining popularity, and how can developers stay up-to-date with industry trends?', 0, 0, '2023-12-07 08:50:43', 0, 'Exploring Web Development Trends for the Future');
+(68, 75, 25, 'As a backend developer, I often deal with handling user authentication and authorization. What are the security best practices for user authentication, and how can I implement role-based access control in my applications?', 0, 0, '2023-12-07 08:50:43', 0, '        Security Best Practices for User Authentication'),
+(69, 76, 24, 'I am curious about the latest trends in web development for the upcoming year. What technologies, frameworks, or methodologies are gaining popularity, and how can developers stay up-to-date with industry trends?', 0, 0, '2023-12-07 08:50:43', 0, 'Exploring Web Development Trends for the Future'),
+(109, 75, 24, 'll', 0, 0, '2023-12-15 10:24:41', 1, 'll');
 
 -- --------------------------------------------------------
 
@@ -178,7 +190,9 @@ CREATE TABLE `question_tag` (
 
 INSERT INTO `question_tag` (`id_question_tag`, `id_question`, `id_tag`) VALUES
 (103, 65, 8),
-(104, 65, 7);
+(104, 65, 7),
+(140, 68, 11),
+(141, 68, 11);
 
 -- --------------------------------------------------------
 
@@ -227,8 +241,7 @@ INSERT INTO `team` (`Id_Team`, `team_name`, `created_at`, `id_user`, `Id_Project
 (6, 'Design Team', '2023-12-07 09:06:19', 78, 24),
 (7, 'QA Team', '2023-12-07 09:06:19', 78, 24),
 (8, 'Development Team 1', '2023-12-07 09:06:32', 78, 25),
-(9, 'Design Team', '2023-12-07 09:06:32', 78, 25),
-(10, 'QA Team', '2023-12-07 09:06:32', 78, 25);
+(16, 'helloTeam', '2023-12-15 15:29:29', 78, 25);
 
 -- --------------------------------------------------------
 
@@ -255,7 +268,11 @@ INSERT INTO `users` (`id_user`, `username`, `email`, `pass_word`, `role`, `statu
 (75, 'yassir', 'yassir@gmail.com', '$2y$10$O2xTEWnowOml2ZTbfD53QOfa4ZCqrgeMqvG/vNvywo0kUsWHGOIUW', 'user', 'active', 'upload/jane.jpg'),
 (76, 'ahmed', 'ahmed@gmail.com', '$2y$10$nT5sh/h51aEv5K.V6K.kqO0k.aY6SDr8IJECsrwR5kJem6i88UHuq', 'user', 'active', 'upload/jane.jpg'),
 (77, 'abderahman', 'abderahman@gmail.com', '$2y$10$iBVbVUdpW3OELQ8DO5pGZ./6P/7FcFQcod6pGY4zvrtYZO5fHNi6u', 'user', 'active', 'upload/jane.jpg'),
-(78, 'sm', 'sm@gmail.com', '$2y$10$tYoCRXKQ.GGbIsIoDYzVf.IO.gH/05LwKUzCDt95rsiap59AbtGeS', 'sm', 'active', 'upload/jane.jpg');
+(78, 'sm', 'sm@gmail.com', '$2y$10$tYoCRXKQ.GGbIsIoDYzVf.IO.gH/05LwKUzCDt95rsiap59AbtGeS', 'sm', 'active', 'upload/jane.jpg'),
+(79, 'er', 'fahedd@gmail.com', '$2y$10$rSqcfwuOHChAj/PB89MaOOeVzoDFBAZCV0Ns74iEH3fvYbkHiISwa', 'user', 'active', NULL),
+(80, 'radia', 'radia@gmail.com', '$2y$10$SahHLwePhGEDl0BkNA1z.e7PI3quA9TAhIZBtJRzbKusMTYqBJw6m', 'user', 'active', NULL),
+(81, 'ayoub88', 'ayoub@gmail.com', '$2y$10$6wV0hWqNrE/xHg/SUb7CuuVed4fal4OararLeB.wsU0fTWtEsNjV.', 'user', 'active', 'upload/mesh-267.png'),
+(82, 'radiaaaaaaaa', 'radiaaaaaaaaa@gmail.com', '$2y$10$lEPolUZcJ..ru6SzPYlMsuJ5cJLb5BNcMN4uq5W1zo1ky935e5c3S', 'user', 'active', 'upload/zany-jadraque-YLdC7qO9M3g-unsplash.jpg');
 
 --
 -- Index pour les tables déchargées
@@ -329,13 +346,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
 
 --
 -- AUTO_INCREMENT pour la table `in_team`
 --
 ALTER TABLE `in_team`
-  MODIFY `id_user_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_user_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT pour la table `project`
@@ -347,13 +364,13 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT pour la table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT pour la table `question_tag`
 --
 ALTER TABLE `question_tag`
-  MODIFY `id_question_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id_question_tag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT pour la table `tags`
@@ -365,13 +382,13 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT pour la table `team`
 --
 ALTER TABLE `team`
-  MODIFY `Id_Team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Id_Team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- Contraintes pour les tables déchargées
