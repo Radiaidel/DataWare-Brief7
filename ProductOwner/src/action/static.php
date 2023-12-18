@@ -27,6 +27,7 @@ if (!isset($_SESSION['id'])) {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             overflow: hidden;
             height: 100%;
+            width: 100%;
             
         }
 
@@ -78,35 +79,35 @@ if (!isset($_SESSION['id'])) {
             <a href="../logout.php" class="text-white hover:text-gray-300 transition duration-300">Log out</a>
         </nav>
     </div>
+   
     <div class="container mx-auto p-8">
-        <h1 class="text-3xl font-semibold mb-4">DataWare Statics : </h1>
+    <h1 class="text-3xl font-semibold mb-4">DataWare Statics : </h1>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
-            <!-- Chart Card 1 -->
-            <div class="chart-card p-4">
-                <h3 class="text-lg font-semibold mb-2">Number of Questions per Project</h3>
-                <canvas id="chart1"></canvas>
-            </div>
-
-            <!-- Chart Card 2 -->
-            <div class="chart-card p-4">
-                <h3 class="text-lg font-semibold mb-2">Projects with the Most Questions</h3>
-                <canvas id="chart2"></canvas>
-            </div>
-
-            <!-- Chart Card 3 -->
-            <div class="chart-card p-4">
-                <h3 class="text-lg font-semibold mb-2">Project with the Fewest Answers</h3> 
-                <canvas id="chart3"></canvas>
-            </div>
-
-            <!-- Chart Card 4 -->
-            <div class="chart-card p-4">
-                <h3 class="text-lg font-semibold mb-2">User with the Most Answers</h3>
-                <canvas id="chart4"></canvas>
-            </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 mt-6">
+        <!-- Chart Card 1 -->
+        <div class="chart-card p-4 mb-6">
+            <h3 class="text-lg font-semibold mb-2">Number of Questions per Project</h3>
+            <canvas id="chart1"></canvas>
         </div>
 
+        <!-- Chart Card 2 -->
+        <div class="chart-card p-4 mb-6">
+            <h3 class="text-lg font-semibold mb-2">Projects with the Most Questions</h3>
+            <canvas id="chart2"></canvas>
+        </div>
+
+        <!-- Chart Card 3 -->
+        <div class="chart-card p-4">
+            <h3 class="text-lg font-semibold mb-2">Project with the Fewest Answers</h3> 
+            <canvas id="chart3"></canvas>
+        </div>
+
+        <!-- Chart Card 4 -->
+        <div class="chart-card p-4">
+            <h3 class="text-lg font-semibold mb-2">User with the Most Answers</h3>
+            <canvas id="chart4"></canvas>
+        </div>
+    </div>
         <script>
             document.getElementById('burgerBtn').addEventListener('click', function () {
                 document.getElementById('burgerOverlay').classList.toggle('hidden');

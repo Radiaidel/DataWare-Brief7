@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $endDate = $_POST["end_date"];
     $status = $_POST["status"];
     $scrumMasterEmail = $_POST["scrum_master"];
+    // $scrumMasterId = htmlspecialchars($_POST["scrum_master"]);
 
     // Get the Scrum Master's user ID based on their email
     $scrumMasterQuery = "SELECT id_user FROM users WHERE email = ?";
@@ -28,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($insertStmt) {
                 // Assuming you have a variable for the Scrum Master's user ID, replace $scrumMasterId with your actual variable
-                $scrumMasterId = 78; // Replace this with the actual Scrum Master's user ID
 
                 $insertStmt->bind_param("ssssi", $name, $description, $endDate, $status, $scrumMasterId);
                 $insertStmt->execute();

@@ -80,7 +80,7 @@ $id_question = isset($_GET['question_id']) ? $_GET['question_id'] : (isset($_POS
                                 <div class="flex">
 
                                     <div class="flex-shrink-0">
-                                        <img src="<?php echo $imagePath; ?>" alt="User Image" class="w-10 h-10 rounded-full">
+                                        <img src="<?php   echo $imagePath; ?>" alt="User Image" class="w-10 h-10 rounded-full">
                                     </div>
                                     <div class="ml-2">
                                         <p class="text-sm  ">

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,7 +65,7 @@
           if(!empty($message)){
             echo $message;
           }?></p>
-        <form name="signInForm" action="index.php" method="POST" onsubmit="return validateForm();">
+        <form name="signInForm" action="" method="POST" onsubmit="return validateForm();">
             <!--Email input-->
             <div class="mb-4">
                 <input type="email" id="email" name="email" placeholder="Email"
