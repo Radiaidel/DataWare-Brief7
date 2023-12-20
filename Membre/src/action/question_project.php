@@ -38,7 +38,7 @@ if (isset($_POST['id_project'])) {
 
 
     $sqlQuestions = " SELECT q.*, u.image_url, u.username FROM question q 
-    INNER JOIN users u ON q.user_id = u.id_user WHERE q.Id_Project = ? and q.archived=0";
+    INNER JOIN users u ON q.user_id = u.id_user WHERE q.Id_Project = ? and q.archived=0 order by q.created_at desc ";
 
     $stmtQuestions = $conn->prepare($sqlQuestions);
 
@@ -110,27 +110,43 @@ if (isset($_POST['askQuestion'])) {
 
     $stmtInsertQuestion->close();
 
+
     $tagIDs = explode(" ", $tags);
 
-
-
+    if ($tagIDs) {
+        $sqlInsertQuestionTag = "INSERT INTO question_tag (id_question, id_tag) VALUES (?, ?)";
+        $stmtInsertQuestionTag = $conn->prepare($sqlInsertQuestionTag);
     
-    $sqlInsertQuestionTag = "INSERT INTO question_tag (id_question, id_tag) VALUES (?, ?)";
-    $stmtInsertQuestionTag = $conn->prepare($sqlInsertQuestionTag);
-
-    if ($stmtInsertQuestionTag === false) {
-        die("Erreur de préparation de la requête : " . $conn->error);
+        if ($stmtInsertQuestionTag === false) {
+            die("Erreur de préparation de la requête : " . $conn->error);
+        }
+    
+        $stmtInsertQuestionTag->bind_param("ii", $newQuestionID, $tagID);
+    
+        foreach ($tagIDs as $tagID) {
+            $tagID = intval($tagID);
+    
+            // Vérifier si le tag existe avant d'insérer dans question_tag
+            $sqlCheckTag = "SELECT id_tag FROM tags WHERE id_tag = ?";
+            $stmtCheckTag = $conn->prepare($sqlCheckTag);
+            $stmtCheckTag->bind_param("i", $tagID);
+            $stmtCheckTag->execute();
+            $result = $stmtCheckTag->get_result();
+    
+            if ($result->num_rows > 0) {
+                // Le tag existe, exécuter l'insertion
+                $stmtInsertQuestionTag->execute();
+            }
+    
+            $stmtCheckTag->close();
+        }
+    
+        $stmtInsertQuestionTag->close();
     }
-
-    $stmtInsertQuestionTag->bind_param("ii", $newQuestionID, $tagID);
-
-    foreach ($tagIDs as $tagID) {
-        $tagID = intval($tagID);
-        $stmtInsertQuestionTag->execute();
-    }
-
-    $stmtInsertQuestionTag->close();
+    
     header("Location: project.php");
+    
+    
 }
 
 ?>

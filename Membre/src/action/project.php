@@ -69,13 +69,15 @@
                         <?php echo $row['project_description']; ?>
                     </p>
                     <div class="flex justify-between">
-                        <span class="bg-blue-100 border border-blue-500 text-blue-500 px-5 py-2 rounded-full">
-                            <?php echo $row['project_status']; ?>
-                        </span>
-                        <span class="bg-red-100 border border-red-500 text-red-500 px-3 py-2 rounded-full">
-                            <?php echo $row['days_remaining']; ?> restants
-                        </span>
-                    </div>
+                    <span class="bg-blue-100 border border-blue-500 text-blue-500 px-5 py-2 rounded-full">
+                        <?php echo $row['project_status']; ?>
+                    </span>
+                    
+                    <span class="mx-16"></span>
+                    <span class="bg-red-100 border border-red-500 text-red-500 px-3 py-2 rounded-full">
+                        <?php echo $row['days_remaining']; ?> restants
+                    </span>
+                </div>
 
                 </button>
 

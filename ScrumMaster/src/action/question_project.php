@@ -40,7 +40,7 @@ if (isset($_POST['id_project'])) {
 
 
     $sqlQuestions = " SELECT q.*, u.image_url, u.username FROM question q 
-    INNER JOIN users u ON q.user_id = u.id_user WHERE q.Id_Project = ? and q.archived=0";
+    INNER JOIN users u ON q.user_id = u.id_user WHERE q.Id_Project = ? and q.archived=0 order by q.created_at desc ";
 
     $stmtQuestions = $conn->prepare($sqlQuestions);
 

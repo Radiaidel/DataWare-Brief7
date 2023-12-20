@@ -37,6 +37,7 @@ if (isset($_GET['filter'])) {
                 exit;
             }
             break;
+            //nssawal 3liha
         case 'search':
             $searchTerm = isset($_GET['searchTerm']) ? $_GET['searchTerm'] : '';
 
