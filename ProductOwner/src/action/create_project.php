@@ -27,9 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         if ($insertStmt) {
-                // Assuming you have a variable for the Scrum Master's user ID, replace $scrumMasterId with your actual variable
-                $scrumMasterId = 78; // Replace this with the actual Scrum Master's user ID
-
                 $insertStmt->bind_param("ssssi", $name, $description, $endDate, $status, $scrumMasterId);
                 $insertStmt->execute();
                 $insertStmt->close();

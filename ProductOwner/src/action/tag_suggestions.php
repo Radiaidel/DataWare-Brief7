@@ -5,7 +5,7 @@ include("../../../includes/config/connection.php");
 $prefix = $_POST['prefix'];
 $prefixModified ="%" . $prefix . "%";
 
-$sql = "SELECT id_tag,tag_name FROM tags WHERE tag_name LIKE ? LIMIT 5";
+$sql = "SELECT id_tag,tag_name FROM tags WHERE tag_name LIKE ? LIMIT 7";
 $stmt = $conn->prepare($sql);
 
 if ($stmt === false) {

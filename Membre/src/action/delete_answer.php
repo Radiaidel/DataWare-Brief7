@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="max-w-xl bg-white p-8 rounded-md shadow-lg">
         <p class="mb-4">Are you sure you want to delete the answer?</p>
 
-        <form method="post" action="">
+        <form method="post" action="response.php?question_id=<?php echo $id_question; ?>">
             <input type="hidden" name="answer_id" value="<?php echo $answerId; ?>">
             <input type="hidden" name="question_id" value="<?php echo $id_question; ?>">
             <div class="flex space-x-4 justify-between  ">

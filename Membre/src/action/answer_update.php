@@ -233,7 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["toupdate"])) {
 
                 <div class="bg-gray-200 p-4 mb-4  rounded-lg">
                     <!-- <h2 class="text-lg font-semibold mb-2">Répondre à la question</h2> -->
-                    <form method="POST" class="space-y-4">
+                    <form method="POST" class="space-y-4" action="response.php?question_id=<?php echo $id_question; ?>">
                         <div>
                             <label for="response_text" class="block text-sm text-lg font-medium text-gray-700">Votre réponse
                             </label>

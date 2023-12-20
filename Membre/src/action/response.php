@@ -2,7 +2,8 @@
 session_start();
 if (!isset($_SESSION['id'])) {
     header("Location:../../../logout.php ");
-}include("../../../includes/config/connection.php");
+}
+include("../../../includes/config/connection.php");
 include '../../template/header.php';
 $userId = $_SESSION["id"];
 
@@ -527,6 +528,44 @@ if (isset($_POST['Envoyer_reponse'])) {
 }
 
 
+
+if (isset($_POST['confirm_delete'])) {
+    $answerId = $_POST["answer_id"];
+    $id_question = $_POST["question_id"];
+    // User confirmed the deletion
+    $deleteQuery = "DELETE FROM answer WHERE answer_id = ? ";
+
+
+    $stmt = $conn->prepare($deleteQuery);
+    $stmt->bind_param("i", $answerId);
+    $stmt->execute();
+
+    if ($stmt) {
+        exit;
+    } else {
+        echo "Error deleting answer: " . $conn->error;
+    }
+} elseif (isset($_POST['cancel_delete'])) {
+    exit;
+}
+
+
+
+if (isset($_POST["update_response"])) {
+    $answerId = $_POST["answer_id"];
+    $newAnswerText = $_POST["response_text"];
+    $id_question = $_POST["question_id"];
+
+    $updateQuery = "UPDATE answer SET answer_text = ? WHERE answer_id = ?";
+    $stmt = $conn->prepare($updateQuery);
+    $stmt->bind_param("si", $newAnswerText, $answerId);
+    $stmt->execute();
+    if ($stmt) {
+        exit;
+    } else {
+        echo "Error updating answer: " . $conn->error;
+    }
+}
 
 
 $conn->close();

@@ -88,16 +88,16 @@ if (!isset($_SESSION['id'])) {
             document.getElementById("MenuFilter").classList.toggle("hidden");
         });
 
-        document.getElementById('searchForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Empêche la soumission par défaut du formulaire
-            searchQuestions();
-        });
+        // document.getElementById('searchForm').addEventListener('submit', function (event) {
+        //     event.preventDefault(); // Empêche la soumission par défaut du formulaire
+        //     searchQuestions();
+        // });
 
 
-        function searchQuestions() {
-            var searchQuery = document.getElementById('searchInput').value;
-            DisplayQuestions('search', 1, searchQuery);
-        }
+        // function searchQuestions() {
+        //     var searchQuery = document.getElementById('searchInput').value;
+        //     DisplayQuestions('search', 1, searchQuery);
+        // }
 
 
         document.addEventListener('DOMContentLoaded', function () {

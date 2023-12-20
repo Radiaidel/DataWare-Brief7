@@ -37,6 +37,7 @@
     WHERE it.id_user = ?
 ";
 
+
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
